@@ -1,0 +1,553 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-16T00:00:00Z",
+  "title": "Design System: SourceLight",
+  "extensions": {
+    "colorMeta": {
+      "accent": {
+        "role": "primary",
+        "displayName": "Cobalt",
+        "canonical": "#7d90ff",
+        "tonalRamp": [
+          "#000629",
+          "#000f68",
+          "#0018a8",
+          "#0022e7",
+          "#2747ff",
+          "#677dff",
+          "#a6b3ff",
+          "#e5e9ff"
+        ]
+      },
+      "accent-hover": {
+        "role": "primary",
+        "displayName": "Cobalt (Lifted)",
+        "canonical": "#9aa8ff",
+        "tonalRamp": [
+          "#000629",
+          "#000e68",
+          "#0017a8",
+          "#0020e7",
+          "#2745ff",
+          "#677cff",
+          "#a6b2ff",
+          "#e5e9ff"
+        ]
+      },
+      "accent-dim": {
+        "role": "primary",
+        "displayName": "Cobalt Substrate",
+        "canonical": "#3c4790",
+        "tonalRamp": [
+          "#0c0e1d",
+          "#1f244a",
+          "#313a76",
+          "#4450a3",
+          "#6772c0",
+          "#949cd2",
+          "#c0c5e5",
+          "#edeef8"
+        ]
+      },
+      "accent-wash": {
+        "role": "primary",
+        "displayName": "Cobalt Wash",
+        "canonical": "rgba(60, 71, 144, 0.25)",
+        "tonalRamp": [
+          "#0c0e1d",
+          "#1f244a",
+          "#313a76",
+          "#4450a3",
+          "#6772c0",
+          "#949cd2",
+          "#c0c5e5",
+          "#edeef8"
+        ]
+      },
+      "accent-ink": {
+        "role": "primary",
+        "displayName": "Ink Cool",
+        "canonical": "#0b0c14",
+        "tonalRamp": [
+          "#0e101a",
+          "#252843",
+          "#3b416c",
+          "#525995",
+          "#747bb2",
+          "#9da2c9",
+          "#c6c9df",
+          "#efeff6"
+        ]
+      },
+      "canvas-void": {
+        "role": "neutral",
+        "displayName": "Void",
+        "canonical": "#090a0c",
+        "tonalRamp": [
+          "#111317",
+          "#2d323c",
+          "#485060",
+          "#636e84",
+          "#848ea3",
+          "#a8afbe",
+          "#ccd0d9",
+          "#f0f2f4"
+        ]
+      },
+      "base": {
+        "role": "neutral",
+        "displayName": "Base",
+        "canonical": "#0b0c0e",
+        "tonalRamp": [
+          "#121417",
+          "#2e323a",
+          "#4a505e",
+          "#666f81",
+          "#868fa0",
+          "#aab0bc",
+          "#cdd1d8",
+          "#f1f2f4"
+        ]
+      },
+      "panel": {
+        "role": "neutral",
+        "displayName": "Panel",
+        "canonical": "#111214",
+        "tonalRamp": [
+          "#131416",
+          "#303338",
+          "#4d525b",
+          "#6a707d",
+          "#8a909c",
+          "#adb1b9",
+          "#cfd1d6",
+          "#f1f2f3"
+        ]
+      },
+      "raised": {
+        "role": "neutral",
+        "displayName": "Raised",
+        "canonical": "#191a1e",
+        "tonalRamp": [
+          "#131316",
+          "#2f3139",
+          "#4c4f5b",
+          "#696d7e",
+          "#898d9d",
+          "#acafba",
+          "#cfd0d7",
+          "#f1f2f3"
+        ]
+      },
+      "hover": {
+        "role": "neutral",
+        "displayName": "Hover",
+        "canonical": "#202127",
+        "tonalRamp": [
+          "#121316",
+          "#2f3039",
+          "#4c4e5c",
+          "#686b7f",
+          "#898c9e",
+          "#abaeba",
+          "#cecfd7",
+          "#f1f1f4"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Line",
+        "canonical": "#292b31",
+        "tonalRamp": [
+          "#131316",
+          "#2f3239",
+          "#4c505b",
+          "#696e7e",
+          "#8a8e9d",
+          "#acafba",
+          "#cfd1d7",
+          "#f1f2f3"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#eceef2",
+        "tonalRamp": [
+          "#111318",
+          "#2a313e",
+          "#444f63",
+          "#5e6c89",
+          "#7f8ca7",
+          "#a5aec1",
+          "#cad0db",
+          "#f0f1f5"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted",
+        "canonical": "#9aa0aa",
+        "tonalRamp": [
+          "#131416",
+          "#303339",
+          "#4d525b",
+          "#6a717d",
+          "#8a919c",
+          "#acb1b9",
+          "#cfd2d6",
+          "#f1f2f3"
+        ]
+      },
+      "faint": {
+        "role": "neutral",
+        "displayName": "Faint",
+        "canonical": "#646a75",
+        "tonalRamp": [
+          "#131416",
+          "#303338",
+          "#4d525a",
+          "#6a717d",
+          "#8b919c",
+          "#adb1b9",
+          "#cfd2d6",
+          "#f1f2f3"
+        ]
+      },
+      "positive": {
+        "role": "tertiary",
+        "displayName": "Confirm Green",
+        "canonical": "#34d399",
+        "tonalRamp": [
+          "#072218",
+          "#13563d",
+          "#1e8a62",
+          "#29be88",
+          "#4ed9a6",
+          "#82e4c0",
+          "#b6efda",
+          "#eafaf4"
+        ]
+      },
+      "warning": {
+        "role": "tertiary",
+        "displayName": "Caution Amber",
+        "canonical": "#fbbf24",
+        "tonalRamp": [
+          "#281d01",
+          "#664a02",
+          "#a57703",
+          "#e3a504",
+          "#fbc12b",
+          "#fcd369",
+          "#fde5a8",
+          "#fff8e6"
+        ]
+      },
+      "danger": {
+        "role": "tertiary",
+        "displayName": "Fault Red",
+        "canonical": "#ef4444",
+        "tonalRamp": [
+          "#260303",
+          "#600808",
+          "#9a0d0d",
+          "#d51212",
+          "#ee3838",
+          "#f37373",
+          "#f8adad",
+          "#fde8e8"
+        ]
+      },
+      "histogram-red": {
+        "role": "tertiary",
+        "displayName": "Histogram Red",
+        "canonical": "rgba(224, 98, 91, 0.5)",
+        "tonalRamp": [
+          "#220806",
+          "#581411",
+          "#8d211b",
+          "#c22d25",
+          "#dd514a",
+          "#e7847f",
+          "#f1b7b4",
+          "#fbeaea"
+        ]
+      },
+      "histogram-green": {
+        "role": "tertiary",
+        "displayName": "Histogram Green",
+        "canonical": "rgba(111, 191, 115, 0.5)",
+        "tonalRamp": [
+          "#0d1c0d",
+          "#204822",
+          "#347437",
+          "#47a04c",
+          "#6abd6e",
+          "#96d099",
+          "#c1e4c3",
+          "#edf7ee"
+        ]
+      },
+      "histogram-blue": {
+        "role": "tertiary",
+        "displayName": "Histogram Blue",
+        "canonical": "rgba(91, 141, 217, 0.5)",
+        "tonalRamp": [
+          "#081221",
+          "#142d55",
+          "#204988",
+          "#2b65bc",
+          "#5085d6",
+          "#83a9e2",
+          "#b7cdee",
+          "#eaf1fa"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Exactly one instance — the first-run “SourceLight” wordmark on the empty-library screen. The only moment the app has nothing to show and can afford the serif."
+      },
+      "display": {
+        "displayName": "Display",
+        "purpose": "Modal titles (“Trips”, “Keyboard shortcuts”, “AI tagging”) via .font-display. A brand grace note on a surface the user has stopped to read."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Any working-screen title that must stay scannable rather than expressive."
+      },
+      "subtitle": {
+        "displayName": "Subtitle",
+        "purpose": "Rail and panel headers — “Develop”, “Presets”, adjustment group names. 13px in the Develop rail, 12px nested inside it."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "The document default, set on body rather than by utility. Facet rows and any prose."
+      },
+      "control": {
+        "displayName": "Control",
+        "purpose": "Every button label and input value. Medium weight is what separates a control from its surroundings at this size."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "The workhorse: metadata rows, hints, chips, counts, the status bar, keyboard legends."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Uppercase section headings inside rails and panels. Always Faint. Uppercase does the structural work a larger size would elsewhere."
+      },
+      "numeric": {
+        "displayName": "Numeric",
+        "purpose": "Any value that is compared or updates in place — counts, zoom percentage, photo index, slider readouts, clipping percentages."
+      }
+    },
+    "shadows": [
+      {
+        "name": "float",
+        "value": "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+        "purpose": "The only layout-level shadow, and it marks something that genuinely floats free of the application: the two modal dialogs and the lightbox photograph. Nothing in the layout may use it."
+      },
+      {
+        "name": "key-cap",
+        "value": "inset 0 1px 0 rgba(255, 255, 255, 0.045), 0 1px 1.5px rgba(0, 0, 0, 0.35)",
+        "purpose": "The Solid button's machined-key treatment — a 1px top highlight over a faint cast, so it detaches from the panel without reading as a floating card."
+      },
+      {
+        "name": "accent-lift",
+        "value": "inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 1px 2px rgba(0, 0, 0, 0.45), 0 2px 9px rgba(76, 71, 144, 0.4)",
+        "purpose": "The Accent button's top-lit cobalt: inner highlight, real cast, and a soft accent-tinted ambient. Reserved for the single primary action on a surface."
+      },
+      {
+        "name": "press",
+        "value": "inset 0 1px 2px rgba(0, 0, 0, 0.28)",
+        "purpose": "The :active response on both button fills, paired with a 0.5px translateY so a click reads as a physical key rather than a colour flash."
+      },
+      {
+        "name": "thumb-scrim",
+        "value": "linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent)",
+        "purpose": "Not a shadow but the system's one functional gradient: it rises from the bottom of a grid thumbnail on hover so 9–11px metadata stays legible over an unknown photograph."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state",
+        "value": "140ms ease",
+        "purpose": "Every colour, border and shadow state change on buttons and chrome. One duration for the whole system."
+      },
+      {
+        "name": "press",
+        "value": "60ms ease",
+        "purpose": "The transform on :active only — a half-pixel dip, fast enough to feel mechanical."
+      },
+      {
+        "name": "panel",
+        "value": "150ms ease",
+        "purpose": "Collapsible-panel chevron rotation and rail section reveals."
+      }
+    ],
+    "breakpoints": []
+  },
+  "components": [
+    {
+      "name": "Accent Button",
+      "kind": "button",
+      "refersTo": "button-accent",
+      "description": "The single highest-priority action on a surface — Save, Tag, Develop, Keep this one. Never two on one screen.",
+      "html": "<button class=\"ds-btn-accent\"><span class=\"ds-dot\"></span>Tag 128</button>",
+      "css": ".ds-btn-accent { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 0; border-radius: 6px; padding: 6px 10px; font-family: Inter, ui-sans-serif, system-ui, \"Segoe UI\", sans-serif; font-size: 12px; font-weight: 600; letter-spacing: -0.01em; color: var(--color-accent-ink, #0b0c14); background: linear-gradient(180deg, #93a2ff 0%, #7d90ff 56%, #7082f4 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), 0 1px 2px rgba(0,0,0,0.45), 0 2px 9px rgba(76,71,144,0.4); cursor: default; transition: filter 140ms ease, box-shadow 140ms ease, transform 60ms ease; } .ds-btn-accent .ds-dot { height: 6px; width: 6px; border-radius: 999px; background: #34d399; } .ds-btn-accent:hover { filter: brightness(1.06); box-shadow: inset 0 1px 0 rgba(255,255,255,0.34), 0 1px 2px rgba(0,0,0,0.45), 0 3px 13px rgba(76,71,144,0.55); } .ds-btn-accent:active { filter: brightness(0.97); transform: translateY(0.5px); box-shadow: inset 0 1px 2px rgba(0,0,0,0.28), 0 1px 1px rgba(0,0,0,0.4); } .ds-btn-accent:focus-visible { outline: 2px solid var(--color-accent, #7d90ff); outline-offset: 1px; }"
+    },
+    {
+      "name": "Solid Button",
+      "kind": "button",
+      "refersTo": "button-solid",
+      "description": "The default for real actions — Scan, Trips, Duplicates, Compare, Export. A machined key: raised fill, 1px top highlight, border a step brighter than a plain divider.",
+      "html": "<button class=\"ds-btn-solid\">Scan</button>",
+      "css": ".ds-btn-solid { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid #34363e; border-radius: 6px; padding: 6px 10px; font-family: Inter, ui-sans-serif, system-ui, \"Segoe UI\", sans-serif; font-size: 12px; font-weight: 500; color: var(--color-ink, #eceef2); background: var(--color-raised, #191a1e); box-shadow: inset 0 1px 0 rgba(255,255,255,0.045), 0 1px 1.5px rgba(0,0,0,0.35); cursor: default; transition: background-color 140ms ease, border-color 140ms ease, box-shadow 140ms ease, transform 60ms ease; } .ds-btn-solid:hover { background: var(--color-hover, #202127); border-color: #40434c; } .ds-btn-solid:active { transform: translateY(0.5px); box-shadow: inset 0 1px 2px rgba(0,0,0,0.28); } .ds-btn-solid:focus-visible { outline: 2px solid var(--color-accent, #7d90ff); outline-offset: 1px; } .ds-btn-solid:disabled { opacity: 0.4; pointer-events: none; }"
+    },
+    {
+      "name": "Icon Button",
+      "kind": "button",
+      "refersTo": "icon-chip",
+      "description": "The chrome affordance for the develop toolbar, tool strip and rail headers. 30×30, transparent at rest; the icon goes cobalt when the tool it controls is engaged.",
+      "html": "<span style=\"display:flex;gap:6px\"> <button class=\"ds-icon-chip\" aria-label=\"Settings\"><svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"3\"/><path d=\"M19 12a7 7 0 0 0-.1-1.2l2-1.5-2-3.5-2.3 1a7 7 0 0 0-2-1.2l-.3-2.4h-4l-.3 2.4a7 7 0 0 0-2 1.2l-2.3-1-2 3.5 2 1.5A7 7 0 0 0 5 12a7 7 0 0 0 .1 1.2l-2 1.5 2 3.5 2.3-1a7 7 0 0 0 2 1.2l.3 2.4h4l.3-2.4a7 7 0 0 0 2-1.2l2.3 1 2-3.5-2-1.5A7 7 0 0 0 19 12z\"/></svg></button> <button class=\"ds-icon-chip ds-icon-chip-on\" aria-label=\"Masking\"><svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"9\" cy=\"12\" r=\"7\"/><circle cx=\"15\" cy=\"12\" r=\"7\"/></svg></button> </span>",
+      "css": ".ds-icon-chip { display: grid; place-items: center; height: 30px; width: 30px; flex: none; border: 0; border-radius: 6px; background: transparent; color: var(--color-muted, #9aa0aa); cursor: default; transition: background-color 140ms ease, color 140ms ease; } .ds-icon-chip:hover { background: var(--color-hover, #202127); color: var(--color-ink, #eceef2); } .ds-icon-chip:focus-visible { outline: 2px solid var(--color-accent, #7d90ff); outline-offset: 1px; } .ds-icon-chip-on { color: var(--color-accent, #7d90ff); background: transparent; } .ds-icon-chip:disabled { opacity: 0.3; pointer-events: none; }"
+    },
+    {
+      "name": "Input Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Base background — darker than the panel it sits on, the inverse of the usual convention, so a field reads as a recess rather than a raised control. Focus swaps the border to Cobalt Substrate; no ring, no glow.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Search filenames, tags, places…\" />",
+      "css": ".ds-input { width: 260px; border: 1px solid var(--color-line, #292b31); border-radius: 6px; background: var(--color-base, #0b0c0e); padding: 6px 10px; font-family: Inter, ui-sans-serif, system-ui, \"Segoe UI\", sans-serif; font-size: 12px; color: var(--color-ink, #eceef2); outline: none; user-select: text; transition: border-color 140ms ease; } .ds-input::placeholder { color: var(--color-faint, #646a75); } .ds-input:focus { border-color: var(--color-accent-dim, #3c4790); }"
+    },
+    {
+      "name": "Facet Row",
+      "kind": "custom",
+      "refersTo": "facet-row",
+      "description": "The signature control of the library. The whole row is the hit target, and the right-aligned count is the point of the component — it is computed with the OTHER filters applied, so it always answers “what would selecting this actually give me”. Never render one without a count.",
+      "html": "<div style=\"display:flex;flex-direction:column;gap:2px;width:220px\"> <button class=\"ds-facet-row\"><span class=\"ds-check\"></span><span class=\"ds-facet-label\">wildlife</span><span class=\"ds-facet-count\">142</span></button> <button class=\"ds-facet-row ds-facet-row-on\"><span class=\"ds-check ds-check-on\"><svg width=\"11\" height=\"11\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12.5l4.5 4.5L19 6.5\"/></svg></span><span class=\"ds-facet-label\">landscape</span><span class=\"ds-facet-count\">318</span></button> </div>",
+      "css": ".ds-facet-row { display: flex; align-items: center; gap: 8px; width: 100%; border: 0; border-radius: 4px; background: transparent; padding: 5px 8px; text-align: left; font-family: Inter, ui-sans-serif, system-ui, \"Segoe UI\", sans-serif; font-size: 13px; color: var(--color-muted, #9aa0aa); cursor: default; transition: background-color 140ms ease, color 140ms ease; } .ds-facet-row:hover { background: var(--color-hover, #202127); color: var(--color-ink, #eceef2); } .ds-facet-row:focus-visible { outline: 2px solid var(--color-accent, #7d90ff); outline-offset: -2px; } .ds-facet-row-on { background: rgba(60, 71, 144, 0.25); color: var(--color-ink, #eceef2); } .ds-check { display: grid; place-items: center; height: 14px; width: 14px; flex: none; border-radius: 4px; border: 1px solid var(--color-line, #292b31); transition: background-color 140ms ease, border-color 140ms ease; } .ds-check-on { border-color: var(--color-accent, #7d90ff); background: var(--color-accent, #7d90ff); color: #0b0c14; } .ds-facet-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-transform: capitalize; } .ds-facet-count { margin-left: auto; flex: none; font-size: 10px; font-variant-numeric: tabular-nums; color: var(--color-faint, #646a75); }"
+    },
+    {
+      "name": "Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Two contexts read identically by design: active filter chips above the grid, and subject tags in the lightbox sidebar. Both mean “an attribute currently attached to something”. The dismiss ✕ gets an explicit 16×16 box because an 11px glyph is otherwise an unreliable target.",
+      "html": "<span class=\"ds-chip\">Karoo trip<button class=\"ds-chip-x\" aria-label=\"Remove\">✕</button></span>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; gap: 4px; border: 1px solid var(--color-line, #292b31); border-radius: 999px; background: var(--color-raised, #191a1e); padding: 4px 4px 4px 10px; font-family: Inter, ui-sans-serif, system-ui, \"Segoe UI\", sans-serif; font-size: 11px; color: var(--color-muted, #9aa0aa); } .ds-chip-x { display: grid; place-items: center; height: 16px; width: 16px; flex: none; border: 0; border-radius: 999px; background: transparent; color: var(--color-faint, #646a75); font-size: 10px; cursor: default; transition: background-color 140ms ease, color 140ms ease; } .ds-chip-x:hover { background: var(--color-hover, #202127); color: var(--color-accent, #7d90ff); }"
+    },
+    {
+      "name": "Grid Cell",
+      "kind": "card",
+      "description": "At rest a thumbnail shows the photograph and a rating, nothing else — everything informational waits for hover. Selection is a ring-2 accent over a 1px Base ring-offset, so the ring reads as separated from the photograph rather than painted onto it.",
+      "html": "<span style=\"display:flex;gap:6px\"> <span class=\"ds-cell\"><span class=\"ds-cell-photo\"></span><span class=\"ds-cell-rating\">★★★★</span><span class=\"ds-cell-dot\"></span><span class=\"ds-cell-meta\">wildlife</span></span> <span class=\"ds-cell ds-cell-on\"><span class=\"ds-cell-photo ds-cell-photo-b\"></span><span class=\"ds-cell-untagged\"></span></span> </span>",
+      "css": ".ds-cell { position: relative; display: block; height: 168px; width: 168px; border-radius: 4px; overflow: hidden; background: var(--color-raised, #191a1e); box-shadow: 0 0 0 1px transparent; transition: box-shadow 140ms ease; } .ds-cell:hover { box-shadow: 0 0 0 1px var(--color-line, #292b31); } .ds-cell-on { box-shadow: 0 0 0 1px var(--color-base, #0b0c0e), 0 0 0 3px var(--color-accent, #7d90ff); } .ds-cell-photo { position: absolute; inset: 0; background: linear-gradient(160deg, #3d4a63 0%, #6c7280 45%, #8d7f68 60%, #2b2a26 100%); } .ds-cell-photo-b { background: linear-gradient(200deg, #22303f 0%, #52616e 50%, #7b6f5c 66%, #1e1d1a 100%); } .ds-cell-rating { position: absolute; left: 4px; top: 4px; border-radius: 4px; background: rgba(0,0,0,0.6); padding: 0 4px; font-size: 9px; color: var(--color-accent, #7d90ff); backdrop-filter: blur(4px); } .ds-cell-untagged { position: absolute; right: 4px; top: 4px; height: 6px; width: 6px; border-radius: 999px; background: rgba(125,144,255,0.7); } .ds-cell-dot { position: absolute; left: 4px; bottom: 4px; height: 10px; width: 10px; border-radius: 999px; background: #46a758; border: 1px solid rgba(0,0,0,0.4); } .ds-cell-meta { position: absolute; inset-inline: 0; bottom: 0; padding: 20px 6px 6px; opacity: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); font-family: Inter, ui-sans-serif, system-ui, \"Segoe UI\", sans-serif; font-size: 9px; text-align: right; color: var(--color-ink, #eceef2); transition: opacity 140ms ease; } .ds-cell:hover .ds-cell-meta { opacity: 1; }"
+    },
+    {
+      "name": "Compare Tile",
+      "kind": "custom",
+      "description": "One frame in the compare / survey view. Tiles are uniform and object-contain, because a comparison where one photo is bigger is not a comparison. The focused tile takes the grid's selection ring; everything drawn inside obeys the Over-Image Rule — white on a black scrim, with green and red reserved for pick and reject.",
+      "html": "<span class=\"ds-tile ds-tile-on\"><span class=\"ds-tile-photo\"></span> <span class=\"ds-tile-bar\"><span class=\"ds-tile-name\">DSC07742.ARW<span class=\"ds-tile-exif\">ƒ/2.8 · 1/640s · ISO 200</span></span> <span class=\"ds-tile-stars\">★★★<span class=\"ds-tile-off\">★★</span></span> <span class=\"ds-tile-keep\">Keep</span></span></span>",
+      "css": ".ds-tile { position: relative; display: block; width: 300px; aspect-ratio: 3 / 2; border-radius: 4px; overflow: hidden; background: var(--color-raised, #191a1e); transition: opacity 140ms ease; } .ds-tile-on { box-shadow: 0 0 0 1px #000, 0 0 0 3px var(--color-accent, #7d90ff); } .ds-tile-rejected { opacity: 0.45; } .ds-tile-photo { position: absolute; inset: 0; background: radial-gradient(120px 90px at 31% 26%, rgba(255,226,178,0.85), transparent 70%), linear-gradient(180deg, #2b3a55 0%, #4b5c74 46%, #8a7f6d 62%, #3a3730 63%, #232019 100%); } .ds-tile-bar { position: absolute; inset-inline: 0; bottom: 0; display: flex; align-items: center; gap: 8px; padding: 20px 8px 6px; background: linear-gradient(to top, rgba(0,0,0,0.85), transparent); font-family: Inter, ui-sans-serif, system-ui, \"Segoe UI\", sans-serif; font-size: 11px; color: rgba(255,255,255,0.9); } .ds-tile-name { display: flex; flex-direction: column; min-width: 0; flex: 1; } .ds-tile-exif { font-size: 10px; font-variant-numeric: tabular-nums; color: rgba(255,255,255,0.55); } .ds-tile-stars { flex: none; font-size: 12px; color: #fff; } .ds-tile-off { color: rgba(255,255,255,0.3); } .ds-tile-keep { flex: none; border-radius: 999px; background: rgba(0,0,0,0.6); padding: 1px 8px; font-size: 10px; color: rgba(255,255,255,0.8); backdrop-filter: blur(4px); opacity: 0; transition: opacity 140ms ease; } .ds-tile:hover .ds-tile-keep { opacity: 1; }"
+    },
+    {
+      "name": "Date Picker",
+      "kind": "custom",
+      "description": "Built to the flat-popover rule rather than the dialog one: a Raised surface one step lighter than the Panel rail it floats over, so it reads as lifted by lightness, not shadow. Replaces the native date input, whose OS chrome cannot be themed and renders inconsistently in the webview.",
+      "html": "<span class=\"ds-cal\"><span class=\"ds-cal-hd\"><button class=\"ds-cal-nav\">‹</button><span>August 2026</span><button class=\"ds-cal-nav\">›</button></span> <span class=\"ds-cal-week\"><i>M</i><i>T</i><i>W</i><i>T</i><i>F</i><i>S</i><i>S</i></span> <span class=\"ds-cal-grid\"><b>10</b><b>11</b><b>12</b><b>13</b><b>14</b><b>15</b><b class=\"ds-cal-on\">16</b></span></span>",
+      "css": ".ds-cal { display: inline-flex; flex-direction: column; gap: 6px; width: 210px; border: 1px solid var(--color-line, #292b31); border-radius: 6px; background: var(--color-raised, #191a1e); padding: 8px; font-family: Inter, ui-sans-serif, system-ui, \"Segoe UI\", sans-serif; font-size: 11px; color: var(--color-ink, #eceef2); } .ds-cal-hd { display: flex; align-items: center; justify-content: space-between; font-size: 12px; font-weight: 600; } .ds-cal-nav { border: 0; border-radius: 4px; background: transparent; padding: 2px 6px; color: var(--color-muted, #9aa0aa); cursor: default; transition: background-color 140ms ease, color 140ms ease; } .ds-cal-nav:hover { background: var(--color-hover, #202127); color: var(--color-ink, #eceef2); } .ds-cal-week, .ds-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; text-align: center; } .ds-cal-week i { font-style: normal; font-size: 10px; font-weight: 600; letter-spacing: 0.05em; color: var(--color-faint, #646a75); } .ds-cal-grid b { font-weight: 400; font-variant-numeric: tabular-nums; border-radius: 4px; padding: 3px 0; transition: background-color 140ms ease; } .ds-cal-grid b:hover { background: var(--color-hover, #202127); } .ds-cal-on { background: var(--color-accent, #7d90ff); color: #0b0c14; }"
+    },
+    {
+      "name": "Numeric Slider",
+      "kind": "custom",
+      "description": "A slider whose readout is an editable field — transparent, borderless and right-aligned, revealing its border only on hover and its focus state only on focus. It looks like a label until you touch it, which is what lets a value be set exactly rather than dragged near.",
+      "html": "<label class=\"ds-slider\"><span class=\"ds-slider-hd\"><span class=\"ds-slider-label\">Exposure</span><input class=\"ds-slider-val\" value=\"+0.35\" /></span> <input class=\"ds-slider-range\" type=\"range\" min=\"-5\" max=\"5\" step=\"0.01\" value=\"0.35\" /></label>",
+      "css": ".ds-slider { display: block; width: 260px; font-family: Inter, ui-sans-serif, system-ui, \"Segoe UI\", sans-serif; } .ds-slider-hd { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 4px; } .ds-slider-label { font-size: 10px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-faint, #646a75); } .ds-slider-val { width: 56px; border: 1px solid transparent; border-radius: 4px; background: transparent; padding: 2px 4px; text-align: right; font-size: 11px; font-variant-numeric: tabular-nums; color: var(--color-muted, #9aa0aa); outline: none; transition: border-color 140ms ease, background-color 140ms ease, color 140ms ease; } .ds-slider-val:hover { border-color: var(--color-line, #292b31); } .ds-slider-val:focus { border-color: var(--color-accent, #7d90ff); background: rgba(0,0,0,0.3); color: var(--color-ink, #eceef2); } .ds-slider-range { width: 100%; accent-color: var(--color-accent, #7d90ff); cursor: default; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "SourceLight",
+    "overview": "North light is the even, cool, neutral daylight a colourist judges by — the light that tells the truth about colour. So the shell is a cool near-black that stays out of the way, and its single chromatic voice is a cobalt blue: the calibration colour, and the exact complement of the warm amber this system used to wear (the “Sony safelight” the brand deliberately moved off). All the surfaces live in the bottom eighth of the lightness scale — closer to black than any is to mid-grey — and they carry a faint cool bias rather than a warm one, because a warm shell casts warmth onto the judgement the user came here to make. The shell is dim and neutral so the frame is the only thing with colour.\n\nInside that room the discipline is precision. Type runs 10–13px, numerals are tabular wherever a value can be compared, every slider carries a readout you can type an exact number into, and 1:1 is treated as a named destination rather than a zoom level because it is the only magnification at which sharpness and noise can be honestly judged. Density is high and deliberate: the topbar is 44px, the status footer 28px, the grid gutter 6px. Chrome is charged rent for the screen area it takes from the photograph, and most of it does not earn a second row.\n\nThe atmosphere is quiet, dense, and precise. Controls sit at muted grey and only resolve to full ink when hovered or active, so the interface is always legible and never loud. Depth is built entirely from four stacked near-blacks and a single hairline; there is no gradient, no glass, no glow, and no shadow anywhere in the layout. Colour arrives only as meaning — a rating, an active filter, a focused field, a mask you are painting.",
+    "keyCharacteristics": [
+      "Nine cool neutrals spanning #0b0c0e to #eceef2, and exactly one accent hue (cobalt)",
+      "Cobalt is semantic, never decorative: it means selected, rated, focused, or active",
+      "Flat by construction — tonal layering plus 1px lines, shadows reserved for true overlays",
+      "Inter for the working UI at seven sizes; Fraunces (a serif) for brand moments only",
+      "13px body, 10px uppercase section labels, tabular numerals on every comparable value",
+      "One 24×24 line-icon set at stroke width 1.7, inheriting currentColor",
+      "Fixed desktop layout: no breakpoints, no responsive utilities anywhere in the codebase",
+      "Over-image controls go white-on-black, never cobalt — the accent must not tint a judgement"
+    ],
+    "rules": [
+      {
+        "name": "The Cobalt Rule",
+        "section": "colors",
+        "body": "Cobalt means state. If an element is cobalt, the user did something to it or the system needs it noticed. It is never used to make a surface look nice, never as a gradient, and never on more than a few percent of a screen at rest. Its rarity is what makes a single filled star readable across a 2,000-thumbnail grid."
+      },
+      {
+        "name": "The No Second Hue Rule",
+        "section": "colors",
+        "body": "The shell has one accent. Green, red and caution amber are status vocabulary and are the complete set — adding a fourth semantic colour, or introducing a brand secondary, breaks the premise that anything chromatic on screen belongs to the photograph."
+      },
+      {
+        "name": "The Over-Image Rule",
+        "section": "colors",
+        "body": "Controls drawn on top of a photograph switch palettes entirely: white strokes, black scrims, no accent. Crop handles are 2px white on rgba(0,0,0,.6); the rule-of-thirds guides are white/30; the crop scrim is black/55. The accent over an image tints the thing being judged. The one deliberate exception is the mask overlay, where rgba(125,144,255,.5) is the data — it shows painted coverage, and it disappears the moment masking mode closes."
+      },
+      {
+        "name": "The Tabular Rule",
+        "section": "typography",
+        "body": "Any number that changes in place or sits in a column gets tabular-nums. A zoom readout that reflows as it counts, or a facet count column that jitters, reads as unstable in a tool whose whole claim is precision."
+      },
+      {
+        "name": "The Ten-Pixel Floor",
+        "section": "typography",
+        "body": "Nothing is set below 10px, and 10px is reserved for uppercase labels and secondary metadata in Faint. If a new element seems to need 9px, the layout is too dense, not the type too large."
+      },
+      {
+        "name": "The No-Breakpoint Rule",
+        "section": "layout",
+        "body": "This is a desktop window, not a page. Panels resize; they do not restack, collapse into drawers, or reflow at widths. If a panel cannot survive at 940px wide, it is too wide."
+      },
+      {
+        "name": "The Rail Rule",
+        "section": "layout",
+        "body": "Rails are fixed-width, shrink-0, Panel-coloured, and separated from content by a single Line border. Content columns are min-w-0 and absorb all remaining space. A rail that grows with its content is a bug."
+      },
+      {
+        "name": "The Flat-In-Layout Rule",
+        "section": "elevation",
+        "body": "Anything that participates in the layout is flat. Shadow is the exclusive signal of “this is floating above the application” — dialogs, the lightbox image. A hover state, a dropdown, a popover, or a card gets a lighter surface and a line, never a shadow."
+      },
+      {
+        "name": "The Scrim-Before-Text Rule",
+        "section": "elevation",
+        "body": "Text over a photograph gets a black scrim or a black/60 pill with backdrop-blur before it gets a heavier weight or a larger size. The photograph is unknown; contrast has to be manufactured, not hoped for."
+      }
+    ],
+    "dos": [
+      "Do treat cobalt as state. Filled star, checked box, active segment, focused field, engaged tool, primary action. Nothing else.",
+      "Do build depth from the four surfaces and the 1px line. A new panel is Panel on Base with a Line border — that is the whole vocabulary.",
+      "Do put tabular-nums on every number that updates in place or sits in a column.",
+      "Do give every facet or filter option a live count computed against the other active filters.",
+      "Do switch to white-on-black for any control drawn over a photograph.",
+      "Do use min-w-0 on content columns and shrink-0 on rails, and truncate long strings rather than letting them widen a layout.",
+      "Do match the fixed dimensions in the Layout table when adding a rail, header or strip.",
+      "Do reach for the existing Icon set at stroke width 1.7 before drawing a new glyph — and if you must add one, draw it to the same 24×24 grid at the same weight.",
+      "Do keep metadata on hover in the grid. The resting state is the photograph."
+    ],
+    "donts": [
+      "Don't add a shadow to anything that sits in the layout. Shadows belong to dialogs and the lightbox photo only.",
+      "Don't introduce a second accent hue, a brand secondary, or a fourth status colour.",
+      "Don't add a responsive breakpoint. There are none in this codebase, and the window has a 940px floor.",
+      "Don't set type below 10px, and don't use 10px for anything but uppercase labels and Faint metadata.",
+      "Don't put cobalt over an image — the accent must never tint the thing being judged. The mask overlay is the sole exception, because there the tint is the data.",
+      "Don't give inputs a lighter background than their panel. Fields recess in this system; they do not lift.",
+      "Don't add a second Accent button to a surface that already has one.",
+      "Don't introduce a gradient, glass effect, or backdrop blur as decoration. Blur exists here only behind modals and behind 9px text sitting on a photograph.",
+      "Don't use Fraunces (the display serif) on a working control surface. It is for the first-run heading and modal titles only — everything scanned or operated is Inter."
+    ]
+  }
+}

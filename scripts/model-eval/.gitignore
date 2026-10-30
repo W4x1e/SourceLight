@@ -1,0 +1,7 @@
+models/
+out/
+sheets/
+photos.json
+venv/
+__pycache__/
+ocr-data/

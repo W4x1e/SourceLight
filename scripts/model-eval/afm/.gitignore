@@ -1,0 +1,2 @@
+# The compiled CLI (swiftc -O -parse-as-library main.swift -o afm).
+afm

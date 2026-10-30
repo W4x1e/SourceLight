@@ -1,0 +1,40 @@
+[package]
+name = "sl-develop"
+version = "0.1.0"
+description = "SourceLight's edit model, GPU develop pipeline and image decoding, shared by the desktop and phone apps"
+authors = ["James Tully"]
+license = "MPL-2.0"
+publish = false
+edition = "2021"
+rust-version = "1.91"
+
+# Helpers for making test photos, for the desktop's tests as well as these.
+[features]
+test-helpers = []
+
+[dependencies]
+anyhow = "1.0.104"
+base64 = "0.23.0"
+bytemuck = { version = "1.25.2", features = ["derive"] }
+half = "2.7"
+image = "0.25.6"
+kamadak-exif = "0.6.1"
+pollster = "1.0.1"
+rayon = "1.10.0"
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = { version = "1.0.151", features = ["preserve_order"] }
+# The edit model's types are in the desktop's generated TypeScript bindings.
+specta = { version = "=2.0.0-rc.25", features = ["derive"] }
+wgpu = "29"
+
+# HEIC and HEIF through the Windows Imaging Component (`raster::wic`). On macOS
+# they go through ImageIO, which needs no crate.
+[target.'cfg(windows)'.dependencies]
+windows = { version = "0.61", features = [
+    "Win32_Foundation",
+    "Win32_Graphics_Imaging",
+    "Win32_System_Com",
+    "Win32_System_Com_StructuredStorage",
+    "Win32_System_Ole",
+    "Win32_System_Variant",
+] }

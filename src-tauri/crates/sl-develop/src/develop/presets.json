@@ -1,0 +1,1339 @@
+{
+  "groups": [
+    {
+      "id": "natural",
+      "name": "Natural",
+      "description": "Small improvements that keep the photo true to life.",
+      "kind": "style",
+      "presets": [
+        {
+          "id": "natural-clean",
+          "name": "Clean",
+          "description": "A little more contrast, colour and detail. Stays true to life.",
+          "settings": {
+            "contrast": 0.12,
+            "curve": [[0, 0], [0.25, 0.225], [0.75, 0.775], [1, 1]],
+            "vibrance": 0.2,
+            "clarity": 0.12,
+            "texture": 0.08
+          }
+        },
+        {
+          "id": "natural-bright",
+          "name": "Bright",
+          "description": "Lighter midtones and softer contrast.",
+          "settings": {
+            "shadows": 0.15,
+            "whites": 0.08,
+            "contrast": -0.08,
+            "curve": [[0, 0], [0.15, 0.16], [0.5, 0.56], [1, 1]],
+            "vibrance": 0.12,
+            "grading": {"highlights": [45, 0.06]}
+          }
+        },
+        {
+          "id": "natural-rich",
+          "name": "Rich",
+          "description": "Deeper colour and darker skies, with firmer contrast.",
+          "settings": {
+            "highlights": -0.1,
+            "shadows": 0.05,
+            "blacks": -0.05,
+            "contrast": 0.15,
+            "curve": [[0, 0], [0.25, 0.215], [0.75, 0.785], [1, 1]],
+            "vibrance": 0.3,
+            "saturation": 0.08,
+            "mixerLuminance": [0, 0, 0, -0.08, -0.1, -0.18, 0, 0],
+            "clarity": 0.12
+          }
+        },
+        {
+          "id": "natural-soft",
+          "name": "Soft",
+          "description": "Gentle contrast and smooth detail.",
+          "settings": {
+            "highlights": -0.12,
+            "shadows": 0.12,
+            "contrast": -0.18,
+            "curve": [[0, 0.025], [0.5, 0.52], [1, 0.97]],
+            "vibrance": 0.06,
+            "clarity": -0.15,
+            "texture": -0.1
+          }
+        },
+        {
+          "id": "natural-crisp",
+          "name": "Crisp",
+          "description": "Sharper local contrast and fine detail.",
+          "settings": {
+            "whites": 0.06,
+            "blacks": -0.06,
+            "contrast": 0.15,
+            "curve": [[0, 0], [0.25, 0.22], [0.75, 0.78], [1, 1]],
+            "vibrance": 0.12,
+            "clarity": 0.35,
+            "texture": 0.3
+          }
+        },
+        {
+          "id": "natural-warm",
+          "name": "Warm",
+          "description": "A warmer tone in the highlights and midtones.",
+          "settings": {
+            "curve": [[0, 0], [0.25, 0.235], [0.75, 0.765], [1, 1]],
+            "vibrance": 0.1,
+            "grading": {"shadows": [35, 0.08], "midtones": [40, 0.12], "highlights": [45, 0.2]}
+          }
+        },
+        {
+          "id": "natural-cool",
+          "name": "Cool",
+          "description": "A cooler tone in the shadows and highlights.",
+          "settings": {
+            "contrast": 0.06,
+            "vibrance": 0.08,
+            "grading": {"shadows": [215, 0.16], "midtones": [210, 0.06], "highlights": [205, 0.12]}
+          }
+        },
+        {
+          "id": "natural-deep",
+          "name": "Deep",
+          "description": "Darker midtones and denser colour.",
+          "settings": {
+            "highlights": -0.08,
+            "blacks": -0.08,
+            "contrast": 0.1,
+            "curve": [[0, 0], [0.25, 0.18], [0.6, 0.54], [1, 0.97]],
+            "vibrance": 0.22,
+            "saturation": 0.05,
+            "mixerLuminance": [0, -0.05, -0.05, -0.12, -0.12, -0.18, 0, 0]
+          }
+        }
+      ]
+    },
+    {
+      "id": "film",
+      "name": "Film",
+      "description": "Colour film looks, from soft negatives to slide film.",
+      "kind": "style",
+      "presets": [
+        {
+          "id": "film-everyday",
+          "name": "Everyday",
+          "description": "A colour negative look: soft highlights, warm skin, olive greens.",
+          "settings": {
+            "highlights": -0.1,
+            "shadows": 0.05,
+            "contrast": 0.1,
+            "curve": [[0, 0], [0.25, 0.24], [0.75, 0.77], [1, 0.98]],
+            "curveRed": [[0, 0.01], [0.25, 0.25], [0.75, 0.78], [1, 0.99]],
+            "curveGreen": [[0, 0.015], [0.25, 0.255], [0.75, 0.77], [1, 0.98]],
+            "curveBlue": [[0, 0.03], [0.25, 0.245], [0.75, 0.735], [1, 0.93]],
+            "mixerHue": [0, 0, -0.15, -0.3, 0, 0.05, 0, 0],
+            "mixerSaturation": [0, 0.08, -0.05, -0.18, -0.08, -0.05, 0, 0],
+            "grading": {"shadows": [190, 0.06], "midtones": [40, 0.05], "highlights": [45, 0.16]},
+            "effects": {"grain": 0.08, "halation": 0.08}
+          }
+        },
+        {
+          "id": "film-warm",
+          "name": "Warm",
+          "description": "Warm highlights, lifted blacks, grain and a little glow.",
+          "settings": {
+            "contrast": 0.05,
+            "curve": [[0, 0.02], [0.5, 0.53], [1, 0.98]],
+            "curveRed": [[0, 0.01], [0.25, 0.25], [0.75, 0.78], [1, 0.99]],
+            "curveGreen": [[0, 0.015], [0.25, 0.255], [0.75, 0.77], [1, 0.98]],
+            "curveBlue": [[0, 0.03], [0.25, 0.245], [0.75, 0.735], [1, 0.93]],
+            "mixerSaturation": [0, 0.05, 0, -0.1, 0, -0.1, 0, 0],
+            "grading": {"shadows": [30, 0.08], "midtones": [40, 0.12], "highlights": [42, 0.26]},
+            "effects": {"grain": 0.1, "halation": 0.14}
+          }
+        },
+        {
+          "id": "film-soft",
+          "name": "Soft",
+          "description": "Low contrast and pale colour, like a fine-grained negative.",
+          "settings": {
+            "highlights": -0.12,
+            "shadows": 0.1,
+            "contrast": -0.18,
+            "curve": [[0, 0.035], [0.5, 0.53], [1, 0.96]],
+            "curveRed": [[0, 0.01], [0.25, 0.25], [0.75, 0.78], [1, 0.99]],
+            "curveGreen": [[0, 0.015], [0.25, 0.255], [0.75, 0.77], [1, 0.98]],
+            "curveBlue": [[0, 0.03], [0.25, 0.245], [0.75, 0.735], [1, 0.93]],
+            "saturation": -0.1,
+            "grading": {"shadows": [195, 0.08], "highlights": [40, 0.1]},
+            "effects": {"grain": 0.08}
+          }
+        },
+        {
+          "id": "film-faded",
+          "name": "Faded",
+          "description": "Lifted blacks, muted colour and cool shadows.",
+          "settings": {
+            "curve": [[0, 0.09], [0.25, 0.3], [0.75, 0.72], [1, 0.93]],
+            "saturation": -0.22,
+            "grading": {"shadows": [195, 0.18], "highlights": [45, 0.12]},
+            "effects": {"grain": 0.1}
+          }
+        },
+        {
+          "id": "film-expired",
+          "name": "Expired",
+          "description": "Shifted colour, green shadows and heavy grain.",
+          "settings": {
+            "contrast": 0.05,
+            "curveRed": [[0, 0.02], [0.5, 0.51], [1, 1]],
+            "curveGreen": [[0, 0.04], [0.5, 0.52], [1, 0.97]],
+            "curveBlue": [[0, 0.05], [0.5, 0.47], [1, 0.88]],
+            "saturation": -0.12,
+            "grading": {"shadows": [165, 0.12], "highlights": [50, 0.18]},
+            "effects": {"grain": 0.14, "halation": 0.12}
+          }
+        },
+        {
+          "id": "film-pushed",
+          "name": "Pushed",
+          "description": "Hard contrast and coarse grain, like film pushed in development.",
+          "settings": {
+            "whites": 0.08,
+            "blacks": -0.1,
+            "contrast": 0.3,
+            "curve": [[0, 0], [0.25, 0.2], [0.75, 0.8], [1, 1]],
+            "saturation": 0.08,
+            "grading": {"shadows": [215, 0.1], "highlights": [40, 0.08]},
+            "clarity": 0.1,
+            "effects": {"grain": 0.16, "grainSize": 1.4}
+          }
+        },
+        {
+          "id": "film-overcast",
+          "name": "Overcast",
+          "description": "Quiet colour for grey days, with warm skin and cool greens.",
+          "settings": {
+            "contrast": 0.12,
+            "curveRed": [[0, 0.01], [0.25, 0.25], [0.75, 0.78], [1, 0.99]],
+            "curveGreen": [[0, 0.015], [0.25, 0.255], [0.75, 0.77], [1, 0.98]],
+            "curveBlue": [[0, 0.03], [0.25, 0.245], [0.75, 0.735], [1, 0.93]],
+            "vibrance": 0.08,
+            "mixerSaturation": [0.05, 0.08, 0, -0.15, -0.05, -0.12, 0, 0],
+            "grading": {"shadows": [200, 0.1], "highlights": [35, 0.08]},
+            "clarity": 0.06,
+            "effects": {"grain": 0.06}
+          }
+        },
+        {
+          "id": "film-slide",
+          "name": "Slide",
+          "description": "Colour slide film: deep blacks, clean whites and saturated colour.",
+          "settings": {
+            "highlights": -0.05,
+            "blacks": -0.08,
+            "contrast": 0.2,
+            "curve": [[0, 0], [0.2, 0.15], [0.75, 0.79], [1, 1]],
+            "vibrance": 0.1,
+            "saturation": 0.12,
+            "mixerLuminance": [0, 0, 0, 0, -0.05, -0.1, 0, 0],
+            "grading": {"shadows": [230, 0.06]},
+            "effects": {"grain": 0.04}
+          }
+        }
+      ]
+    },
+    {
+      "id": "cinematic",
+      "name": "Cinematic",
+      "description": "Graded like a still from a film: strong colour casts and contrast.",
+      "kind": "style",
+      "presets": [
+        {
+          "id": "cinematic-teal-orange",
+          "name": "Teal and Orange",
+          "description": "Teal shadows, warm skin and strong contrast.",
+          "settings": {
+            "highlights": -0.12,
+            "blacks": -0.05,
+            "contrast": 0.14,
+            "curve": [[0, 0.03], [0.28, 0.22], [0.72, 0.8], [1, 0.97]],
+            "mixerHue": [0, -0.05, 0, 0.3, 0, -0.3, 0, 0],
+            "mixerSaturation": [0, 0.1, -0.1, -0.25, 0.1, 0, 0, 0],
+            "grading": {"shadows": [190, 0.32], "highlights": [35, 0.26], "blending": 0.1},
+            "effects": {"grain": 0.04, "halation": 0.1}
+          }
+        },
+        {
+          "id": "cinematic-bleach",
+          "name": "Bleach Bypass",
+          "description": "Little colour, hard contrast and a silvery finish.",
+          "settings": {
+            "contrast": 0.28,
+            "curve": [[0, 0.01], [0.25, 0.18], [0.75, 0.85], [1, 0.99]],
+            "mixerSaturation": [-0.55, -0.55, -0.55, -0.55, -0.55, -0.55, -0.55, -0.55],
+            "clarity": 0.1,
+            "effects": {"grain": 0.08, "halation": 0.05}
+          }
+        },
+        {
+          "id": "cinematic-dusk",
+          "name": "Twilight",
+          "description": "Violet shadows and pink highlights.",
+          "settings": {
+            "contrast": 0.1,
+            "curve": [[0, 0.03], [0.5, 0.48], [1, 0.96]],
+            "saturation": -0.08,
+            "grading": {"shadows": [255, 0.28], "midtones": [290, 0.06], "highlights": [25, 0.22]}
+          }
+        },
+        {
+          "id": "cinematic-desert",
+          "name": "Desert",
+          "description": "Warm amber light with muted skies and greens.",
+          "settings": {
+            "contrast": 0.12,
+            "curve": [[0, 0.04], [0.5, 0.51], [1, 0.97]],
+            "mixerHue": [0, 0, 0, -0.4, 0, 0, 0, 0],
+            "mixerSaturation": [0, 0.05, 0, -0.35, -0.4, -0.3, 0, 0],
+            "grading": {"shadows": [25, 0.18], "midtones": [38, 0.18], "highlights": [45, 0.22]}
+          }
+        },
+        {
+          "id": "cinematic-arctic",
+          "name": "Arctic",
+          "description": "Cold blue tones with little colour left.",
+          "settings": {
+            "contrast": 0.12,
+            "curve": [[0, 0.03], [0.5, 0.51], [1, 0.97]],
+            "saturation": -0.25,
+            "mixerSaturation": [0, -0.1, 0, 0, 0, 0, 0, 0],
+            "grading": {"shadows": [215, 0.3], "midtones": [205, 0.14], "highlights": [195, 0.12]}
+          }
+        },
+        {
+          "id": "cinematic-drama",
+          "name": "Drama",
+          "description": "Muted colour, dark midtones and hard contrast.",
+          "settings": {
+            "highlights": -0.15,
+            "shadows": -0.05,
+            "blacks": -0.1,
+            "contrast": 0.25,
+            "curve": [[0, 0], [0.3, 0.22], [0.7, 0.67], [1, 0.98]],
+            "saturation": -0.4,
+            "grading": {"shadows": [210, 0.12], "highlights": [40, 0.06]},
+            "clarity": 0.18,
+            "effects": {"vignette": -0.25}
+          }
+        },
+        {
+          "id": "cinematic-future",
+          "name": "Future",
+          "description": "Cyan shadows and magenta highlights.",
+          "settings": {
+            "contrast": 0.12,
+            "curve": [[0, 0.03], [0.5, 0.5], [1, 0.97]],
+            "vibrance": 0.15,
+            "mixerHue": [0, 0, 0, 0.3, 0.1, -0.2, 0, 0],
+            "grading": {"shadows": [185, 0.3], "highlights": [315, 0.2]}
+          }
+        },
+        {
+          "id": "cinematic-thriller",
+          "name": "Thriller",
+          "description": "Green-cyan shadows and drained colour.",
+          "settings": {
+            "contrast": 0.15,
+            "curve": [[0, 0.02], [0.3, 0.25], [0.7, 0.69], [1, 0.96]],
+            "saturation": -0.25,
+            "grading": {"shadows": [165, 0.24], "midtones": [150, 0.12], "highlights": [60, 0.08]}
+          }
+        }
+      ]
+    },
+    {
+      "id": "vintage",
+      "name": "Vintage",
+      "description": "Faded colour and warm casts, like an old print.",
+      "kind": "style",
+      "presets": [
+        {
+          "id": "vintage-seventies",
+          "name": "Seventies",
+          "description": "Yellowed highlights, olive greens and a faded finish.",
+          "settings": {
+            "curve": [[0, 0.05], [0.5, 0.52], [1, 0.95]],
+            "curveRed": [[0, 0.04], [0.5, 0.52], [1, 0.98]],
+            "curveGreen": [[0, 0.03], [0.5, 0.51], [1, 0.97]],
+            "curveBlue": [[0, 0.02], [0.5, 0.42], [1, 0.82]],
+            "saturation": -0.05,
+            "mixerHue": [0, 0, 0, -0.35, 0, 0, 0, 0],
+            "mixerSaturation": [0, 0, 0, -0.2, 0, -0.2, 0, 0],
+            "effects": {"grain": 0.1}
+          }
+        },
+        {
+          "id": "vintage-sun-faded",
+          "name": "Sun-Faded",
+          "description": "Pale colour and lifted shadows, like a print left in the sun.",
+          "settings": {
+            "contrast": -0.12,
+            "curve": [[0, 0.12], [0.5, 0.56], [1, 0.96]],
+            "saturation": -0.35,
+            "grading": {"shadows": [185, 0.15], "highlights": [50, 0.1]}
+          }
+        },
+        {
+          "id": "vintage-sepia-wash",
+          "name": "Sepia Wash",
+          "description": "Most of the colour replaced by a warm brown tone.",
+          "settings": {
+            "curve": [[0, 0.05], [0.25, 0.25], [0.75, 0.76], [1, 0.96]],
+            "mixerSaturation": [-0.65, -0.65, -0.65, -0.65, -0.65, -0.65, -0.65, -0.65],
+            "grading": {"shadows": [30, 0.25], "midtones": [35, 0.15], "highlights": [42, 0.18]},
+            "effects": {"grain": 0.06}
+          }
+        },
+        {
+          "id": "vintage-cross",
+          "name": "Cross Process",
+          "description": "Yellow-green highlights, blue shadows and strong colour.",
+          "settings": {
+            "contrast": 0.15,
+            "curveRed": [[0, 0], [0.25, 0.22], [0.75, 0.82], [1, 1]],
+            "curveGreen": [[0, 0], [0.25, 0.25], [0.75, 0.78], [1, 1]],
+            "curveBlue": [[0, 0.06], [0.5, 0.47], [1, 0.85]],
+            "saturation": 0.12
+          }
+        },
+        {
+          "id": "vintage-instant",
+          "name": "Instant",
+          "description": "Soft colour, warm highlights, cyan shadows and dark corners.",
+          "settings": {
+            "contrast": -0.05,
+            "curve": [[0, 0.07], [0.5, 0.54], [1, 0.94]],
+            "saturation": -0.1,
+            "grading": {"shadows": [180, 0.18], "highlights": [45, 0.16]},
+            "effects": {"grain": 0.06, "vignette": -0.22}
+          }
+        },
+        {
+          "id": "vintage-postcard",
+          "name": "Old Postcard",
+          "description": "Bright, saturated colour on a slightly faded print.",
+          "settings": {
+            "contrast": 0.12,
+            "curve": [[0, 0.05], [0.25, 0.24], [0.75, 0.79], [1, 1]],
+            "vibrance": 0.3,
+            "saturation": 0.1,
+            "grading": {"shadows": [185, 0.08], "highlights": [35, 0.16]}
+          }
+        },
+        {
+          "id": "vintage-dusty",
+          "name": "Dusty",
+          "description": "Brown, muted colour with a soft, grainy finish.",
+          "settings": {
+            "curve": [[0, 0.07], [0.5, 0.52], [1, 0.94]],
+            "saturation": -0.32,
+            "grading": {"shadows": [25, 0.12], "midtones": [35, 0.14], "highlights": [45, 0.08]},
+            "clarity": -0.08,
+            "effects": {"grain": 0.1}
+          }
+        },
+        {
+          "id": "vintage-old-print",
+          "name": "Old Print",
+          "description": "A faded print with a warm magenta cast.",
+          "settings": {
+            "contrast": -0.05,
+            "curveRed": [[0, 0.05], [1, 1]],
+            "curveGreen": [[0, 0.03], [1, 0.95]],
+            "curveBlue": [[0, 0.04], [1, 0.88]],
+            "saturation": -0.18,
+            "effects": {"grain": 0.08}
+          }
+        }
+      ]
+    },
+    {
+      "id": "moody",
+      "name": "Moody",
+      "description": "Darker tones and restrained colour.",
+      "kind": "style",
+      "presets": [
+        {
+          "id": "moody-moody",
+          "name": "Moody",
+          "description": "Darker midtones, restrained colour, cool shadows.",
+          "settings": {
+            "highlights": -0.15,
+            "shadows": -0.1,
+            "blacks": -0.08,
+            "curve": [[0, 0.02], [0.3, 0.22], [0.7, 0.62], [1, 0.94]],
+            "saturation": -0.2,
+            "grading": {"shadows": [205, 0.18], "highlights": [35, 0.08]},
+            "clarity": 0.12,
+            "effects": {"vignette": -0.2}
+          }
+        },
+        {
+          "id": "moody-dark-greens",
+          "name": "Dark Greens",
+          "description": "Deep, muted greens and a teal cast in the shadows.",
+          "settings": {
+            "shadows": -0.1,
+            "contrast": 0.08,
+            "curve": [[0, 0.01], [0.5, 0.44], [1, 0.96]],
+            "mixerHue": [0, 0, -0.1, 0.2, 0, 0, 0, 0],
+            "mixerSaturation": [0, 0.05, -0.3, -0.25, -0.1, -0.1, 0, 0],
+            "mixerLuminance": [0, 0, -0.2, -0.35, -0.15, -0.05, 0, 0],
+            "grading": {"shadows": [170, 0.16]}
+          }
+        },
+        {
+          "id": "moody-storm",
+          "name": "Storm",
+          "description": "Cold, hard-edged and dark, for heavy skies.",
+          "settings": {
+            "highlights": -0.25,
+            "shadows": 0.05,
+            "whites": 0.05,
+            "blacks": -0.1,
+            "contrast": 0.25,
+            "curve": [[0, 0], [0.5, 0.43], [1, 0.97]],
+            "saturation": -0.35,
+            "mixerLuminance": [0, 0, 0, 0, -0.15, -0.3, 0, 0],
+            "grading": {"shadows": [215, 0.18], "highlights": [200, 0.08]},
+            "clarity": 0.3
+          }
+        },
+        {
+          "id": "moody-low-key",
+          "name": "Low Key",
+          "description": "Deep shadows and dark edges, light kept for the subject.",
+          "settings": {
+            "highlights": -0.1,
+            "shadows": -0.2,
+            "blacks": -0.15,
+            "contrast": 0.12,
+            "curve": [[0, 0], [0.4, 0.25], [0.75, 0.64], [1, 0.94]],
+            "saturation": -0.1,
+            "effects": {"vignette": -0.35}
+          }
+        },
+        {
+          "id": "moody-cold-steel",
+          "name": "Cold Steel",
+          "description": "Blue-grey tones with very little colour.",
+          "settings": {
+            "contrast": 0.15,
+            "saturation": -0.45,
+            "grading": {"shadows": [210, 0.22], "midtones": [210, 0.08], "highlights": [200, 0.1]},
+            "clarity": 0.12
+          }
+        },
+        {
+          "id": "moody-ember",
+          "name": "Ember",
+          "description": "Dark and warm, with blues and greens held back.",
+          "settings": {
+            "contrast": 0.12,
+            "curve": [[0, 0], [0.5, 0.42], [1, 0.95]],
+            "mixerSaturation": [0, 0.05, 0, -0.35, -0.5, -0.5, 0, 0],
+            "grading": {"shadows": [26, 0.18], "midtones": [30, 0.12], "highlights": [40, 0.16]},
+            "effects": {"vignette": -0.2}
+          }
+        },
+        {
+          "id": "moody-muted",
+          "name": "Muted",
+          "description": "Quiet colour and soft contrast.",
+          "settings": {
+            "contrast": -0.06,
+            "curve": [[0, 0.04], [0.5, 0.49], [1, 0.95]],
+            "saturation": -0.3,
+            "grading": {"shadows": [200, 0.08], "highlights": [40, 0.05]}
+          }
+        }
+      ]
+    },
+    {
+      "id": "bold",
+      "name": "Bold",
+      "description": "Strong, saturated colour.",
+      "kind": "style",
+      "presets": [
+        {
+          "id": "bold-vivid",
+          "name": "Vivid",
+          "description": "Richer colour across every hue, with more contrast.",
+          "settings": {
+            "contrast": 0.16,
+            "curve": [[0, 0], [0.25, 0.215], [0.75, 0.785], [1, 1]],
+            "vibrance": 0.1,
+            "mixerSaturation": [0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35]
+          }
+        },
+        {
+          "id": "bold-pop",
+          "name": "Pop",
+          "description": "Strong colour and punchy local contrast.",
+          "settings": {
+            "highlights": -0.12,
+            "shadows": 0.1,
+            "whites": 0.05,
+            "blacks": -0.05,
+            "contrast": 0.18,
+            "vibrance": 0.45,
+            "mixerSaturation": [0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12],
+            "mixerLuminance": [0, 0, 0, 0, 0, -0.12, 0, 0],
+            "clarity": 0.15
+          }
+        },
+        {
+          "id": "bold-punch",
+          "name": "Punch",
+          "description": "Cleaner blacks, brighter whites and lively warm colours.",
+          "settings": {
+            "contrast": 0.18,
+            "curve": [[0, 0], [0.25, 0.2], [0.75, 0.8], [1, 1]],
+            "mixerSaturation": [0.15, 0.15, 0.1, 0.05, 0.05, 0.08, 0, 0.05],
+            "clarity": 0.1
+          }
+        },
+        {
+          "id": "bold-tropical",
+          "name": "Tropical",
+          "description": "Turquoise water, lush greens and warm light.",
+          "settings": {
+            "vibrance": 0.25,
+            "mixerHue": [0, 0, 0, 0.15, 0, -0.2, 0, 0],
+            "mixerSaturation": [0.05, 0.05, 0.2, 0.3, 0.45, 0.25, 0, 0],
+            "mixerLuminance": [0, 0, 0, 0, 0.05, 0, 0, 0],
+            "grading": {"highlights": [45, 0.12]}
+          }
+        },
+        {
+          "id": "bold-electric",
+          "name": "Electric",
+          "description": "Intense blues, purples and magentas.",
+          "settings": {
+            "contrast": 0.18,
+            "vibrance": 0.1,
+            "mixerSaturation": [0, 0, 0, 0, 0.3, 0.45, 0.4, 0.4],
+            "grading": {"shadows": [240, 0.16]}
+          }
+        },
+        {
+          "id": "bold-candy",
+          "name": "Candy",
+          "description": "Bright and sweet, with pinks and reds turned up.",
+          "settings": {
+            "contrast": -0.06,
+            "curve": [[0, 0.02], [0.5, 0.58], [1, 1]],
+            "vibrance": 0.4,
+            "mixerHue": [0.1, 0, 0, 0, 0, 0, 0, 0],
+            "mixerSaturation": [0.2, 0.05, 0, 0, 0.05, 0.05, 0.15, 0.25],
+            "grading": {"shadows": [280, 0.06], "highlights": [330, 0.1]}
+          }
+        },
+        {
+          "id": "bold-summer",
+          "name": "Summer",
+          "description": "Warm, bright and colourful.",
+          "settings": {
+            "curve": [[0, 0], [0.5, 0.56], [1, 1]],
+            "vibrance": 0.3,
+            "mixerSaturation": [0, 0.05, 0.12, 0, 0.2, 0.18, 0, 0],
+            "grading": {"midtones": [45, 0.06], "highlights": [50, 0.18]}
+          }
+        },
+        {
+          "id": "bold-high-key",
+          "name": "High Key",
+          "description": "Light and open, with soft shadows.",
+          "settings": {
+            "shadows": 0.25,
+            "whites": 0.12,
+            "contrast": -0.15,
+            "curve": [[0, 0.03], [0.5, 0.6], [1, 1]],
+            "vibrance": 0.1,
+            "saturation": -0.05
+          }
+        }
+      ]
+    },
+    {
+      "id": "mono",
+      "name": "Black and White",
+      "description": "From soft and open to hard and grainy, plus toned prints.",
+      "kind": "style",
+      "presets": [
+        {
+          "id": "mono-neutral",
+          "name": "Neutral",
+          "description": "Black and white with a balanced response to every colour.",
+          "settings": {
+            "contrast": 0.08,
+            "curve": [[0.0, 0.0], [0.25, 0.23], [0.75, 0.77], [1.0, 1.0]],
+            "mixerSaturation": [-1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0]
+          }
+        },
+        {
+          "id": "mono-high-contrast",
+          "name": "High Contrast",
+          "description": "Deep blacks, bright whites and dark skies.",
+          "settings": {
+            "whites": 0.1,
+            "blacks": -0.12,
+            "contrast": 0.35,
+            "curve": [[0, 0], [0.25, 0.2], [0.75, 0.8], [1, 1]],
+            "curveRed": [[0, 0], [0.5, 0.5], [1, 1.0]],
+            "curveGreen": [[0, 0], [0.5, 0.5], [1, 1.0]],
+            "curveBlue": [[0, 0], [0.5, 0.42], [1, 0.95]],
+            "mixerSaturation": [-1, -1, -1, -1, -1, -1, -1, -1],
+            "mixerLuminance": [0, 0, 0, 0, -0.2, -0.35, 0, 0],
+            "clarity": 0.2
+          }
+        },
+        {
+          "id": "mono-soft",
+          "name": "Soft",
+          "description": "Gentle black and white with open shadows.",
+          "settings": {
+            "highlights": -0.1,
+            "shadows": 0.12,
+            "contrast": -0.1,
+            "curve": [[0.0, 0.05], [0.5, 0.51], [1.0, 0.97]],
+            "mixerSaturation": [-1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0],
+            "clarity": -0.05
+          }
+        },
+        {
+          "id": "mono-red-filter",
+          "name": "Red Filter",
+          "description": "Dark skies and light skin, as through a red filter.",
+          "settings": {
+            "contrast": 0.2,
+            "curve": [[0, 0], [0.25, 0.22], [0.75, 0.78], [1, 1]],
+            "curveRed": [[0, 0], [0.5, 0.62], [1, 1.0]],
+            "curveGreen": [[0, 0], [0.5, 0.45], [1, 0.95]],
+            "curveBlue": [[0, 0], [0.5, 0.3], [1, 0.8]],
+            "mixerSaturation": [-1, -1, -1, -1, -1, -1, -1, -1],
+            "mixerLuminance": [0.6, 0.5, 0.2, -0.3, -0.7, -0.9, -0.4, 0.1],
+            "effects": {"grain": 0.08}
+          }
+        },
+        {
+          "id": "mono-orange-filter",
+          "name": "Orange Filter",
+          "description": "Smoother skin and darker blue skies.",
+          "settings": {
+            "contrast": 0.12,
+            "curve": [[0, 0], [0.25, 0.23], [0.75, 0.77], [1, 1]],
+            "curveRed": [[0, 0], [0.5, 0.57], [1, 1.0]],
+            "curveGreen": [[0, 0], [0.5, 0.5], [1, 1.0]],
+            "curveBlue": [[0, 0], [0.5, 0.38], [1, 0.88]],
+            "mixerSaturation": [-1, -1, -1, -1, -1, -1, -1, -1],
+            "mixerLuminance": [0.35, 0.4, 0.3, 0, -0.35, -0.5, -0.2, 0.1]
+          }
+        },
+        {
+          "id": "mono-green-filter",
+          "name": "Green Filter",
+          "description": "Light foliage and darker skin tones.",
+          "settings": {
+            "contrast": 0.1,
+            "curve": [[0, 0], [0.25, 0.23], [0.75, 0.77], [1, 1]],
+            "curveRed": [[0, 0], [0.5, 0.42], [1, 0.92]],
+            "curveGreen": [[0, 0], [0.5, 0.6], [1, 1.0]],
+            "curveBlue": [[0, 0], [0.5, 0.45], [1, 0.95]],
+            "mixerSaturation": [-1, -1, -1, -1, -1, -1, -1, -1],
+            "mixerLuminance": [-0.4, -0.2, 0.25, 0.7, 0.25, -0.15, 0, -0.2]
+          }
+        },
+        {
+          "id": "mono-infrared",
+          "name": "Infrared",
+          "description": "White foliage, black skies and a soft glow.",
+          "settings": {
+            "contrast": 0.25,
+            "curveRed": [[0, 0], [0.5, 0.5], [1, 1.0]],
+            "curveGreen": [[0, 0], [0.4, 0.7], [1, 1]],
+            "curveBlue": [[0, 0], [0.5, 0.2], [1, 0.6]],
+            "mixerSaturation": [-1, -1, -1, -1, -1, -1, -1, -1],
+            "mixerLuminance": [0, 0.1, 0.8, 1.0, -0.8, -1.0, -0.3, 0],
+            "effects": {"grain": 0.08, "halation": 0.25}
+          }
+        },
+        {
+          "id": "mono-grainy",
+          "name": "Grainy",
+          "description": "Contrasty black and white with coarse grain.",
+          "settings": {
+            "contrast": 0.25,
+            "curve": [[0.0, 0.0], [0.25, 0.21], [0.75, 0.79], [1.0, 1.0]],
+            "mixerSaturation": [-1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0],
+            "effects": {"grain": 0.35, "grainSize": 1.5}
+          }
+        },
+        {
+          "id": "mono-selenium",
+          "name": "Selenium",
+          "description": "Black and white with cool, purple-brown shadows.",
+          "settings": {
+            "contrast": 0.15,
+            "curve": [[0, 0], [0.25, 0.23], [0.75, 0.77], [1, 1]],
+            "mixerSaturation": [-1, -1, -1, -1, -1, -1, -1, -1],
+            "mixerLuminance": [0, 0, 0, 0, 0, 0, 0, 0],
+            "grading": {"shadows": [285, 0.14], "highlights": [40, 0.06]}
+          }
+        },
+        {
+          "id": "mono-sepia",
+          "name": "Sepia",
+          "description": "Warm brown toning throughout.",
+          "settings": {
+            "curve": [[0, 0.03], [0.25, 0.25], [0.75, 0.77], [1, 0.97]],
+            "mixerSaturation": [-1, -1, -1, -1, -1, -1, -1, -1],
+            "mixerLuminance": [0, 0, 0, 0, 0, 0, 0, 0],
+            "grading": {"shadows": [30, 0.32], "midtones": [35, 0.3], "highlights": [45, 0.2]}
+          }
+        },
+        {
+          "id": "mono-blue-tone",
+          "name": "Blue Tone",
+          "description": "Black and white toned a cool blue.",
+          "settings": {
+            "contrast": 0.08,
+            "mixerSaturation": [-1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0],
+            "grading": {"shadows": [210.0, 0.25], "midtones": [205.0, 0.18], "highlights": [200.0, 0.1]}
+          }
+        }
+      ]
+    },
+    {
+      "id": "portrait",
+      "name": "Portrait",
+      "description": "Flattering skin, with the background kept quiet.",
+      "kind": "subject",
+      "presets": [
+        {
+          "id": "portrait-natural",
+          "name": "Natural Skin",
+          "description": "Even skin tones and slightly smoother skin.",
+          "settings": {
+            "contrast": 0.06,
+            "vibrance": 0.1,
+            "mixerSaturation": [-0.06, -0.06, 0, 0, 0, 0, 0, 0],
+            "mixerLuminance": [0.04, 0.1, 0, 0, 0, 0, 0, 0],
+            "grading": {"highlights": [35, 0.06]},
+            "clarity": -0.06,
+            "texture": -0.15
+          }
+        },
+        {
+          "id": "portrait-warm",
+          "name": "Warm Skin",
+          "description": "Warm skin, quieter greens and soft highlights.",
+          "settings": {
+            "curveRed": [[0, 0.01], [0.25, 0.25], [0.75, 0.78], [1, 0.99]],
+            "curveGreen": [[0, 0.015], [0.25, 0.255], [0.75, 0.77], [1, 0.98]],
+            "curveBlue": [[0, 0.03], [0.25, 0.245], [0.75, 0.735], [1, 0.93]],
+            "mixerHue": [0, -0.08, 0, 0.15, 0, 0, 0, 0],
+            "mixerSaturation": [0.06, 0.1, 0, -0.25, -0.12, -0.1, 0, 0],
+            "grading": {"shadows": [205, 0.06], "midtones": [38, 0.06], "highlights": [38, 0.2]},
+            "texture": -0.08,
+            "effects": {"grain": 0.05, "halation": 0.08}
+          }
+        },
+        {
+          "id": "portrait-soft-light",
+          "name": "Soft Light",
+          "description": "Low contrast and smooth skin, like light through a cloud.",
+          "settings": {
+            "highlights": -0.15,
+            "shadows": 0.15,
+            "contrast": -0.18,
+            "curve": [[0, 0.04], [0.5, 0.54], [1, 0.98]],
+            "saturation": -0.05,
+            "mixerLuminance": [0, 0.1, 0, 0, 0, 0, 0, 0],
+            "grading": {"highlights": [30, 0.08]},
+            "clarity": -0.2,
+            "texture": -0.25
+          }
+        },
+        {
+          "id": "portrait-golden",
+          "name": "Golden",
+          "description": "Warm, late-afternoon light on skin.",
+          "settings": {
+            "curve": [[0, 0.02], [0.5, 0.52], [1, 0.98]],
+            "vibrance": 0.1,
+            "mixerSaturation": [0, 0.06, 0, 0, 0, 0, 0, 0],
+            "grading": {"shadows": [25, 0.1], "midtones": [38, 0.14], "highlights": [42, 0.26]},
+            "effects": {"halation": 0.1}
+          }
+        },
+        {
+          "id": "portrait-matte",
+          "name": "Matte",
+          "description": "Lifted blacks and gentle colour around natural skin.",
+          "settings": {
+            "curve": [[0, 0.08], [0.25, 0.28], [0.75, 0.74], [1, 0.95]],
+            "saturation": -0.15,
+            "mixerSaturation": [0, 0.06, 0, 0, 0, 0, 0, 0],
+            "grading": {"shadows": [200, 0.14], "highlights": [35, 0.1]},
+            "texture": -0.08,
+            "effects": {"grain": 0.05}
+          }
+        },
+        {
+          "id": "portrait-studio",
+          "name": "Clean Studio",
+          "description": "Crisp and neutral, with clean skin.",
+          "settings": {
+            "whites": 0.05,
+            "blacks": -0.05,
+            "contrast": 0.15,
+            "curve": [[0, 0], [0.25, 0.22], [0.75, 0.78], [1, 1]],
+            "vibrance": 0.05,
+            "saturation": -0.05,
+            "mixerLuminance": [0, 0.06, 0, 0, 0, 0, 0, 0],
+            "clarity": 0.06,
+            "texture": -0.08
+          }
+        },
+        {
+          "id": "portrait-moody",
+          "name": "Moody",
+          "description": "Dark, muted surroundings that keep skin warm.",
+          "settings": {
+            "highlights": -0.1,
+            "shadows": -0.05,
+            "blacks": -0.1,
+            "curve": [[0, 0.02], [0.3, 0.22], [0.7, 0.64], [1, 0.95]],
+            "saturation": -0.15,
+            "mixerSaturation": [0, 0.12, -0.1, -0.4, -0.35, -0.4, 0, 0],
+            "grading": {"shadows": [210, 0.16], "highlights": [35, 0.06]},
+            "texture": -0.05,
+            "effects": {"vignette": -0.25}
+          }
+        },
+        {
+          "id": "portrait-airy",
+          "name": "Bright and Airy",
+          "description": "Light, soft and fresh, with paler greens.",
+          "settings": {
+            "highlights": -0.05,
+            "shadows": 0.2,
+            "whites": 0.1,
+            "contrast": -0.12,
+            "curve": [[0, 0.03], [0.5, 0.57], [1, 1]],
+            "saturation": -0.08,
+            "mixerSaturation": [0, 0, 0, -0.25, 0, 0, 0, 0],
+            "mixerLuminance": [0, 0.1, 0, 0.15, 0, 0, 0, 0],
+            "grading": {"shadows": [190, 0.06], "highlights": [40, 0.08]}
+          }
+        }
+      ]
+    },
+    {
+      "id": "landscape",
+      "name": "Landscape",
+      "description": "Skies, greenery and distance.",
+      "kind": "subject",
+      "presets": [
+        {
+          "id": "landscape-vivid",
+          "name": "Vivid",
+          "description": "Strong colour, deep skies and crisp detail.",
+          "settings": {
+            "highlights": -0.2,
+            "shadows": 0.15,
+            "whites": 0.05,
+            "blacks": -0.05,
+            "contrast": 0.15,
+            "vibrance": 0.35,
+            "mixerSaturation": [0, 0.05, 0.05, 0.15, 0.1, 0.15, 0, 0],
+            "mixerLuminance": [0, 0, 0, 0, 0, -0.15, 0, 0],
+            "clarity": 0.2
+          }
+        },
+        {
+          "id": "landscape-deep-sky",
+          "name": "Deep Sky",
+          "description": "Darker, richer blue skies.",
+          "settings": {
+            "highlights": -0.15,
+            "contrast": 0.1,
+            "mixerSaturation": [0, 0, 0, 0, 0.15, 0.25, 0, 0],
+            "mixerLuminance": [0, 0, 0, 0, -0.2, -0.4, 0, 0],
+            "clarity": 0.12
+          }
+        },
+        {
+          "id": "landscape-golden-hour",
+          "name": "Golden Hour",
+          "description": "Warm, low sunlight across the scene.",
+          "settings": {
+            "highlights": -0.1,
+            "shadows": 0.1,
+            "contrast": 0.08,
+            "vibrance": 0.1,
+            "mixerSaturation": [0, 0.15, 0.12, 0, 0, -0.12, 0, 0],
+            "grading": {"shadows": [30, 0.1], "midtones": [38, 0.16], "highlights": [42, 0.28]},
+            "effects": {"halation": 0.06}
+          }
+        },
+        {
+          "id": "landscape-blue-hour",
+          "name": "Blue Hour",
+          "description": "Cool blue tones for the time after sunset.",
+          "settings": {
+            "contrast": 0.1,
+            "curve": [[0, 0], [0.5, 0.47], [1, 0.98]],
+            "mixerSaturation": [0, 0, 0, 0, 0, 0.2, 0, 0],
+            "grading": {"shadows": [225, 0.3], "midtones": [220, 0.16], "highlights": [235, 0.08]}
+          }
+        },
+        {
+          "id": "landscape-lush",
+          "name": "Lush Green",
+          "description": "Fresh, saturated greens.",
+          "settings": {
+            "contrast": 0.06,
+            "vibrance": 0.15,
+            "mixerHue": [0, 0, 0.2, 0.15, 0, 0, 0, 0],
+            "mixerSaturation": [0, 0, 0.15, 0.35, 0.1, 0, 0, 0],
+            "mixerLuminance": [0, 0, 0, -0.08, 0, 0, 0, 0]
+          }
+        },
+        {
+          "id": "landscape-autumn",
+          "name": "Autumn",
+          "description": "Greens turned toward gold, with warmer reds and oranges.",
+          "settings": {
+            "contrast": 0.1,
+            "mixerHue": [0, 0, -0.3, -0.7, 0, 0, 0, 0],
+            "mixerSaturation": [0.2, 0.3, 0.25, -0.1, 0, -0.05, 0, 0],
+            "grading": {"shadows": [25, 0.06], "highlights": [40, 0.12]}
+          }
+        },
+        {
+          "id": "landscape-alpine",
+          "name": "Alpine",
+          "description": "Clear, cool and crisp, for mountains and snow.",
+          "settings": {
+            "highlights": -0.25,
+            "shadows": 0.1,
+            "whites": 0.1,
+            "blacks": -0.1,
+            "contrast": 0.15,
+            "vibrance": 0.1,
+            "mixerLuminance": [0, 0, 0, 0, 0, -0.2, 0, 0],
+            "grading": {"shadows": [215, 0.12], "highlights": [200, 0.06]},
+            "clarity": 0.3,
+            "texture": 0.25
+          }
+        },
+        {
+          "id": "landscape-misty",
+          "name": "Misty",
+          "description": "Soft, hazy light with gentle colour.",
+          "settings": {
+            "highlights": -0.1,
+            "shadows": 0.15,
+            "blacks": 0.05,
+            "contrast": -0.1,
+            "curve": [[0, 0.05], [0.5, 0.55], [1, 0.97]],
+            "saturation": -0.18,
+            "grading": {"shadows": [205, 0.12], "highlights": [40, 0.08]},
+            "clarity": -0.18
+          }
+        }
+      ]
+    },
+    {
+      "id": "city",
+      "name": "City and Travel",
+      "description": "Streets, buildings and the places you visit.",
+      "kind": "subject",
+      "presets": [
+        {
+          "id": "city-postcard",
+          "name": "Postcard",
+          "description": "Blue skies, warm walls and bright colour.",
+          "settings": {
+            "highlights": -0.15,
+            "shadows": 0.1,
+            "contrast": 0.12,
+            "vibrance": 0.3,
+            "mixerSaturation": [0, 0.1, 0.1, 0, 0.2, 0.15, 0, 0],
+            "mixerLuminance": [0, 0, 0, 0, 0, -0.2, 0, 0],
+            "clarity": 0.1
+          }
+        },
+        {
+          "id": "city-warm-streets",
+          "name": "Warm Streets",
+          "description": "Sunlit stone and warm shadows.",
+          "settings": {
+            "contrast": 0.1,
+            "mixerSaturation": [0, 0.1, 0.12, 0, 0, -0.12, 0, 0],
+            "grading": {"shadows": [25, 0.08], "midtones": [35, 0.1], "highlights": [40, 0.22]},
+            "clarity": 0.08
+          }
+        },
+        {
+          "id": "city-cool",
+          "name": "Cool City",
+          "description": "Cool, clean tones and firm contrast.",
+          "settings": {
+            "contrast": 0.15,
+            "saturation": -0.12,
+            "mixerSaturation": [0, 0.06, 0, 0, 0, 0, 0, 0],
+            "grading": {"shadows": [210, 0.22], "highlights": [200, 0.1]},
+            "clarity": 0.15
+          }
+        },
+        {
+          "id": "city-street",
+          "name": "Street",
+          "description": "Gritty contrast, muted colour and dark corners.",
+          "settings": {
+            "highlights": -0.1,
+            "whites": 0.05,
+            "blacks": -0.1,
+            "contrast": 0.25,
+            "curve": [[0, 0], [0.25, 0.205], [0.75, 0.795], [1, 1]],
+            "saturation": -0.25,
+            "clarity": 0.25,
+            "effects": {"grain": 0.06, "vignette": -0.18}
+          }
+        },
+        {
+          "id": "city-old-town",
+          "name": "Old Town",
+          "description": "Warm stone, soft blacks and a little texture.",
+          "settings": {
+            "contrast": 0.05,
+            "curve": [[0, 0.04], [0.25, 0.25], [0.75, 0.77], [1, 0.97]],
+            "mixerSaturation": [0.08, 0.08, 0, -0.05, 0, -0.2, 0, 0],
+            "grading": {"midtones": [38, 0.14], "highlights": [45, 0.14]},
+            "texture": 0.12
+          }
+        },
+        {
+          "id": "city-coastal",
+          "name": "Coastal",
+          "description": "Bright, airy light with clear turquoise water.",
+          "settings": {
+            "contrast": -0.03,
+            "curve": [[0, 0.01], [0.5, 0.57], [1, 1]],
+            "vibrance": 0.15,
+            "mixerHue": [0, 0, 0, 0, 0, -0.15, 0, 0],
+            "mixerSaturation": [0, 0, 0, 0, 0.3, 0.15, 0, 0],
+            "mixerLuminance": [0, 0, 0, 0, 0.08, 0, 0, 0],
+            "grading": {"highlights": [45, 0.08]}
+          }
+        },
+        {
+          "id": "city-mediterranean",
+          "name": "Mediterranean",
+          "description": "Warm light against deep blue sky and sea.",
+          "settings": {
+            "contrast": 0.12,
+            "vibrance": 0.18,
+            "mixerSaturation": [0, 0, 0, 0, 0.2, 0.3, 0, 0],
+            "mixerLuminance": [0, 0, 0, 0, 0, -0.22, 0, 0],
+            "grading": {"midtones": [40, 0.05], "highlights": [42, 0.18]}
+          }
+        },
+        {
+          "id": "city-concrete",
+          "name": "Concrete",
+          "description": "Grey, cool and crisp, with warm colours kept.",
+          "settings": {
+            "highlights": -0.1,
+            "blacks": -0.05,
+            "contrast": 0.15,
+            "saturation": -0.45,
+            "mixerSaturation": [0.25, 0.2, 0, 0, 0, 0, 0, 0],
+            "grading": {"shadows": [215, 0.1]},
+            "clarity": 0.2
+          }
+        }
+      ]
+    },
+    {
+      "id": "food",
+      "name": "Food",
+      "description": "Appetising colour without odd casts.",
+      "kind": "subject",
+      "presets": [
+        {
+          "id": "food-fresh",
+          "name": "Fresh",
+          "description": "Clean, lively colour and crisp texture.",
+          "settings": {
+            "shadows": 0.08,
+            "whites": 0.05,
+            "contrast": 0.08,
+            "curve": [[0, 0], [0.5, 0.55], [1, 1]],
+            "vibrance": 0.25,
+            "mixerSaturation": [0.08, 0.04, 0.04, 0.15, 0, 0, 0, 0],
+            "clarity": 0.08,
+            "texture": 0.18
+          }
+        },
+        {
+          "id": "food-warm-table",
+          "name": "Warm Table",
+          "description": "Warm, inviting tones for a meal indoors.",
+          "settings": {
+            "contrast": 0.08,
+            "mixerSaturation": [0, 0.1, 0.1, 0, 0, -0.1, 0, 0],
+            "grading": {"shadows": [30, 0.06], "midtones": [40, 0.1], "highlights": [45, 0.16]},
+            "texture": 0.12
+          }
+        },
+        {
+          "id": "food-bright",
+          "name": "Bright Plate",
+          "description": "Light and clean, for daylight and white plates.",
+          "settings": {
+            "shadows": 0.15,
+            "whites": 0.1,
+            "contrast": -0.06,
+            "curve": [[0, 0.02], [0.5, 0.57], [1, 1]],
+            "vibrance": 0.15,
+            "grading": {"highlights": [40, 0.04]},
+            "texture": 0.1
+          }
+        },
+        {
+          "id": "food-dark",
+          "name": "Dark and Rich",
+          "description": "Dark surroundings and deep, warm colour.",
+          "settings": {
+            "highlights": -0.1,
+            "shadows": -0.15,
+            "blacks": -0.1,
+            "contrast": 0.15,
+            "curve": [[0, 0], [0.3, 0.2], [0.7, 0.62], [1, 0.97]],
+            "vibrance": 0.2,
+            "grading": {"shadows": [30, 0.1], "highlights": [40, 0.08]},
+            "clarity": 0.12,
+            "effects": {"vignette": -0.3}
+          }
+        },
+        {
+          "id": "food-cafe",
+          "name": "Café",
+          "description": "Warm browns and a soft, faded finish.",
+          "settings": {
+            "curve": [[0, 0.06], [0.5, 0.52], [1, 0.95]],
+            "saturation": -0.1,
+            "grading": {"shadows": [25, 0.06], "midtones": [35, 0.14], "highlights": [42, 0.14]},
+            "effects": {"grain": 0.05, "vignette": -0.15}
+          }
+        },
+        {
+          "id": "food-clean",
+          "name": "Clean White",
+          "description": "Neutral whites and natural colour.",
+          "settings": {
+            "contrast": 0.08,
+            "curve": [[0, 0], [0.5, 0.53], [0.75, 0.8], [1, 1]],
+            "vibrance": 0.12,
+            "grading": {"highlights": [215, 0.06]},
+            "texture": 0.08
+          }
+        }
+      ]
+    },
+    {
+      "id": "night",
+      "name": "Night and Low Light",
+      "description": "City lights, dusk and indoor scenes.",
+      "kind": "subject",
+      "presets": [
+        {
+          "id": "night-city",
+          "name": "Night City",
+          "description": "Deep blue shadows, warm lights and a glow around them.",
+          "settings": {
+            "highlights": -0.2,
+            "shadows": 0.08,
+            "blacks": -0.05,
+            "curve": [[0, 0], [0.3, 0.22], [0.8, 0.76], [1, 0.96]],
+            "mixerSaturation": [0, 0.15, 0, 0, 0, 0.15, 0, 0],
+            "grading": {"shadows": [225, 0.26], "highlights": [35, 0.14]},
+            "clarity": 0.08,
+            "effects": {"grain": 0.05, "halation": 0.25}
+          }
+        },
+        {
+          "id": "night-neon",
+          "name": "Neon",
+          "description": "Saturated pinks, purples and blues.",
+          "settings": {
+            "contrast": 0.18,
+            "curve": [[0, 0], [0.5, 0.46], [1, 0.98]],
+            "mixerSaturation": [0.1, 0, 0, 0, 0.4, 0.25, 0.45, 0.45],
+            "grading": {"shadows": [245, 0.22], "highlights": [320, 0.12]},
+            "effects": {"halation": 0.2}
+          }
+        },
+        {
+          "id": "night-tungsten",
+          "name": "Tungsten",
+          "description": "Keeps the warmth of indoor lamps, with a little grain.",
+          "settings": {
+            "contrast": 0.1,
+            "saturation": -0.05,
+            "grading": {"shadows": [25, 0.1], "midtones": [36, 0.12], "highlights": [40, 0.14]},
+            "effects": {"grain": 0.08, "halation": 0.12}
+          }
+        },
+        {
+          "id": "night-blue",
+          "name": "Blue Night",
+          "description": "Dark, cold blue, turning a dim scene into night.",
+          "settings": {
+            "highlights": -0.15,
+            "contrast": 0.1,
+            "curve": [[0, 0], [0.5, 0.36], [1, 0.85]],
+            "saturation": -0.35,
+            "grading": {"shadows": [225, 0.35], "midtones": [220, 0.22], "highlights": [215, 0.1]}
+          }
+        },
+        {
+          "id": "night-candlelight",
+          "name": "Candlelight",
+          "description": "Deep, warm and glowing, with dark edges.",
+          "settings": {
+            "highlights": -0.15,
+            "shadows": -0.1,
+            "curve": [[0, 0], [0.5, 0.42], [1, 0.97]],
+            "grading": {"shadows": [22, 0.18], "midtones": [32, 0.18], "highlights": [42, 0.14]},
+            "effects": {"grain": 0.08, "halation": 0.15, "vignette": -0.3}
+          }
+        },
+        {
+          "id": "night-dusk",
+          "name": "Dusk",
+          "description": "Pink and violet evening sky.",
+          "settings": {
+            "contrast": 0.08,
+            "curve": [[0, 0.01], [0.5, 0.49], [1, 0.98]],
+            "mixerSaturation": [0, 0.12, 0, 0, 0, 0, 0.2, 0.2],
+            "grading": {"shadows": [255, 0.18], "highlights": [18, 0.18]}
+          }
+        }
+      ]
+    }
+  ]
+}

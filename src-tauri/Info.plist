@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Merged into the Mac app's Info.plist by the Tauri bundler.
+
+  Folders are a document type the app can open, so a folder dropped on the
+  Dock icon is accepted and reaches the app as `RunEvent::Opened`, which adds
+  it to the library. The rank is Alternate: the app is offered for folders,
+  never made the default, so Finder keeps opening folders itself.
+
+  The localisations are the interface's languages (docs/I18N.md). Declaring
+  them is what lets the web view report a German system as German — a bundle
+  that declares only English gets `navigator.language` "en" whatever the
+  system is set to — and it lets AppKit's own menu items (Edit, the Services
+  menu, the open panel) follow the system's language. They follow the
+  system, not the app's Language setting: AppKit decides them at launch.
+-->
+<plist version="1.0">
+<dict>
+  <key>CFBundleLocalizations</key>
+  <array>
+    <string>en</string>
+    <string>de</string>
+    <string>es</string>
+    <string>fr</string>
+    <string>ja</string>
+  </array>
+  <key>CFBundleDocumentTypes</key>
+  <array>
+    <dict>
+      <key>CFBundleTypeName</key>
+      <string>Folder</string>
+      <key>CFBundleTypeRole</key>
+      <string>Viewer</string>
+      <key>LSHandlerRank</key>
+      <string>Alternate</string>
+      <key>LSItemContentTypes</key>
+      <array>
+        <string>public.folder</string>
+      </array>
+    </dict>
+  </array>
+</dict>
+</plist>

@@ -1,0 +1,106 @@
+/* The desktop's tokens, fonts and components, so the two apps look like one
+   product. Phone-specific rules follow. */
+@import "../../src/styles.css";
+/* Desktop components the phone uses: Tailwind only looks for classes in the
+   phone app's own folder otherwise, and these would render unstyled. */
+@source "../../src/components/CropOverlay.tsx";
+@source "../../src/components/CompositionGrid.tsx";
+@source "../../src/components/CurveEditor.tsx";
+@source "../../src/components/GradingWheels.tsx";
+
+/* A phone on its side: too short for controls under the photo, so the
+   loupe and the editor put them in a column beside it. */
+@custom-variant short (@media (orientation: landscape) and (max-height: 540px));
+
+/* Where the editor puts its controls beside the photo: a phone on its side,
+   and a tablet in landscape, where controls under the photo left it a strip
+   between black bars. (The loupe on a tablet sits beside the grid instead.) */
+@custom-variant beside {
+  @media (orientation: landscape) and (max-height: 540px), (orientation: landscape) and (min-width: 1000px) {
+    @slot;
+  }
+}
+
+html,
+body,
+#root {
+  /* The phone scrolls inside the app, never the page itself: no rubber-band
+     bounce of the whole interface, and no pull-to-refresh. */
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* The desktop draws a 10 px scrollbar; on a phone it would take a slice of
+   the grid. Touch scrolling needs none. */
+html:not(.mac) ::-webkit-scrollbar,
+html.mac ::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* What the system bars cover, as two variables to add to a screen's own
+   padding: pt-[calc(var(--safe-top)+1rem)]. The larger of what the webview
+   reports and what Android's activity hands over (--inset-*, see main.tsx):
+   older Android webviews say 0 for the bottom. */
+:root {
+  --safe-top: max(env(safe-area-inset-top), var(--inset-top, 0px));
+  --safe-bottom: max(env(safe-area-inset-bottom), var(--inset-bottom, 0px));
+
+  /* The desktop's type scale, a step up: it is set for a mouse at arm's
+     length, and on a phone in the hand its 11 and 13 px read small. The
+     same names, so shared components follow. */
+  --text-label: 12px;
+  --text-caption: 13px;
+  --text-body: 15px;
+  --text-title: 17px;
+}
+
+/* A screen's large title, above its grid. */
+@theme {
+  --text-headline: 24px;
+  --text-headline--line-height: 1.2;
+}
+
+/* A sheet rises from the bottom; its scrim and the dropdowns fade in. */
+@keyframes sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+.sheet-in {
+  animation: sheet-in 220ms var(--ease-out);
+}
+.fade-in {
+  animation: fade-in 150ms var(--ease-out);
+}
+/* A sync in progress turns its icon. */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spin {
+  animation: spin 900ms linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sheet-in,
+  .fade-in,
+  .spin {
+    animation: none;
+  }
+}
+
+/* The desktop's slider (styles.css, .slider-track) with a thumb a finger can
+   hold and the row tall enough to hit. */
+.phone-slider {
+  --slider-thumb: 24px;
+}
+.phone-slider .slider-track {
+  height: 40px;
+}

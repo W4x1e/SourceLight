@@ -1,0 +1,85 @@
+# Dependency licence policy.
+#
+# SourceLight is MPL-2.0 (../LICENSE, ../docs/LICENSING.md): copyleft per
+# file, which lets anyone combine it with code under other terms, and lets
+# anyone who passes on a build do so under the MPL alone. Rust links statically
+# by default, so a single transitive GPL/AGPL crate would put the whole binary
+# under its terms, and an LGPL one would oblige everyone who distributes a
+# build to make it relinkable. Either takes that freedom away silently.
+#
+# Everything is denied unless listed below, so that mistake fails the gate
+# (scripts/check.sh) and CI instead.
+#
+# The one deliberate exception is LibRaw (LGPL-2.1), which is *not* a Cargo
+# dependency: it is linked as a shared library (.dll/.dylib) precisely so its
+# LGPL terms are met by letting the user replace that one file. If LibRaw ever
+# appears in this check, something has started building it statically and the
+# compliance story is broken — see NOTICE.
+
+[licenses]
+# This workspace's own crates are MPL-2.0 like the rest of the project, and
+# would pass the allow-list below. They are still left out: `publish = false`
+# marks them private, and the check is about third-party dependencies, the
+# thing that actually changes.
+private = { ignore = true }
+
+# Permissive only. Notably absent, and intentionally so:
+#   GPL-*, LGPL-*, AGPL-*, CC-BY-SA-*, SSPL-*
+allow = [
+    "MIT",
+    "MIT-0",
+    "Apache-2.0",
+    "Apache-2.0 WITH LLVM-exception",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "ISC",
+    "Zlib",
+    # BSD-like, OSI-approved. Arrives via image -> ravif -> rav1e ->
+    # libfuzzer-sys (AVIF encoding, which Phase 3 export needs).
+    "NCSA",
+    "CC0-1.0",
+    "Unlicense",
+    "Unicode-3.0",
+    # File-level copyleft, and SourceLight's own licence: modifications to
+    # the crate's own files must be shared, but it combines with code under
+    # any other terms.
+    "MPL-2.0",
+    # A data licence, not a code licence. Reaches us via
+    # reqwest -> rustls-platform-verifier -> webpki-root-certs, which is the
+    # Mozilla CA root bundle — data we redistribute unmodified. Permissive:
+    # no copyleft and no source obligation.
+    "CDLA-Permissive-2.0",
+    # The Independent JPEG Group's licence: permissive, BSD-like. Its one
+    # condition is a credit in the documentation ("based in part on the work
+    # of the Independent JPEG Group"), which the notices carry. Arrives via
+    # jpeg-encoder, the phone editor's frame encoder (allowed 2026-10-04).
+    "IJG",
+]
+confidence-threshold = 0.9
+
+[bans]
+multiple-versions = "allow"
+
+[advisories]
+# Security vulnerabilities are denied by default; that is the setting that
+# matters and it stays on.
+yanked = "deny"
+# "Unmaintained" only counts for crates we actually chose. The bulk of these are
+# Tauri's GTK3 bindings, pulled in for a Linux target we do not build, plus
+# assorted transitive macro crates — none of it is actionable here, and leaving
+# it as an error trains everyone to ignore this check.
+unmaintained = "workspace"
+# zip 4.6 comes only from tauri-plugin-updater (its `zip` feature, which also
+# unpacks a macOS update's .app.tar.gz; 2.14 still uses zip 4). These three are
+# about extracting an attacker's archive, and the updater checks a download's
+# minisign signature against the app's own key before it unpacks anything. The
+# app's own zip use is on 9. Drop these when the updater moves to zip 9.
+ignore = [
+    { id = "RUSTSEC-2026-0367", reason = "zip 4 via tauri-plugin-updater; update archives are signature-checked before extraction" },
+    { id = "RUSTSEC-2026-0368", reason = "zip 4 via tauri-plugin-updater; update archives are signature-checked before extraction" },
+    { id = "RUSTSEC-2026-0369", reason = "zip 4 via tauri-plugin-updater; update archives are signature-checked before extraction" },
+]
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"

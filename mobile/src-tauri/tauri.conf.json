@@ -1,0 +1,40 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "SourceLight",
+  "version": "0.1.0",
+  "identifier": "app.sourcelight.mobile",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1430",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "SourceLight",
+        "width": 420,
+        "height": 860,
+        "theme": "Dark",
+        "backgroundColor": "#0c0c0e"
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; connect-src 'self' ipc: http://ipc.localhost gputest: http://gputest.localhost editframe: http://editframe.localhost; img-src 'self' thumb: http://thumb.localhost preview: http://preview.localhost edited: http://edited.localhost devthumb: http://devthumb.localhost devpreview: http://devpreview.localhost editframe: http://editframe.localhost standin: http://standin.localhost data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; frame-ancestors 'none'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "iOS": {
+      "frameworks": ["SystemConfiguration", "Photos", "PhotosUI", "CoreLocation"]
+    }
+  }
+}

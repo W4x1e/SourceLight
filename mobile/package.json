@@ -1,0 +1,12 @@
+{
+  "name": "sourcelight-mobile",
+  "private": true,
+  "license": "MPL-2.0",
+  "description": "SourceLight on phones and tablets (docs/MOBILE.md). Its dependencies are the repo root's: npm finds them by walking up.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "tauri": "tauri"
+  }
+}

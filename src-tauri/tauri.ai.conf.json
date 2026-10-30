@@ -1,0 +1,16 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "bundle": {
+    "resources": {
+      "vendor/onnxruntime/onnxruntime.dll": "onnxruntime.dll",
+      "vendor/onnxruntime/DirectML.dll": "DirectML.dll",
+      "vendor/onnxruntime/LICENSE.OnnxRuntime.txt": "LICENSE.OnnxRuntime.txt",
+      "vendor/onnxruntime/ThirdPartyNotices.OnnxRuntime.txt": "ThirdPartyNotices.OnnxRuntime.txt",
+      "vendor/onnxruntime/LICENSE.DirectML.txt": "LICENSE.DirectML.txt",
+      "vendor/onnxruntime/ThirdPartyNotices.DirectML.txt": "ThirdPartyNotices.DirectML.txt",
+      "vendor/models/faces/yunet.onnx": "models/faces/yunet.onnx",
+      "vendor/models/faces/mesh.onnx": "models/faces/mesh.onnx",
+      "vendor/models/faces/blendshapes.onnx": "models/faces/blendshapes.onnx"
+    }
+  }
+}

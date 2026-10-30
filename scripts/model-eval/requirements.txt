@@ -1,0 +1,4 @@
+onnxruntime-directml==1.24.4
+numpy
+pillow
+tokenizers

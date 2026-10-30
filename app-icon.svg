@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 100 100">
+  <!-- The SourceLight mark, full bleed: a 3×3 grid of photosites lit from the
+       top-left corner. `npx tauri icon app-icon.svg` builds src-tauri/icons
+       from this; the Mac icon wraps it in Apple's shape (make-macos-icon.sh). -->
+  <rect width="100" height="100" fill="#111214"/>
+  <rect x="17" y="17" width="19" height="19" rx="3" fill="#f4f4f2"/>
+  <rect x="40.5" y="17" width="19" height="19" rx="3" fill="#b9bcc2"/>
+  <rect x="64" y="17" width="19" height="19" rx="3" fill="#7d828b"/>
+  <rect x="17" y="40.5" width="19" height="19" rx="3" fill="#b9bcc2"/>
+  <rect x="40.5" y="40.5" width="19" height="19" rx="3" fill="#7d828b"/>
+  <rect x="64" y="40.5" width="19" height="19" rx="3" fill="#4a4e56"/>
+  <rect x="17" y="64" width="19" height="19" rx="3" fill="#7d828b"/>
+  <rect x="40.5" y="64" width="19" height="19" rx="3" fill="#4a4e56"/>
+  <rect x="64" y="64" width="19" height="19" rx="3" fill="#2a2c31"/>
+</svg>

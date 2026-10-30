@@ -1,0 +1,59 @@
+# Real raw files, one or more per format, for the decode tests.
+#
+# Not committed. 425 MB of sensor data does not belong in a git repository, and
+# these are other people's photographs — we fetch them, we do not redistribute
+# them. `scripts/fetch-raw-fixtures.sh` pulls them into a gitignored folder and
+# verifies each against the digest below, exactly as the app verifies the AI
+# models it downloads.
+#
+# Source: https://raw.pixls.us — the sample database free imaging projects
+# test against. Uploads are made under CC0 by
+# declaration ("I hereby release it under the CC0 license into the public
+# domain"); a minority of legacy files imported from rawsamples.ch are not, and
+# the site can filter to show them. None of the cameras below appeared on that
+# list when this was written. **Confirm the licence on the camera's own page
+# before ever redistributing one of these** — testing against a fetched file
+# raises no such question, which is why they stay out of the repo.
+#
+# Chosen for coverage, not prettiness:
+#   CR3  Canon's ISO-BMFF container, nothing like the TIFF-based formats
+#   NEF  the most common Bayer raw in the wild
+#   RAF  X-Trans — the only entry needing a non-Bayer demosaic path
+#   ORF  Four Thirds, and a 12-bit sensor (white level 4095, not 16383)
+#   RW2  Panasonic, whose black levels differ per channel
+#   ARW  Sony, the format the app was built around — and the a6400 specifically,
+#        which is the body the whole ingest path was written against
+#   DNG  the format with the most ways to be written, so several:
+#          Leica M10     a camera's own, whose sensor clips above its stated white
+#          Ricoh GR III  a camera's own, with a negative BaselineExposure
+#          DJI Mini 2    a drone: vignetting and a GainMap after demosaic
+#          Pixel 7 Pro   a phone: a GainMap per colour, a positive baseline
+#          Galaxy S23U   a phone's linear DNG, demosaiced before it was written
+#          iPhone 12 Pro ProRAW: linear, 8-bit through a linearisation table
+#          Pentax K-3 III Monochrome, as DNG and as PEF: no colour filter
+#        (all eight confirmed CC0 on raw.pixls.us, 2026-09-29)
+#
+# Add a format by adding a line. Fields: filename, size, sha256, url.
+#
+# WARNING, before you set SOURCELIGHT_TEST_RAW locally: it un-skips the
+# render tests, and each of those builds a fresh Gpu and recompiles the
+# 1,000-line develop shader before it decodes anything. Measured at roughly
+# 2.5 minutes per test, so the suite goes from about 25 seconds to the better
+# part of an hour. It is not hung. CI does not pay this - the render tests
+# skip there for want of a hardware adapter - so this is a deliberate local
+# opt-in, not a default.
+#
+canon_r6.CR3	5273174	74abb0a113d075ad9887a058082f40dd2a938c4813a08474d82356f11a027778	https://raw.pixls.us/data/Canon/EOS%20R6/Canon_EOS_R6_CRAW_ISO_100_crop_nodual.CR3
+nikon_z6.NEF	47494144	b4cdb8ecf8a971ec023dd242251c6cbfb19966914e37c2311dc9813a7ab5e15f	https://raw.pixls.us/data/Nikon/Z%206/DSC_0750.NEF
+fuji_xt3.RAF	56087360	24abd27b4a200f3170ea1579672944b807d0eb35bf21422a3937bb644f27f2eb	https://raw.pixls.us/data/Fujifilm/X-T3/AFXT2720.RAF
+olympus_em10.ORF	18288097	11d90cbb564ad2c660c7a8d5d81d99c2c018aa27fdec45ed6c461fa5d24f942b	https://raw.pixls.us/data/Olympus/E-M10%20Mark%20III/PA080192.ORF
+panasonic_g9.RW2	33698816	7a56babeb19f9bde3eaa532a4c8d1b11637a0f550963a1182ec845722c65583d	https://raw.pixls.us/data/Panasonic/DC-G9/P1000476.RW2
+sony_a6400.ARW	24763136	8a37c80fc47c6026efa2e55279220e79460e2f470b1aa48b440f8f2d47873aa6	https://raw.pixls.us/data/Sony/ILCE-6400/DSC00087.ARW
+leica_m10.dng	34209792	26be5e06dfb53a2938dab3ca8f06024533a9c0dd0c652938f39eb48bc325f95e	https://raw.pixls.us/data/Leica/M10/f5381888.dng
+ricoh_gr3.DNG	33374940	05513ee72f7cac4165534c9f64995412084f414a033c80c473c79fd94154292e	https://raw.pixls.us/data/Ricoh/GR%20III/R0000357.DNG
+dji_fc7303.DNG	24524288	21a49e63966f82391ca1188c7559c3acc01a35a89a70194fda4bf44cbd64a851	https://raw.pixls.us/data/DJI/FC7303/DJI_0109.DNG
+pixel7pro.dng	12243982	6b921558944db5fdb4f1c63dc64919b6666ef700857a187e18500099c6e7c6c6	https://raw.pixls.us/data/Google/Pixel%207%20Pro/PXL_20221204_063131635.dng
+galaxy_s23u.dng	31311854	4f9d1b085b328b6c7ae21437c4106889cb38d52fab604a786091bf5fe5ef3da4	https://raw.pixls.us/data/Samsung/Galaxy%20S23%20Ultra/20230817_120455.dng
+iphone12pro.DNG	29195592	e91e77a4533ed7cce551d83330676ea5c47dd5e55fb38adda7819366afdbdfc2	https://raw.pixls.us/data/Apple/iPhone%2012%20Pro/IMG_1361.DNG
+pentax_k3iii_mono.DNG	37669430	1afc1071451a3a3737c29ae319e1411551b6893d0e6a34db29903318266b0066	https://raw.pixls.us/data/Pentax/K-3%20Mark%20III%20Monochrome/K3III.DNG
+pentax_k3iii_mono.PEF	37441124	2d47df9825d1f0fa14321b589f2934678b19dcb28d74210b86bf8a0efc7d514a	https://raw.pixls.us/data/Pentax/K-3%20Mark%20III%20Monochrome/K3III.PEF

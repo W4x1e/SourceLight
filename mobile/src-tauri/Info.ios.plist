@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>SourceLight connects to SourceLight on your computer over this network, to sync your library and photos.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>SourceLight shows the photos on this device so you can edit them, and add them to your library on your computer if you choose.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Photos sent from your computer, and copies you save after editing, go into Photos.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Record a track while you shoot, so your computer can place the photos from your camera on the map.</string>
+	<!-- A track started in the app carries on with the screen off. -->
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
+	<!-- With chosen photos only, Choose more asks; iOS doesn't on every launch. -->
+	<key>PHPhotoLibraryPreventAutomaticLimitedAccessAlert</key>
+	<true/>
+</dict>
+</plist>

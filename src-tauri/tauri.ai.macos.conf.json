@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "bundle": {
+    "resources": {
+      "vendor/onnxruntime/onnxruntime.dll": null,
+      "vendor/onnxruntime/DirectML.dll": null,
+      "vendor/onnxruntime/LICENSE.DirectML.txt": null,
+      "vendor/onnxruntime/ThirdPartyNotices.DirectML.txt": null
+    },
+    "macOS": {
+      "frameworks": [
+        "vendor/libraw/lib/aarch64-apple-darwin/libraw.dylib",
+        "vendor/onnxruntime/libonnxruntime.dylib"
+      ]
+    }
+  }
+}

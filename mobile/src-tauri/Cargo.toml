@@ -1,0 +1,74 @@
+[package]
+name = "sourcelight-mobile"
+version = "0.1.0"
+description = "SourceLight on phones and tablets (docs/MOBILE.md)"
+authors = ["James Tully"]
+license = "MPL-2.0"
+publish = false
+edition = "2021"
+rust-version = "1.91"
+
+# Tauri's mobile targets load the app as a library; desktop runs `main.rs`,
+# which only exists so the interface can be worked on without a phone.
+[lib]
+name = "sourcelight_mobile_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.151"
+tokio = { version = "1.53.1", features = ["sync", "time"] }
+# The link to the desktop, shared with it (src-tauri/crates).
+sl-link = { path = "../../src-tauri/crates/sl-link" }
+# The phone's copy of the library. Bundled, so every phone has the same
+# SQLite; the desktop's version.
+rusqlite = { version = "0.40.1", features = ["bundled"] }
+# Scanning the desktop's pairing code with the camera: ZXing on Android
+# (Apache-2.0), not the official plugin's closed-source ML Kit.
+tauri-plugin-qr-scan = { path = "../plugins/qr-scan" }
+# Saving photos sent from the computer into the gallery (Android's own
+# MediaStore; elsewhere the Pictures folder).
+tauri-plugin-gallery = { path = "../plugins/gallery" }
+# The phone's own photos, for On this phone (Android's MediaStore).
+tauri-plugin-photos = { path = "../plugins/photos" }
+# Recording a GPS track during a shoot, with the screen off (Android only
+# for now; elsewhere it says it needs a phone).
+tauri-plugin-shoot-track = { path = "../plugins/shoot-track" }
+# The desktop's edit model, GPU pipeline and image decoding, shared.
+sl-develop = { path = "../../src-tauri/crates/sl-develop" }
+# The GPU test (docs/MOBILE.md section 4, step 1), and the GPU device editing
+# uses.
+sl-gpu-test = { path = "../gpu-test" }
+anyhow = "1.0.104"
+# Edit settings travel to the frame renderer in the frame's name.
+base64 = "0.23.0"
+# The grid spike's stand-in thumbnails. JPEG only.
+image = { version = "0.25.6", default-features = false, features = ["jpeg"] }
+# Frames for the editor: about four times quicker than image's encoder.
+jpeg-encoder = { version = "0.6", default-features = false, features = ["std"] }
+
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = 3
+strip = true
+
+# Decoding and encoding images is unusably slow unoptimised.
+[profile.dev.package."*"]
+opt-level = 3
+
+# Native debug info made a debug APK 900 MB. The phone build is debugged
+# through its logs and the WebView inspector, not a native debugger.
+[profile.dev]
+debug = false
+strip = "debuginfo"
+
+# swift-rs 1.0.8 leaves its runtime's exports local on Xcode 27, and the iOS
+# link fails; the vendored copy promotes them (vendor/swift-rs/VENDORED.md).
+[patch.crates-io]
+swift-rs = { path = "vendor/swift-rs" }

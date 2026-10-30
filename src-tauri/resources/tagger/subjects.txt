@@ -1,0 +1,1735 @@
+# Subject vocabulary for the built-in (CLIP) tagger.
+#
+# One label per line, optionally followed by `> parent`. A photo tagged with a
+# label also gets that label's parents (golden retriever -> dog -> animal), so
+# the filter rail can offer both "golden retriever" and "dog". Every parent must
+# itself be a label somewhere in this file; order does not matter.
+#
+# A name in [brackets] is a *group*: it organises the hierarchy (and pools its
+# children's scores) but is never scored on its own or written as a tag. Use it
+# for roots too generic to be worth filtering by ("object"), or that would
+# collide with a genre of the same name ("landscape", "event").
+#
+# Rules, all enforced by tests in `tagger/builtin.rs`:
+# - lowercase, singular, spaces not underscores, at most 40 characters
+# - no duplicates, no cycles
+#
+# Pick things a camera actually sees and a person would actually filter by.
+# Each label costs one text embedding (cached on disk) and a dot product per
+# photo, so a few thousand is fine — but every near-synonym splits the model's
+# vote, so prefer one clear word per concept.
+
+# ---------------------------------------------------------------------------
+# People
+# ---------------------------------------------------------------------------
+person
+man > person
+woman > person
+child > person
+baby > child
+toddler > child
+boy > child
+girl > child
+teenager > person
+elderly person > person
+couple > person
+family > person
+group of people > person
+crowd > group of people
+face > person
+selfie > person
+bride > person
+groom > person
+wedding couple > couple
+musician > person
+dancer > person
+athlete > person
+runner > athlete
+cyclist > athlete
+swimmer > athlete
+surfer > athlete
+skier > athlete
+snowboarder > athlete
+climber > athlete
+skateboarder > athlete
+soldier > person
+police officer > person
+firefighter > person
+chef > person
+farmer > person
+worker > person
+tourist > person
+hiker > person
+fisherman > person
+photographer > person
+performer > person
+singer > musician
+guitarist > musician
+drummer > musician
+pianist > musician
+street vendor > person
+student > person
+graduate > person
+model > person
+silhouette of a person > person
+hand > person
+feet > person
+eye > face
+smile > face
+tattoo > person
+
+# ---------------------------------------------------------------------------
+# Activities
+# ---------------------------------------------------------------------------
+[activity]
+walking > activity
+running > activity
+hiking > activity
+climbing > activity
+swimming > activity
+diving > activity
+snorkeling > activity
+surfing > activity
+kayaking > activity
+canoeing > activity
+rowing > activity
+sailing > activity
+fishing > activity
+camping > activity
+picnic > activity
+cycling > activity
+skiing > activity
+snowboarding > activity
+ice skating > activity
+skateboarding > activity
+horse riding > activity
+dancing > activity
+singing > activity
+playing music > activity
+cooking > activity
+eating > activity
+drinking > activity
+reading > activity
+writing > activity
+working > activity
+shopping > activity
+gardening > activity
+playing > activity
+sleeping > activity
+yoga > activity
+exercise > activity
+driving > activity
+travel > activity
+sightseeing > activity
+sunbathing > activity
+paragliding > activity
+skydiving > activity
+hot air ballooning > activity
+fireworks display > event
+party > event
+wedding > event
+birthday party > party
+concert > event
+festival > event
+parade > event
+ceremony > event
+graduation ceremony > ceremony
+funeral > event
+conference > event
+meeting > event
+market > event
+protest > event
+sports match > event
+christmas > event
+halloween > event
+new year celebration > event
+barbecue > event
+dinner party > party
+
+# ---------------------------------------------------------------------------
+# Events (parent of the above)
+# ---------------------------------------------------------------------------
+[event]
+
+# ---------------------------------------------------------------------------
+# Animals
+# ---------------------------------------------------------------------------
+animal
+pet > animal
+wild animal > animal
+farm animal > animal
+
+dog > pet
+puppy > dog
+golden retriever > dog
+labrador > dog
+german shepherd > dog
+border collie > dog
+husky > dog
+beagle > dog
+bulldog > dog
+french bulldog > dog
+poodle > dog
+dachshund > dog
+chihuahua > dog
+pug > dog
+corgi > dog
+spaniel > dog
+terrier > dog
+greyhound > dog
+boxer dog > dog
+rottweiler > dog
+dalmatian > dog
+shih tzu > dog
+sheepdog > dog
+
+cat > pet
+kitten > cat
+tabby cat > cat
+black cat > cat
+white cat > cat
+ginger cat > cat
+siamese cat > cat
+
+rabbit > pet
+hamster > pet
+guinea pig > pet
+goldfish > fish
+parrot > bird
+budgie > parrot
+
+horse > farm animal
+pony > horse
+foal > horse
+donkey > farm animal
+cow > farm animal
+calf > cow
+bull > farm animal
+sheep > farm animal
+lamb > sheep
+goat > farm animal
+pig > farm animal
+chicken > farm animal
+rooster > chicken
+duck > bird
+goose > bird
+turkey > farm animal
+llama > farm animal
+alpaca > farm animal
+
+deer > wild animal
+stag > deer
+fawn > deer
+elk > wild animal
+moose > wild animal
+reindeer > wild animal
+fox > wild animal
+wolf > wild animal
+coyote > wild animal
+bear > wild animal
+brown bear > bear
+polar bear > bear
+black bear > bear
+panda > bear
+lion > wild animal
+lioness > lion
+tiger > wild animal
+leopard > wild animal
+cheetah > wild animal
+jaguar > wild animal
+lynx > wild animal
+elephant > wild animal
+giraffe > wild animal
+zebra > wild animal
+rhinoceros > wild animal
+hippopotamus > wild animal
+buffalo > wild animal
+bison > wild animal
+antelope > wild animal
+gazelle > wild animal
+wildebeest > wild animal
+camel > wild animal
+kangaroo > wild animal
+koala > wild animal
+monkey > wild animal
+gorilla > wild animal
+chimpanzee > wild animal
+orangutan > wild animal
+lemur > wild animal
+squirrel > wild animal
+red squirrel > squirrel
+grey squirrel > squirrel
+chipmunk > wild animal
+hedgehog > wild animal
+badger > wild animal
+otter > wild animal
+beaver > wild animal
+raccoon > wild animal
+skunk > wild animal
+mouse > wild animal
+rat > wild animal
+hare > wild animal
+bat > wild animal
+mole > wild animal
+weasel > wild animal
+wild boar > wild animal
+meerkat > wild animal
+sloth > wild animal
+armadillo > wild animal
+
+bird > animal
+bird in flight > bird
+flock of birds > bird
+seagull > bird
+pigeon > bird
+dove > bird
+crow > bird
+raven > bird
+magpie > bird
+robin > bird
+sparrow > bird
+blackbird > bird
+starling > bird
+finch > bird
+goldfinch > finch
+blue tit > bird
+great tit > bird
+wren > bird
+swallow > bird
+swift > bird
+kingfisher > bird
+woodpecker > bird
+owl > bird
+barn owl > owl
+eagle > bird
+bald eagle > eagle
+hawk > bird
+falcon > bird
+kestrel > bird
+buzzard > bird
+red kite > bird
+vulture > bird
+osprey > bird
+heron > bird
+egret > bird
+stork > bird
+crane bird > bird
+flamingo > bird
+pelican > bird
+cormorant > bird
+puffin > bird
+penguin > bird
+swan > bird
+mute swan > swan
+mallard > duck
+coot > bird
+moorhen > bird
+grebe > bird
+peacock > bird
+pheasant > bird
+grouse > bird
+partridge > bird
+ostrich > bird
+emu > bird
+hummingbird > bird
+toucan > bird
+cockatoo > parrot
+macaw > parrot
+jay > bird
+oystercatcher > bird
+sandpiper > bird
+tern > bird
+gannet > bird
+albatross > bird
+
+fish > animal
+koi > fish
+salmon > fish
+trout > fish
+shark > fish
+ray > fish
+tropical fish > fish
+clownfish > tropical fish
+seahorse > fish
+whale > wild animal
+dolphin > wild animal
+orca > whale
+seal > wild animal
+sea lion > wild animal
+walrus > wild animal
+turtle > reptile
+sea turtle > turtle
+tortoise > reptile
+jellyfish > sea creature
+octopus > sea creature
+squid > sea creature
+crab > sea creature
+lobster > sea creature
+shrimp > sea creature
+starfish > sea creature
+sea urchin > sea creature
+coral > sea creature
+sea anemone > sea creature
+shell > sea creature
+sea creature > animal
+
+reptile > animal
+snake > reptile
+lizard > reptile
+gecko > lizard
+iguana > lizard
+chameleon > lizard
+crocodile > reptile
+alligator > reptile
+amphibian > animal
+frog > amphibian
+toad > amphibian
+newt > amphibian
+salamander > amphibian
+
+insect > animal
+butterfly > insect
+monarch butterfly > butterfly
+moth > insect
+caterpillar > insect
+bee > insect
+bumblebee > bee
+honeybee > bee
+wasp > insect
+hornet > insect
+ant > insect
+beetle > insect
+ladybird > beetle
+stag beetle > beetle
+dragonfly > insect
+damselfly > insect
+grasshopper > insect
+cricket insect > insect
+praying mantis > insect
+fly > insect
+hoverfly > fly
+mosquito > insect
+cicada > insect
+spider > animal
+spider web > spider
+scorpion > animal
+snail > animal
+slug > animal
+worm > animal
+centipede > animal
+
+# ---------------------------------------------------------------------------
+# Plants
+# ---------------------------------------------------------------------------
+plant
+flower > plant
+wildflower > flower
+bouquet > flower
+flower bed > flower
+rose > flower
+tulip > flower
+daisy > flower
+sunflower > flower
+lily > flower
+water lily > flower
+lotus > flower
+orchid > flower
+daffodil > flower
+bluebell > flower
+poppy > flower
+lavender > flower
+hydrangea > flower
+cherry blossom > flower
+magnolia > flower
+dandelion > flower
+dandelion clock > dandelion
+crocus > flower
+snowdrop > flower
+iris > flower
+peony > flower
+carnation > flower
+chrysanthemum > flower
+dahlia > flower
+marigold > flower
+geranium > flower
+hibiscus > flower
+jasmine > flower
+lilac > flower
+foxglove > flower
+thistle > flower
+clover > plant
+heather > flower
+buttercup > flower
+cornflower > flower
+pansy > flower
+petunia > flower
+cosmos flower > flower
+sweet pea > flower
+wisteria > flower
+bougainvillea > flower
+camellia > flower
+azalea > flower
+rhododendron > flower
+frangipani > flower
+protea > flower
+gerbera > flower
+anemone flower > flower
+bud > flower
+petal > flower
+pollen > flower
+
+tree > plant
+oak tree > tree
+pine tree > tree
+fir tree > tree
+spruce > tree
+birch tree > tree
+willow tree > tree
+maple tree > tree
+palm tree > tree
+cherry tree > tree
+apple tree > tree
+olive tree > tree
+cypress > tree
+redwood > tree
+baobab > tree
+bonsai > tree
+christmas tree > tree
+fallen tree > tree
+tree trunk > tree
+tree stump > tree
+branch > tree
+twig > tree
+tree bark > tree
+tree root > tree
+leaf > plant
+autumn leaves > leaf
+green leaf > leaf
+fern > plant
+moss > plant
+lichen > plant
+grass > plant
+tall grass > grass
+reed > plant
+bamboo > plant
+cactus > plant
+succulent > plant
+aloe > succulent
+ivy > plant
+vine > plant
+shrub > plant
+hedge > shrub
+bush > plant
+houseplant > plant
+potted plant > plant
+seedling > plant
+herb > plant
+seaweed > plant
+algae > plant
+mushroom > fungus
+toadstool > fungus
+fungus > plant
+berry > plant
+pine cone > tree
+acorn > tree
+seed > plant
+wheat > crop
+corn crop > crop
+barley > crop
+rapeseed > crop
+rice paddy > crop
+vineyard > crop
+tea plantation > crop
+hay bale > crop
+crop > plant
+
+# ---------------------------------------------------------------------------
+# Landscape, terrain and water
+# ---------------------------------------------------------------------------
+[landscape]
+mountain > landscape
+mountain range > mountain
+mountain peak > mountain
+snowy mountain > mountain
+volcano > mountain
+hill > landscape
+rolling hills > hill
+valley > landscape
+canyon > landscape
+gorge > landscape
+cliff > landscape
+sea cliff > cliff
+rock formation > landscape
+rock > landscape
+boulder > rock
+pebble > rock
+stone > rock
+cave > landscape
+glacier > landscape
+iceberg > landscape
+desert > landscape
+sand dune > desert
+sand > landscape
+plain > landscape
+prairie > landscape
+savanna > landscape
+meadow > landscape
+field > landscape
+wheat field > field
+flower field > field
+farmland > landscape
+pasture > landscape
+moor > landscape
+heath > landscape
+marsh > landscape
+swamp > landscape
+wetland > landscape
+forest > landscape
+woodland > forest
+pine forest > forest
+rainforest > forest
+jungle > forest
+autumn forest > forest
+forest path > forest
+clearing > forest
+island > landscape
+tropical island > island
+peninsula > landscape
+coast > landscape
+coastline > coast
+bay > coast
+cove > coast
+beach > coast
+sandy beach > beach
+pebble beach > beach
+tropical beach > beach
+sand dunes by the sea > beach
+shoreline > coast
+tide pool > coast
+harbour > coast
+lagoon > water
+fjord > water
+water > landscape
+ocean > water
+sea > water
+wave > water
+big wave > wave
+surf > wave
+sea foam > wave
+lake > water
+mountain lake > lake
+pond > water
+river > water
+stream > water
+creek > water
+waterfall > water
+rapids > water
+reflection in water > water
+still water > water
+underwater > water
+coral reef > underwater
+hot spring > water
+geyser > water
+puddle > water
+ice > landscape
+frozen lake > ice
+icicle > ice
+snow > landscape
+snowfield > snow
+snowflake > snow
+frost > ice
+footprints in the snow > snow
+dirt road > road
+trail > landscape
+countryside > landscape
+horizon > landscape
+scenic view > landscape
+panorama > landscape
+aerial view > landscape
+
+# ---------------------------------------------------------------------------
+# Sky and weather
+# ---------------------------------------------------------------------------
+sky
+blue sky > sky
+cloud > sky
+cloudy sky > sky
+storm cloud > cloud
+cumulus cloud > cloud
+sunset > sky
+sunrise > sky
+dusk > sky
+twilight > sky
+sun > sky
+sunbeam > sky
+lens flare > sky
+rainbow > sky
+lightning > sky
+storm > sky
+fog > sky
+mist > fog
+rain > sky
+raindrop > rain
+aurora > night sky
+night sky > sky
+starry sky > night sky
+milky way > night sky
+star trail > night sky
+moon > night sky
+full moon > moon
+crescent moon > moon
+eclipse > sky
+comet > night sky
+airplane contrail > sky
+
+# ---------------------------------------------------------------------------
+# Buildings, places and structures
+# ---------------------------------------------------------------------------
+building
+[structure]
+house > building
+cottage > house
+farmhouse > house
+cabin > house
+log cabin > cabin
+mansion > house
+villa > house
+bungalow > house
+terraced house > house
+apartment building > building
+skyscraper > building
+office building > building
+tower > structure
+clock tower > tower
+bell tower > tower
+castle > building
+palace > building
+fortress > building
+ruins > building
+castle ruins > ruins
+church > building
+cathedral > church
+chapel > church
+church spire > church
+mosque > building
+temple > building
+buddhist temple > temple
+pagoda > temple
+shrine > building
+synagogue > building
+monastery > building
+abbey > building
+lighthouse > building
+windmill > building
+barn > building
+shed > building
+greenhouse > building
+garage > building
+factory > building
+warehouse > building
+power station > building
+school > building
+university > building
+hospital > building
+museum > building
+library > building
+theatre > building
+cinema > building
+stadium > building
+arena > stadium
+train station > building
+airport > building
+airport terminal > airport
+hotel > building
+restaurant > building
+cafe > building
+bar > building
+pub > bar
+shop > building
+shopfront > shop
+supermarket > shop
+bakery > shop
+bookshop > shop
+market stall > shop
+petrol station > building
+city hall > building
+government building > building
+parliament > government building
+embassy > building
+bank > building
+prison > building
+tent > structure
+hut > building
+igloo > structure
+treehouse > structure
+
+bridge > structure
+suspension bridge > bridge
+stone bridge > bridge
+footbridge > bridge
+viaduct > bridge
+aqueduct > structure
+dam > structure
+pier > structure
+jetty > structure
+dock > structure
+marina > dock
+canal > water
+lock > canal
+tunnel > structure
+arch > structure
+triumphal arch > arch
+column > structure
+dome > structure
+staircase > structure
+spiral staircase > staircase
+steps > structure
+escalator > structure
+elevator > structure
+balcony > structure
+porch > structure
+terrace > structure
+rooftop > structure
+roof > structure
+chimney > structure
+wall > structure
+brick wall > wall
+stone wall > wall
+graffiti wall > wall
+fence > structure
+gate > structure
+door > structure
+front door > door
+window > structure
+stained glass window > window
+shutter > window
+facade > building
+courtyard > structure
+fountain > structure
+statue > artwork
+monument > structure
+memorial > monument
+obelisk > monument
+pyramid > monument
+gravestone > structure
+cemetery > place
+ferris wheel > structure
+roller coaster > structure
+carousel > structure
+playground > place
+swing > playground
+slide > playground
+scaffolding > structure
+construction site > place
+crane > vehicle
+electricity pylon > structure
+power line > structure
+wind turbine > structure
+solar panel > structure
+radio mast > structure
+water tower > structure
+street lamp > street furniture
+bench > street furniture
+bus stop > street furniture
+post box > street furniture
+phone box > street furniture
+fire hydrant > street furniture
+parking meter > street furniture
+traffic light > street furniture
+bollard > street furniture
+street furniture > structure
+
+[place]
+city > place
+cityscape > city
+skyline > city
+city at night > city
+town > place
+village > place
+old town > town
+downtown > city
+suburb > place
+neighbourhood > place
+[street] > place
+city street > street
+alley > street
+narrow street > street
+cobblestone street > street
+high street > street
+crossroads > street
+pedestrian crossing > street
+square > place
+town square > square
+plaza > square
+park > place
+garden > place
+botanical garden > garden
+flower garden > garden
+vegetable garden > garden
+japanese garden > garden
+backyard > garden
+lawn > garden
+zoo > place
+aquarium > place
+farm > place
+orchard > farm
+ranch > farm
+campsite > place
+harbour town > town
+port > place
+car park > place
+road > place
+highway > road
+motorway > road
+country lane > road
+mountain road > road
+winding road > road
+roundabout > road
+railway > place
+railway track > railway
+train platform > railway
+subway station > railway
+runway > place
+ski slope > place
+golf course > place
+football pitch > place
+tennis court > place
+basketball court > place
+swimming pool > place
+race track > place
+
+# ---------------------------------------------------------------------------
+# Interiors
+# ---------------------------------------------------------------------------
+interior
+room > interior
+living room > room
+bedroom > room
+kitchen > room
+bathroom > room
+dining room > room
+office > room
+classroom > room
+hallway > interior
+corridor > interior
+attic > room
+basement > room
+studio > room
+gym > room
+church interior > interior
+museum gallery > interior
+library interior > interior
+restaurant interior > interior
+cafe interior > interior
+shop interior > interior
+hotel room > room
+lobby > interior
+stage > interior
+workshop > room
+laboratory > room
+hospital room > room
+fireplace > interior
+staircase interior > interior
+ceiling > interior
+floor > interior
+wooden floor > floor
+carpet > floor
+tiled floor > floor
+
+# ---------------------------------------------------------------------------
+# Vehicles and transport
+# ---------------------------------------------------------------------------
+vehicle
+car > vehicle
+classic car > car
+sports car > car
+race car > car
+vintage car > car
+convertible > car
+suv > car
+pickup truck > vehicle
+van > vehicle
+camper van > van
+taxi > car
+police car > car
+ambulance > vehicle
+fire engine > vehicle
+truck > vehicle
+lorry > truck
+tractor > vehicle
+combine harvester > vehicle
+digger > vehicle
+bulldozer > vehicle
+forklift > vehicle
+bus > vehicle
+double decker bus > bus
+school bus > bus
+tram > vehicle
+cable car > vehicle
+train > vehicle
+steam train > train
+high speed train > train
+freight train > train
+subway train > train
+locomotive > train
+motorcycle > vehicle
+scooter > vehicle
+moped > scooter
+bicycle > vehicle
+mountain bike > bicycle
+road bike > bicycle
+tricycle > vehicle
+unicycle > vehicle
+skateboard > sports equipment
+roller skates > sports equipment
+electric scooter > vehicle
+horse and carriage > vehicle
+cart > vehicle
+wheelbarrow > tool
+quad bike > vehicle
+snowmobile > vehicle
+golf cart > vehicle
+go kart > vehicle
+tank > vehicle
+military vehicle > vehicle
+boat > vehicle
+sailboat > boat
+yacht > boat
+motorboat > boat
+speedboat > motorboat
+rowing boat > boat
+canoe > boat
+kayak > boat
+gondola > boat
+ferry > boat
+cruise ship > ship
+ship > boat
+cargo ship > ship
+container ship > ship
+tugboat > boat
+fishing boat > boat
+narrowboat > boat
+paddle steamer > boat
+submarine > vehicle
+jet ski > vehicle
+surfboard > sports equipment
+paddleboard > sports equipment
+aircraft > vehicle
+airplane > aircraft
+airliner > airplane
+jet > aircraft
+fighter jet > jet
+propeller plane > airplane
+seaplane > airplane
+glider > aircraft
+helicopter > aircraft
+hot air balloon > aircraft
+blimp > aircraft
+drone > aircraft
+rocket > vehicle
+space shuttle > vehicle
+parachute > aircraft
+paraglider > aircraft
+kite > toy
+wheel > vehicle
+tyre > wheel
+license plate > vehicle
+car interior > vehicle
+steering wheel > car interior
+dashboard > car interior
+headlight > vehicle
+traffic > road
+traffic jam > traffic
+parked car > car
+
+# ---------------------------------------------------------------------------
+# Food
+# ---------------------------------------------------------------------------
+food
+meal > food
+breakfast > meal
+lunch > meal
+dinner > meal
+brunch > meal
+snack > food
+dessert > food
+fast food > food
+street food > food
+buffet > food
+fruit > food
+apple > fruit
+orange > fruit
+lemon > fruit
+lime > fruit
+banana > fruit
+strawberry > fruit
+raspberry > fruit
+blueberry > fruit
+blackberry > fruit
+cherry > fruit
+grape > fruit
+pear > fruit
+peach > fruit
+plum > fruit
+apricot > fruit
+mango > fruit
+pineapple > fruit
+watermelon > fruit
+melon > fruit
+kiwi > fruit
+pomegranate > fruit
+fig > fruit
+coconut > fruit
+avocado > fruit
+papaya > fruit
+passion fruit > fruit
+fruit bowl > fruit
+vegetable > food
+tomato > vegetable
+potato > vegetable
+carrot > vegetable
+onion > vegetable
+garlic > vegetable
+pepper > vegetable
+chilli > vegetable
+broccoli > vegetable
+cauliflower > vegetable
+cabbage > vegetable
+lettuce > vegetable
+spinach > vegetable
+cucumber > vegetable
+courgette > vegetable
+aubergine > vegetable
+pumpkin > vegetable
+squash > vegetable
+sweetcorn > vegetable
+peas > vegetable
+beans > vegetable
+mushroom dish > food
+asparagus > vegetable
+beetroot > vegetable
+radish > vegetable
+leek > vegetable
+celery > vegetable
+salad > food
+soup > food
+stew > food
+curry > food
+bread > food
+loaf of bread > bread
+baguette > bread
+croissant > pastry
+bagel > bread
+toast > bread
+sandwich > food
+burger > fast food
+hot dog > fast food
+pizza > food
+pasta > food
+spaghetti > pasta
+noodles > food
+ramen > noodles
+rice > food
+sushi > food
+dumplings > food
+taco > food
+burrito > food
+kebab > food
+fries > fast food
+fried chicken > food
+steak > meat
+roast dinner > meal
+meat > food
+sausage > meat
+bacon > meat
+ham > meat
+chicken dish > meat
+fish dish > food
+seafood > food
+prawns > seafood
+oysters > seafood
+mussels > seafood
+egg > food
+fried egg > egg
+boiled egg > egg
+omelette > egg
+pancakes > food
+waffles > food
+porridge > food
+cereal > food
+yogurt > food
+cheese > food
+cheese board > cheese
+butter > food
+honey > food
+jam > food
+chocolate > food
+sweets > food
+candy > sweets
+lollipop > sweets
+cake > dessert
+birthday cake > cake
+wedding cake > cake
+cupcake > cake
+cheesecake > cake
+slice of cake > cake
+pie > dessert
+tart > dessert
+pastry > food
+doughnut > pastry
+cookie > dessert
+biscuit > dessert
+brownie > dessert
+muffin > dessert
+macaron > dessert
+ice cream > dessert
+ice cream cone > ice cream
+sundae > ice cream
+ice lolly > dessert
+pudding > dessert
+nuts > food
+crisps > snack
+popcorn > snack
+olive > food
+spice > food
+barbecue food > food
+cooked meal > meal
+plate of food > food
+tapas > food
+dim sum > food
+charcuterie > food
+cutlery > kitchenware
+
+# ---------------------------------------------------------------------------
+# Drink
+# ---------------------------------------------------------------------------
+drink
+coffee > drink
+latte art > coffee
+cup of coffee > coffee
+espresso > coffee
+tea > drink
+cup of tea > tea
+water glass > drink
+bottle of water > drink
+juice > drink
+smoothie > drink
+milkshake > drink
+soft drink > drink
+beer > drink
+pint of beer > beer
+wine > drink
+red wine > wine
+white wine > wine
+glass of wine > wine
+champagne > wine
+cocktail > drink
+whisky > drink
+hot chocolate > drink
+
+# ---------------------------------------------------------------------------
+# Household objects and furniture
+# ---------------------------------------------------------------------------
+[object]
+furniture > object
+table > furniture
+dining table > table
+desk > furniture
+chair > furniture
+armchair > chair
+sofa > furniture
+bed > furniture
+bookshelf > furniture
+shelf > furniture
+cupboard > furniture
+wardrobe > furniture
+chest of drawers > furniture
+stool > furniture
+rocking chair > chair
+deck chair > chair
+hammock > furniture
+cushion > furniture
+pillow > furniture
+blanket > object
+curtain > object
+rug > object
+mirror > object
+lamp > object
+chandelier > lamp
+candle > object
+lantern > object
+fairy lights > object
+light bulb > object
+vase > object
+flowers in a vase > vase
+clock > object
+wall clock > clock
+alarm clock > clock
+picture frame > object
+basket > object
+box > object
+cardboard box > box
+bag > object
+handbag > bag
+backpack > bag
+suitcase > bag
+umbrella > object
+parasol > umbrella
+key > object
+lock and key > key
+coin > object
+banknote > object
+wallet > object
+toy > object
+teddy bear > toy
+doll > toy
+lego > toy
+toy car > toy
+ball > toy
+balloon > object
+rubber duck > toy
+board game > toy
+chess > board game
+playing cards > toy
+puzzle > toy
+dice > toy
+kitchenware > object
+cup > kitchenware
+mug > cup
+teacup > cup
+glass > kitchenware
+wine glass > glass
+bottle > object
+jar > object
+plate > kitchenware
+bowl > kitchenware
+teapot > kitchenware
+kettle > kitchenware
+saucepan > kitchenware
+frying pan > kitchenware
+knife > kitchenware
+fork > cutlery
+spoon > cutlery
+chopsticks > cutlery
+cutting board > kitchenware
+oven > appliance
+stove > appliance
+fridge > appliance
+microwave > appliance
+washing machine > appliance
+toaster > appliance
+coffee machine > appliance
+vacuum cleaner > appliance
+fan > appliance
+heater > appliance
+appliance > object
+sink > object
+bathtub > object
+shower > object
+toilet > object
+towel > object
+toothbrush > object
+soap > object
+cosmetics > object
+lipstick > cosmetics
+perfume > cosmetics
+nail polish > cosmetics
+jewellery > object
+ring > jewellery
+wedding ring > ring
+necklace > jewellery
+earring > jewellery
+bracelet > jewellery
+watch > jewellery
+sunglasses > clothing
+glasses > object
+crown > object
+trophy > object
+medal > object
+flag > object
+banner > object
+balloon arch > object
+gift > object
+wrapped present > gift
+christmas decoration > object
+bauble > christmas decoration
+wreath > object
+pumpkin lantern > object
+snowman > object
+sandcastle > object
+bonfire > fire
+campfire > fire
+fire > object
+fireworks > object
+sparkler > fireworks
+smoke > object
+bubble > object
+soap bubble > bubble
+feather > object
+bone > object
+skull > object
+rope > object
+chain > object
+anchor > object
+barrel > object
+crate > object
+pallet > object
+bucket > object
+watering can > tool
+plant pot > object
+bird feeder > object
+birdhouse > object
+kennel > object
+fishing rod > sports equipment
+fishing net > object
+net > object
+cage > object
+map > object
+globe > object
+compass > object
+telescope > object
+binoculars > object
+microscope > object
+hourglass > object
+scales > object
+magnifying glass > object
+candle holder > object
+incense > object
+statue of buddha > statue
+figurine > artwork
+ornament > object
+seashell > shell
+
+# ---------------------------------------------------------------------------
+# Paper, writing and signs
+# ---------------------------------------------------------------------------
+book > object
+open book > book
+stack of books > book
+notebook > object
+diary > notebook
+newspaper > object
+magazine > object
+letter > object
+envelope > object
+postcard > object
+paper > object
+document > paper
+receipt > paper
+ticket > paper
+menu > paper
+calendar > paper
+pen > object
+pencil > object
+paintbrush > tool
+crayon > object
+chalkboard > object
+whiteboard > object
+sign > object
+road sign > sign
+street sign > sign
+shop sign > sign
+neon sign > sign
+warning sign > sign
+stop sign > road sign
+signpost > sign
+billboard > sign
+poster > sign
+text > object
+handwriting > text
+graffiti > artwork
+logo > object
+label > object
+barcode > object
+qr code > object
+screenshot > object
+diagram > object
+chart > object
+
+# ---------------------------------------------------------------------------
+# Technology
+# ---------------------------------------------------------------------------
+electronic device > object
+phone > electronic device
+smartphone > phone
+old telephone > phone
+computer > electronic device
+laptop > computer
+desktop computer > computer
+keyboard > computer
+computer mouse > computer
+monitor > computer
+screen > electronic device
+television > electronic device
+tablet > electronic device
+camera > electronic device
+film camera > camera
+lens > camera
+tripod > camera
+headphones > electronic device
+speaker > electronic device
+microphone > electronic device
+radio > electronic device
+record player > electronic device
+vinyl record > record player
+cassette tape > electronic device
+games console > electronic device
+game controller > games console
+robot > electronic device
+circuit board > electronic device
+cable > electronic device
+battery > electronic device
+charger > electronic device
+printer > electronic device
+server rack > electronic device
+satellite dish > electronic device
+security camera > electronic device
+calculator > electronic device
+typewriter > object
+
+# ---------------------------------------------------------------------------
+# Tools and work
+# ---------------------------------------------------------------------------
+tool > object
+hammer > tool
+screwdriver > tool
+wrench > tool
+saw > tool
+axe > tool
+drill > tool
+spade > tool
+rake > tool
+lawn mower > tool
+ladder > tool
+toolbox > tool
+tape measure > tool
+scissors > tool
+needle and thread > tool
+sewing machine > tool
+knitting > craft
+craft > activity
+pottery > craft
+painting > artwork
+drawing > artwork
+sketch > drawing
+watercolour > painting
+oil painting > painting
+canvas > artwork
+easel > artwork
+sculpture > artwork
+mural > artwork
+mosaic > artwork
+tapestry > artwork
+photograph > artwork
+artwork > object
+art gallery > interior
+exhibition > event
+stained glass > artwork
+origami > craft
+embroidery > craft
+weaving > craft
+woodwork > craft
+blacksmith > worker
+anvil > tool
+workbench > tool
+paint > object
+paint can > paint
+brick > object
+wood > object
+log > wood
+firewood > wood
+plank > wood
+metal > object
+rust > metal
+concrete > object
+glass bottle > bottle
+plastic bag > bag
+litter > object
+recycling bin > object
+rubbish bin > object
+traffic cone > object
+barrier > object
+sandbag > object
+
+# ---------------------------------------------------------------------------
+# Clothing
+# ---------------------------------------------------------------------------
+clothing > object
+dress > clothing
+wedding dress > dress
+suit > clothing
+shirt > clothing
+t-shirt > clothing
+jacket > clothing
+coat > clothing
+jumper > clothing
+hoodie > clothing
+jeans > clothing
+trousers > clothing
+shorts > clothing
+skirt > clothing
+swimsuit > clothing
+bikini > swimsuit
+uniform > clothing
+costume > clothing
+kimono > clothing
+sari > clothing
+scarf > clothing
+tie > clothing
+gloves > clothing
+socks > clothing
+hat > clothing
+cap > hat
+sun hat > hat
+beanie > hat
+helmet > clothing
+mask > clothing
+face mask > mask
+shoes > clothing
+boots > shoes
+trainers > shoes
+high heels > shoes
+sandals > shoes
+wellington boots > boots
+clothes rail > clothing
+laundry > clothing
+fabric > object
+
+# ---------------------------------------------------------------------------
+# Music
+# ---------------------------------------------------------------------------
+musical instrument > object
+guitar > musical instrument
+electric guitar > guitar
+acoustic guitar > guitar
+bass guitar > guitar
+piano > musical instrument
+grand piano > piano
+keyboard instrument > musical instrument
+violin > musical instrument
+cello > musical instrument
+double bass > musical instrument
+harp > musical instrument
+drum > musical instrument
+drum kit > drum
+trumpet > musical instrument
+saxophone > musical instrument
+trombone > musical instrument
+flute > musical instrument
+clarinet > musical instrument
+accordion > musical instrument
+harmonica > musical instrument
+ukulele > musical instrument
+banjo > musical instrument
+bagpipes > musical instrument
+sheet music > music
+[music] > object
+band > musician
+orchestra > musician
+dj > musician
+concert stage > stage
+
+# ---------------------------------------------------------------------------
+# Sport
+# ---------------------------------------------------------------------------
+[sport] > activity
+sports equipment > object
+football > sport
+soccer ball > football
+american football > sport
+rugby > sport
+rugby ball > rugby
+basketball > sport
+tennis > sport
+tennis racket > tennis
+tennis ball > tennis
+badminton > sport
+table tennis > sport
+cricket > sport
+cricket bat > cricket
+baseball > sport
+golf > sport
+golf ball > golf
+golf club > golf
+hockey > sport
+ice hockey > sport
+volleyball > sport
+beach volleyball > volleyball
+boxing > sport
+boxing gloves > boxing
+martial arts > sport
+wrestling > sport
+fencing > sport
+athletics > sport
+marathon > sport
+gymnastics > sport
+horse racing > sport
+motor racing > sport
+motocross > sport
+cycling race > sport
+rowing race > sport
+sailing race > sport
+climbing wall > climbing
+bouldering > climbing
+archery > sport
+bowling > sport
+darts > sport
+snooker > sport
+pool table > snooker
+chess match > sport
+skate park > place
+ski > sports equipment
+snowboard > sports equipment
+sledge > sports equipment
+ice skates > sports equipment
+dumbbell > sports equipment
+yoga mat > sports equipment
+trophy ceremony > ceremony
+scoreboard > sports equipment
+goal > sports equipment
+finish line > sport
+podium > sport
+spectators > crowd
+cheerleader > person
+referee > person
+jockey > athlete
+
+# ---------------------------------------------------------------------------
+# Abstract, texture and photographic subjects
+# ---------------------------------------------------------------------------
+[pattern]
+texture > pattern
+abstract pattern > pattern
+geometric pattern > pattern
+repeating pattern > pattern
+stripes > pattern
+polka dots > pattern
+wood grain > texture
+peeling paint > texture
+cracked earth > texture
+water droplets > texture
+condensation > texture
+ripples > texture
+bokeh > pattern
+light trail > pattern
+long exposure > pattern
+motion blur > pattern
+double exposure > pattern
+shadow > pattern
+light and shadow > shadow
+silhouette > pattern
+reflection > pattern
+mirror reflection > reflection
+symmetry > pattern
+minimalism > pattern
+colourful > pattern
+black and white photo > pattern
+negative space > pattern
+light painting > pattern
+smoke art > pattern
+fractal > pattern
+crystal > pattern
+kaleidoscope > pattern
+mandala > pattern
+close-up > pattern
+macro detail > close-up

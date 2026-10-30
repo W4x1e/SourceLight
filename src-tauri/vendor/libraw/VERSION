@@ -1,0 +1,12 @@
+# The vendored LibRaw — see docs/LIBRAW.md. Checked by tests (version, header,
+# hashes) and by scripts/check-libraw.sh (upstream). Update all of it together.
+version=0.22.2
+package=LibRaw-0.22.2-Win64.zip
+source=https://www.libraw.org/download
+dll_sha256=6a459c22039abf0eac4d263673337c8ed5f223acbd372fcf77610debf80ac8cd
+lib_sha256=f420e0fa70b435849359f0893ae0417ea59fd909d650cd22560233666f8dee57
+# macOS (Apple silicon): built from the source release, not downloaded — see
+# scripts/vendor-libraw-macos.sh for why and how.
+macos_package=LibRaw-0.22.2.tar.gz
+macos_source_sha256=de86b035655accff8d4010f1a221fdf50d353cb7b1422ba26f14a0db92612cfa
+dylib_sha256=c756883ec2793477b1125efdd4d9611825036eb86cf80a5a7de7afc7282156df

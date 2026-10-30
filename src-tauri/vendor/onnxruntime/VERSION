@@ -1,0 +1,19 @@
+# The ONNX Runtime the AI installer ships — see README.md beside this. The
+# binaries are not committed; this record is. tests/vendored_onnxruntime.rs
+# checks any copy present against it, and scripts/verify-installer.sh --ai
+# checks what the installer packs, and that Windows signed it as Microsoft.
+# Update all of it together.
+version=1.22.0
+# Windows x64: the DirectML build. Both DLLs are Authenticode-signed by
+# Microsoft (checked 2026-10-01: onnxruntime.dll "Microsoft Corporation",
+# DirectML.dll "Microsoft Windows Publisher").
+package=Microsoft.ML.OnnxRuntime.DirectML 1.22.0 (nuget.org)
+onnxruntime_dll_sha256=95366724919f4e95ecc60010912ed538ad9804b6683fbd0aad389749102834b9
+directml_package=Microsoft.AI.DirectML 1.15.4 (nuget.org)
+directml_dll_sha256=9c9e6d822561c6c41b90e6994b3e8857cf1d66dbfb1e0c4c799c7c89b4e92da1
+# macOS arm64: a newer runtime than Windows on purpose (README.md, "Why 1.24.4
+# and not the Windows 1.22.0"): onnxruntime-osx-arm64-1.24.4.tgz, lib/,
+# LC_ID_DYLIB @rpath/libonnxruntime.1.24.4.dylib. Recorded from the Mac's copy
+# on 2026-10-01.
+macos_version=1.24.4
+macos_dylib_sha256=872533f130f1839a5bc01788ddb4f75c83a189763441ba1178788ed965449289

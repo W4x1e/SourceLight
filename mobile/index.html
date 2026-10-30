@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- viewport-fit=cover so the app can draw under the status bar and home
+         indicator and pad itself with env(safe-area-inset-*). maximum-scale=1
+         because iOS zooms the page into any field with text under 16 px (the
+         pairing link) and leaves it zoomed; photos zoom with their own pinch. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+    <title>SourceLight</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

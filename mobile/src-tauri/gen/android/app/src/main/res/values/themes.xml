@@ -1,0 +1,7 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Always dark, like the desktop: the photos are the only colour. The
+         window background matches the page's, so launching never flashes white. -->
+    <style name="Theme.sourcelight_mobile" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="android:windowBackground">@color/sourcelight_base</item>
+    </style>
+</resources>

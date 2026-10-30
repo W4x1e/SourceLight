@@ -1,0 +1,54 @@
+# cargo-about configuration — generates the aggregated third-party licence
+# notices that ship in the installer (THIRD-PARTY-LICENSES.txt).
+#
+#   cargo install cargo-about
+#   cargo about generate --manifest-path src-tauri/Cargo.toml --features ai about.hbs \
+#       -o src-tauri/THIRD-PARTY-LICENSES.txt
+#
+# `--features ai`: the AI installer ships ONNX Runtime's and the tokenizer's
+# crates, so the notices must cover them. Without it they silently drop out.
+#
+# Keep the accepted list in sync with the allow-list in deny.toml: deny.toml
+# fails CI if a non-permissive licence enters the tree, and this list decides
+# which licence texts get reproduced in the shipped notices. They describe the
+# same policy from two sides.
+
+# Only the Windows build ships, so evaluate the dependency graph for that target.
+# This drops crates pulled in only for Linux/macOS (e.g. Tauri's GTK bindings),
+# which are never in the binary a user installs.
+targets = ["x86_64-pc-windows-msvc"]
+
+# Build dependencies (bindgen, tauri-build, etc.) run at compile time and are
+# not part of the shipped binary, so their notices don't belong in the
+# notices shipped with it.
+ignore-build-dependencies = true
+
+# Dev dependencies never ship.
+ignore-dev-dependencies = true
+
+# The workspace's own crates (publish = false) are the product, under
+# ../LICENSE (MPL-2.0), not a third-party component, so exclude them from the
+# notices.
+private = { ignore = true }
+
+# Permissive licences only — mirrors deny.toml's allow list. LibRaw (LGPL) and
+# ONNX Runtime (MIT) are shipped as separate shared libraries, not Cargo
+# dependencies, so their notices are handled by hand in NOTICE and the bundled
+# LICENSE.* files rather than here.
+accepted = [
+    "MIT",
+    "MIT-0",
+    "Apache-2.0",
+    "Apache-2.0 WITH LLVM-exception",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "ISC",
+    "Zlib",
+    "NCSA",
+    "CC0-1.0",
+    "Unlicense",
+    "Unicode-3.0",
+    "MPL-2.0",
+    "CDLA-Permissive-2.0",
+    "IJG",
+]

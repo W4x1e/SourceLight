@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [
+      "design-system-color",
+      "design-system-font-size"
+    ],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "fraunces",
+        "createdAt": "2026-08-23T16:25:54.061Z",
+        "reason": "Intentional brand serif"
+      }
+    ]
+  }
+}

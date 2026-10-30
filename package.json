@@ -1,0 +1,52 @@
+{
+  "name": "sourcelight",
+  "private": true,
+  "license": "MPL-2.0",
+  "version": "0.2.1",
+  "type": "module",
+  "description": "A local-first raw photo editor and organiser: catalogue, filter, cull and develop raw files from every major camera, with optional on-device AI",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "tauri": "tauri",
+    "tauri:ai": "tauri dev --features ai",
+    "tauri:phone": "tauri dev --features ai,phone-link",
+    "android:build": "cd mobile && tauri android build --debug --apk",
+    "android:phone": "cd mobile && tauri android build --debug --apk --target aarch64",
+    "android:dev": "cd mobile && tauri android dev",
+    "tauri:build:ai": "tauri build --features ai --config src-tauri/tauri.ai.conf.json",
+    "tauri:build:ai:mac": "tauri build --features ai --config src-tauri/tauri.ai.conf.json --config src-tauri/tauri.ai.macos.conf.json",
+    "tauri:build:test": "tauri build --features ai --config src-tauri/tauri.ai.conf.json --config src-tauri/tauri.test.conf.json",
+    "tauri:build:test:mac": "tauri build --features ai --bundles app --config src-tauri/tauri.ai.conf.json --config src-tauri/tauri.ai.macos.conf.json --config src-tauri/tauri.test.conf.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "i18n:missing": "vite-node scripts/i18n-missing.ts"
+  },
+  "dependencies": {
+    "@tanstack/react-virtual": "^3.13.0",
+    "@tauri-apps/api": "~2.12.0",
+    "@tauri-apps/plugin-dialog": "^2.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zustand": "^5.0.14"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.0.0",
+    "@tauri-apps/cli": "~2.12.0",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/node": "^26.4.1",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@vitest/ui": "^3.2.7",
+    "jsdom": "^25.0.1",
+    "playwright-core": "^1.63.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.3",
+    "vite": "^6.0.11",
+    "vitest": "^3.2.7"
+  }
+}

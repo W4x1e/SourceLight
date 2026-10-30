@@ -1,0 +1,23 @@
+[package]
+name = "sl-gpu-test"
+version = "0.1.0"
+description = "SourceLight: the Develop pipeline on a phone's GPU, measured (docs/MOBILE.md section 4, step 1)"
+authors = ["James Tully"]
+license = "MPL-2.0"
+publish = false
+edition = "2021"
+rust-version = "1.91"
+
+[dependencies]
+# The develop core the desktop uses, shared (src-tauri/crates/sl-develop).
+sl-develop = { path = "../../src-tauri/crates/sl-develop" }
+anyhow = "1.0.104"
+image = "0.25.6"
+# Frames as the editor encodes them (mobile/src-tauri/src/edit.rs).
+jpeg-encoder = { version = "0.6", default-features = false, features = ["std"] }
+pollster = "1.0.1"
+serde = { version = "1.0.229", features = ["derive"] }
+# For the bench example: dev-dependencies of a path dependency that is not a
+# workspace member are not resolved.
+serde_json = "1.0.151"
+wgpu = "29"

@@ -1,0 +1,20 @@
+[package]
+name = "tauri-plugin-qr-scan"
+version = "0.1.0"
+description = "SourceLight: scans the desktop's pairing QR code with the camera (docs/MOBILE.md)"
+authors = ["James Tully"]
+license = "MPL-2.0"
+publish = false
+edition = "2021"
+rust-version = "1.91"
+# Required: the build script tells the app's Gradle build where this
+# plugin's Android project is, through Cargo's `links` metadata.
+links = "tauri-plugin-qr-scan"
+
+[dependencies]
+tauri = { version = "2", features = [] }
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.151"
+
+[build-dependencies]
+tauri-plugin = { version = "2", features = ["build"] }

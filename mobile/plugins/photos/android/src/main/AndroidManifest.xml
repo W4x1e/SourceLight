@@ -1,0 +1,16 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- On this phone (docs/MOBILE.md section 4) lists the phone's photos.
+         Android 13 and later ask for photos only; from 14 the person may allow
+         just some of them. Android 12 and earlier ask for storage. Google Play
+         wants a declaration for this access; a photo editor qualifies. -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <!-- Without this, Android 10 and later blank the location in every photo
+         an app reads, so saved copies and photos added to the library would
+         lose where they were taken. Asked for with photo access. -->
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
+</manifest>

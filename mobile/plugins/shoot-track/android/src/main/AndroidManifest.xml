@@ -1,0 +1,20 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- A track needs a precise position. Background location is NOT asked
+         for: recording runs in a foreground service started while the app is
+         open, which Android allows with ordinary location permission, and
+         which Play reviews far more lightly. -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <!-- The "recording" notification, on Android 13 and later. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <application>
+        <service
+            android:name="app.sourcelight.track.TrackService"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+    </application>
+</manifest>

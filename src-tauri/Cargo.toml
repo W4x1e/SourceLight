@@ -1,0 +1,291 @@
+[package]
+name = "sourcelight"
+version = "0.2.1"
+description = "A local-first raw photo editor and organiser: catalogue, filter, cull and develop raw files from every major camera, with optional on-device AI"
+authors = ["James Tully"]
+# The Mozilla Public License 2.0, like every crate in this repository (see
+# LICENSE and docs/LICENSING.md). `publish = false` plus `private.ignore` in
+# deny.toml and about.toml keeps the project's own crates out of the
+# third-party licence check and notices: they are the product, not a
+# dependency of it.
+license = "MPL-2.0"
+publish = false
+# Without this, `cargo run` (and therefore `tauri dev`) is ambiguous: the
+# developer tools in src/bin/ are binary targets too.
+default-run = "sourcelight"
+edition = "2021"
+# Kept current deliberately. Cargo will not resolve a dependency whose own
+# rust-version exceeds this, so a stale value silently pins the whole tree to
+# old releases — 1.77 was quietly holding wgpu at v24 while v30 was current.
+# The GPU, raw-decoding and ONNX crates this project needs all track recent
+# compilers, so this moves forward with them.
+rust-version = "1.91"
+
+# The phone link's shared crates (docs/MOBILE.md). They live inside src-tauri so
+# this crate's Cargo.lock, target/ and release profiles stay where they are; the
+# phone app depends on them by path.
+[workspace]
+members = ["crates/*"]
+resolver = "2"
+
+# The library is what Tauri actually runs; main.rs is a thin shim around it.
+[lib]
+name = "sourcelight_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[features]
+default = ["libraw"]
+# Raw sensor decoding via LibRaw. Off means the app still scans, indexes and
+# tags using embedded previews — it just cannot develop.
+libraw = ["dep:bindgen"]
+# AI auto-masking (subject/sky) via ONNX Runtime. Off by default so the base
+# build never pulls ONNX Runtime; enable with `--features ai`. Pulls prebuilt
+# ONNX Runtime binaries at build time (ort's `download-binaries`, on by default).
+ai = ["dep:ort", "dep:tokenizers"]
+# Developer tools — the bindings generator and the synthetic-library seeder.
+# Required by their binary targets below, so a product build never compiles
+# them. That is what keeps them out of the installer: Tauri bundles *every*
+# binary target of the crate beside the app, and the shipped build was carrying
+# `export_bindings.exe` to users. `seed_library` writes 50,000 fake photos
+# into the installed app's own catalogue — it must never be one double-click
+# away from someone's real library.
+dev-tools = []
+# The phone link (docs/MOBILE.md): pairing, and the listener phones connect
+# to. Off until the phone app exists, so a release neither listens on the
+# network nor carries iroh. `npm run tauri:phone` runs with it.
+phone-link = ["dep:sl-link"]
+
+# Binaries rather than examples on purpose: `export_bindings` links the Wry
+# runtime, and an example does not get the Windows app manifest `tauri-build`
+# embeds into binaries, so it dies at start-up with STATUS_ENTRYPOINT_NOT_FOUND.
+# Run them with `--features dev-tools`.
+[[bin]]
+name = "export_bindings"
+path = "src/bin/export_bindings.rs"
+required-features = ["dev-tools"]
+
+[[bin]]
+name = "phone_sim"
+path = "src/bin/phone_sim.rs"
+required-features = ["dev-tools", "phone-link"]
+
+[[bin]]
+name = "seed_library"
+path = "src/bin/seed_library.rs"
+required-features = ["dev-tools"]
+
+[[bin]]
+name = "probe_people"
+path = "src/bin/probe_people.rs"
+required-features = ["dev-tools", "ai"]
+
+[[bin]]
+name = "probe_search"
+path = "src/bin/probe_search.rs"
+required-features = ["dev-tools", "ai"]
+
+[[bin]]
+name = "probe_ai"
+path = "src/bin/probe_ai.rs"
+required-features = ["dev-tools", "ai"]
+
+[[bin]]
+name = "probe_presets"
+path = "src/bin/probe_presets.rs"
+# It develops raws, so it needs the decoder.
+required-features = ["dev-tools", "libraw"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+bindgen = { version = "0.72", optional = true }
+
+[dev-dependencies]
+# Its helpers for making test photos (`raster::test_helpers`).
+sl-develop = { path = "crates/sl-develop", features = ["test-helpers"] }
+# The RFC 7396 merge the Tauri CLI applies to `--config` overlays — the very same
+# crate, already in the tree through tauri-utils — so `tests/bundle_resources.rs`
+# merges `tauri.ai.conf.json` exactly the way a real build does. Also a normal
+# dependency: the editing server merges a model's changes the same way.
+json-patch = "3"
+
+[dependencies]
+anyhow = "1.0.104"
+async-trait = "0.1.91"
+base64 = "0.23.0"
+bytemuck = { version = "1.25.2", features = ["derive"] }
+chrono = "0.4.45"
+# Half floats, for uploading a JPEG's pixels as the develop pipeline's linear
+# image. Already in the tree through image; MIT OR Apache-2.0.
+half = "2.7"
+image = "0.25.6"
+# Text-watermark rendering: a glyph rasteriser (ab_glyph) and the drawing helpers
+# (imageproc), both permissive. imageproc 0.25 tracks image 0.25.
+ab_glyph = "0.2"
+imageproc = { version = "0.25", default-features = false }
+kamadak-exif = "0.6.1"
+# ONNX Runtime bindings for AI auto-masking; only compiled with `--features ai`.
+# `load-dynamic`: load onnxruntime.dll/.dylib at runtime (shipped beside the app,
+# like libraw.dll) rather than static-linking it — leaner binary, swappable
+# runtime, and it sidesteps the static-lib MSVC-CRT mismatch. DirectML (Windows)
+# + CoreML (macOS) execution providers; CPU fallback always. Deliberately NOT
+# `cuda`: it makes ort download the CUDA runtime (a 267 MB provider dll needing
+# an NVIDIA GPU + CUDA toolkit), which is wrong to ship in a consumer Windows
+# app. DirectML gives portable GPU acceleration on any DX12 GPU from the ~16 MB
+# onnxruntime.dll alone, with automatic CPU fallback.
+ort = { version = "=2.0.0-rc.10", optional = true, features = ["load-dynamic", "directml", "coreml"] }
+# Tokenizer for the built-in CLIP tagger (loads the model's tokenizer.json).
+# default-features off to avoid the C `onig` build and the http downloader —
+# `fancy-regex` (pure Rust) covers the CLIP pre-tokenizer. Only with `ai`.
+tokenizers = { version = "0.21", optional = true, default-features = false, features = ["fancy-regex"] }
+percent-encoding = "2.3.2"
+pollster = "1.0.1"
+quick-xml = "0.41.0"
+rayon = "1.10.0"
+reqwest = { version = "0.13.3", features = ["json"] }
+rusqlite = { version = "0.40.1", features = ["bundled", "backup", "hooks"] }
+serde = { version = "1.0.229", features = ["derive"] }
+# preserve_order is REQUIRED, not a preference: serde_json's default Map is a
+# BTreeMap that serialises keys alphabetically, which silently emits `genre`
+# before `main_subject` and defeats the schema ordering the tagger depends on.
+# Covered by tagger::tests::schema_asks_for_main_subject_before_genre.
+serde_json = { version = "1.0.151", features = ["preserve_order"] }
+# SHA-256 verification of downloaded models and the llama.cpp runtime before they
+# are installed/executed. Already in the tree transitively; permissive (MIT/Apache).
+sha2 = "0.10"
+# The phone link's crates (docs/MOBILE.md). The messages always (no
+# networking in them, and the desktop's tests read the phone's GPX through
+# them); the link itself only with `phone-link`.
+sl-protocol = { path = "crates/sl-protocol" }
+sl-link = { path = "crates/sl-link", optional = true }
+# The edit model, GPU pipeline and image decoding, shared with the phone app.
+sl-develop = { path = "crates/sl-develop" }
+# The editing server (`mcp.rs`): the Model Context Protocol SDK, served over
+# localhost HTTP with axum, which is already in the tree. Apache-2.0 / MIT.
+rmcp = { version = "3.7", features = ["transport-streamable-http-server"] }
+axum = "0.8"
+json-patch = "3"
+# The QR code a phone scans to pair. SVG only, no image dependency.
+# MIT OR Apache-2.0.
+qrcode = { version = "0.14", default-features = false, features = ["svg"] }
+# The OS random source: the key each run gives its llama-server, and
+# the phone link's pairing secrets. MIT/Apache-2.0.
+getrandom = "0.3"
+specta = { version = "=2.0.0-rc.25", features = ["derive"] }
+specta-typescript = "=0.0.12"
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+# One running copy per machine: a second launch focuses the first instead of
+# opening the same catalogue again. MIT OR Apache-2.0.
+tauri-plugin-single-instance = "2"
+# Updates for the direct-download build: fetches a signed manifest, verifies the
+# installer against the public key in tauri.conf.json, and runs it. Registered
+# only when that key and an endpoint are configured — see `updates.rs`.
+tauri-plugin-updater = "2"
+# Reopens the window where it was left (size, position, maximised, full
+# screen) — every desktop app does, and without it a Mac user rearranged the
+# window on every launch. MIT OR Apache-2.0.
+tauri-plugin-window-state = "2"
+tauri-specta = { version = "=2.0.0-rc.25", features = ["derive", "typescript"] }
+tokio = { version = "1.53.1", features = ["rt-multi-thread", "macros", "sync", "fs", "io-util", "net"] }
+walkdir = "2.5.0"
+# Whether two paths are one file: a NAS reached as \\\\nas\\photos and as
+# Z:\\, or a hard link, must not count as a duplicate of itself. Already in
+# the tree through walkdir. Unlicense OR MIT.
+same-file = "1"
+# "Move rejects to the Recycle Bin": the OS's own recycle bin / Trash, so
+# a binned file stays recoverable. MIT; on Windows it uses the `windows` 0.62
+# already in the tree.
+trash = "5.2"
+# Held at 29 deliberately. wgpu 30.0.0's DX12 backend does not build on Windows:
+# wgpu-hal 30 requires `windows 0.62` but caps `gpu-allocator` at "0.28", whose
+# newest release still links `windows 0.58`, so the two disagree on
+# ID3D12Device/ID3D12Heap and wgpu-hal itself fails to compile. Re-test 30.x
+# before bumping — the errors appear inside wgpu-hal, not our code, which makes
+# them easy to misattribute.
+wgpu = "29"
+zip = { version = "9", default-features = false, features = ["deflate"] }
+flate2 = "1.1.9"
+tar = "0.4.46"
+# Dragging photos out to Finder, Mail or an editor (`drag_photos_out`). The
+# crate under CrabNebula's tauri-plugin-drag, used directly so the drag is
+# always a copy: that choice lives in Rust, not in whatever the page asks for.
+# MIT OR Apache-2.0.
+drag = "2"
+
+# Only the develop canvas's child window needs Win32 directly, and only on
+# Windows — see the rule in `present/mod.rs`. `windows-sys` rather than
+# `windows`: this calls six USER32 functions and wants raw FFI, not COM, and the
+# version is the one already in the tree via wgpu so nothing new is pulled in.
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = [
+    "Win32_Foundation",
+    # The title bar in the app's colours (`window_chrome`).
+    "Win32_Graphics_Dwm",
+    "Win32_Graphics_Gdi",
+    # GetDiskFreeSpaceExW, for the free-space checks before a download or a
+    # batch export (`hardware::free_space`).
+    "Win32_Storage_FileSystem",
+    # SetStdHandle: stderr into the session log (`session_log`).
+    "Win32_System_Console",
+    "Win32_System_LibraryLoader",
+    # GetSystemPowerStatus: automatic analysis holds the vision model on
+    # battery (`hardware::on_battery`).
+    "Win32_System_Power",
+    "Win32_UI_WindowsAndMessaging",
+] }
+# The full `windows` crate (COM), only for the hardware probe's DXGI VRAM query
+# and total-RAM read, and the metered-connection check before a model download
+# (WinRT's NetworkInformation) — `windows-sys` above is raw FFI and painful for
+# COM interfaces like IDXGIFactory. Version matches the copy already in the tree.
+# Also WIC, for HEIC through the operating system's own codec: libheif
+# is LGPL, and Windows already carries a HEIF decoder once the Store's free
+# HEIF and HEVC extensions are installed. And the job object that ends the
+# local AI servers with the app (`sidecar::die_with_app`): plain FFI, but this
+# crate's `Result`s and `Owned` handles keep its error paths short.
+windows = { version = "0.61", features = [
+    "Networking_Connectivity",
+    "Win32_Foundation",
+    "Win32_Graphics_Dxgi",
+    "Win32_Graphics_Imaging",
+    # CreateJobObjectW takes a SECURITY_ATTRIBUTES.
+    "Win32_Security",
+    "Win32_System_Com",
+    "Win32_System_Com_StructuredStorage",
+    "Win32_System_JobObjects",
+    "Win32_System_Ole",
+    "Win32_System_SystemInformation",
+    # The job's limits carry the I/O counters; its test waits on a process.
+    "Win32_System_Threading",
+    "Win32_System_Variant",
+] }
+
+# Blocks for Network.framework's path monitor — `hardware::metered` on macOS,
+# the check before a model download. Already in the tree through tao, wry and
+# wgpu, so this adds no crate. MIT.
+[target.'cfg(target_os = "macos")'.dependencies]
+block2 = "0.6"
+# Messages to AppKit and Core Animation for the develop canvas's Metal layer
+# (`present::appkit`). Already in the tree through wry, tao and wgpu; the
+# framework crates' generated bindings are not needed for a dozen messages.
+# MIT.
+objc2 = "0.6"
+
+# `statvfs`, for `hardware::free_space` off Windows. Already in the tree through
+# half the dependency graph, so this adds no crate.
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"
+
+[profile.release]
+codegen-units = 1
+lto = true
+# Tauri's template defaults to opt-level = "s". This app's hot path is JPEG
+# decoding and resizing across thousands of raws, so trade a few MB of binary
+# for throughput — otherwise the shipped build is slower at scanning than the
+# dev build, which optimises dependencies at level 3 (below).
+opt-level = 3
+strip = true
+
+# Image decoding is unusably slow in a debug build; always optimise dependencies.
+[profile.dev.package."*"]
+opt-level = 3
+

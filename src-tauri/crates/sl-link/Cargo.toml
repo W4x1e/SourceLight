@@ -1,0 +1,25 @@
+[package]
+name = "sl-link"
+version = "0.1.0"
+description = "SourceLight phone link: pairing and authenticated connections over iroh"
+authors = ["James Tully"]
+license = "MPL-2.0"
+publish = false
+edition = "2021"
+rust-version = "1.91"
+
+[dependencies]
+sl-protocol = { path = "../sl-protocol" }
+iroh = "1.3"
+tokio = { version = "1.53.1", features = ["rt-multi-thread", "macros", "sync", "time", "io-util"] }
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.151"
+getrandom = "0.3"
+base64 = "0.23.0"
+
+[dev-dependencies]
+# `test-utils` runs a local relay for the away-from-home tests and lets them
+# trust its self-signed certificate. Tests only: it never reaches an app build.
+iroh = { version = "1.3", features = ["test-utils"] }
+# Paused time, for the stalled-stream tests.
+tokio = { version = "1.53.1", features = ["test-util"] }

@@ -1,0 +1,66 @@
+name: Bug report
+description: Something doesn't work, or works wrongly — including a raw file that decodes badly.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time. A security problem should not go here: SECURITY.md says how to report one privately.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what happened, and what you expected instead. Screenshots help.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open …
+        2. Click …
+        3. See …
+  - type: input
+    id: version
+    attributes:
+      label: SourceLight version
+      description: Settings → About shows it.
+      placeholder: "0.2.1"
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: "Windows 11 24H2, or macOS 15.1"
+    validations:
+      required: true
+  - type: input
+    id: gpu
+    attributes:
+      label: GPU
+      description: Develop, the AI masks and noise reduction run on the graphics card, so it often matters.
+      placeholder: "NVIDIA RTX 4070, AMD Radeon 780M, Apple M2 …"
+  - type: input
+    id: camera
+    attributes:
+      label: Camera model
+      description: For anything to do with particular photos — decoding, colour, metadata. The lens and firmware too, if they might matter.
+      placeholder: "Sony a6400, firmware 2.00"
+  - type: dropdown
+    id: sample
+    attributes:
+      label: Can you share a sample file?
+      description: A raw that shows the problem is usually the fastest way to a fix. Attach it zipped, or link to it.
+      options:
+        - "Not relevant to this report"
+        - "Yes, and it may be used as a test fixture"
+        - "Yes, but for diagnosis only"
+        - "No"
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: If the app crashed or showed an error, Settings → About → Diagnostics → Open log folder finds the logs. Paste anything relevant.
+      render: text

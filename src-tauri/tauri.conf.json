@@ -1,0 +1,58 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "SourceLight",
+  "mainBinaryName": "SourceLight",
+  "version": "0.2.1",
+  "identifier": "app.sourcelight",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "SourceLight",
+        "width": 1500,
+        "height": 940,
+        "minWidth": 940,
+        "minHeight": 620,
+        "zoomHotkeysEnabled": true,
+        "resizable": true,
+        "theme": "Dark",
+        "backgroundColor": "#0c0c0e",
+        "transparent": false,
+        "visible": false
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; connect-src 'self' ipc: http://ipc.localhost thumb: http://thumb.localhost; img-src 'self' thumb: http://thumb.localhost develop: http://develop.localhost full: http://full.localhost data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; frame-ancestors 'none'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "nsis"
+    ],
+    "resources": {
+      "vendor/libraw/bin/x86_64-pc-windows-msvc/libraw.dll": "libraw.dll",
+      "vendor/libraw/LICENSE.LGPL": "LICENSE.LibRaw.txt",
+      "vendor/libraw/COPYRIGHT": "COPYRIGHT.LibRaw.txt",
+      "THIRD-PARTY-LICENSES.txt": "THIRD-PARTY-LICENSES.txt",
+      "../NOTICE": "NOTICE.txt",
+      "../LICENSE": "LICENSE.txt"
+    },
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.ico"
+    ],
+    "publisher": "James Tully",
+    "copyright": "Copyright (c) 2026 James Tully. Mozilla Public License 2.0.",
+    "shortDescription": "Raw photo editor and organiser",
+    "longDescription": "A local-first raw photo editor and organiser: catalogue, filter, cull and develop raw files from every major camera, with optional on-device AI. Your photos never leave your computer unless you connect an AI app."
+  }
+}

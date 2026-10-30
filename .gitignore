@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+src-tauri/target/
+src-tauri/gen/schemas/
+/release/
+
+# ONNX Runtime and AI models are downloaded per machine.
+# The bundled face detector is the exception.
+onnxruntime-win-x64*/
+onnxruntime-osx*/
+onnxruntime-linux*/
+*.onnx
+!src-tauri/vendor/models/**/*.onnx
+src-tauri/vendor/onnxruntime/*
+!src-tauri/vendor/onnxruntime/README.md
+!src-tauri/vendor/onnxruntime/VERSION
+
+# Catalogues and thumbnails
+*.db
+*.db-shm
+*.db-wal
+thumbs/
+
+# Raw test files, fetched by scripts/fetch-raw-fixtures.sh
+src-tauri/tests/fixtures/raws/
+
+# Phone app build output
+mobile/dist/
+mobile/src-tauri/target/
+mobile/src-tauri/gen/schemas/
+mobile/plugins/*/.tauri/
+
+# Env
+.env
+.env.local
+
+# Editor, OS and local tool settings
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+.claude/
+.github/hooks/
+.impeccable/config.local.json

@@ -1,0 +1,274 @@
+name: CI
+
+# On every pull request, every push to main, and by hand.
+#
+# A pull request from outside needs a check its author cannot skip. Runs on
+# GitHub-hosted runners are free for a public repository; in a private one they
+# are metered, Windows at twice the rate and macOS at ten times, and a cold
+# build of this tree is about seventy minutes.
+#
+# `scripts/check.sh` stays the first line: it runs most of the same commands
+# on a build that is already warm, and it has a hardware GPU, which hosted
+# Windows runners do not.
+# This workflow adds what a single machine cannot — macOS above all —
+# and makes the result visible on the pull request.
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Read-only, and no secrets: a pull request from a fork runs this with the
+# code it brings, so the token must not be able to change anything. Never
+# move this to `pull_request_target`, which would run that code with this
+# repository's write token. Actions are pinned by commit: a tag can be
+# moved to other code, a commit can't.
+permissions:
+  contents: read
+
+# A cold Windows build here is about seventy minutes. Pushing several commits in
+# a row starts a full build for each, when only the newest one's answer means
+# anything, and the runs queue behind each other — so supersede. The group is
+# the ref, so each pull request (refs/pull/N/merge) and main supersede only
+# their own runs.
+#
+# This cancels on `main` too. The first version exempted it, on the theory that
+# main runs populate the shared cache and say whether the branch is green; in
+# practice five of them stacked up within twenty minutes, and a superseded run
+# would not have saved a cache anyway because it never reaches the end. The
+# newest run on main tests the newest code, which is the only state anyone is
+# asking about.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  frontend:
+    # Nothing here is platform-specific — tsc, vitest/jsdom and vite all run
+    # anywhere — and on the Windows runner `npm ci` intermittently died with
+    # EBUSY as esbuild's postinstall raced antivirus over its own freshly
+    # extracted binary. Linux is faster and cheaper besides. The Windows-only
+    # parts of this project all live in the rust job.
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Typecheck
+        run: npx tsc --noEmit
+      - name: Test
+        # vitest covers the frontend logic that used to need a hand-built,
+        # thrown-away browser harness — viewport maths, the render-throttle
+        # hook, and the tone-curve spline whose committed samples are asserted
+        # identically on the Rust side (curve::tests::the_ts_and_rust_splines_agree),
+        # so a change to one implementation and not the other fails here.
+        run: npm test
+      - name: Build frontend
+        run: npx vite build
+
+  rust:
+    # macOS is a shipping target for the editor, so it is built and tested from
+    # the start rather than discovered to be broken years later. Windows stays
+    # the primary platform.
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            features: ""
+          # The configuration that ships. `ai` is not a default feature, so
+          # until now the ONNX Runtime linkage and every AI code path — quality
+          # culling, faces, people, CLIP search, SAM 2, BiRefNet, the things the
+          # app is built around — compiled only on the developer's machine. The
+          # least-tested build was the shipped one.
+          - os: windows-latest
+            features: "--features ai"
+          # With LibRaw vendored for Apple silicon (scripts/vendor-libraw-macos.sh)
+          # the Mac builds the same default features, raw decoding included.
+          - os: macos-latest
+            features: ""
+    runs-on: ${{ matrix.os }}
+    # A cold Windows build took 73 minutes; the AI leg was still compiling at
+    # 78. Without a limit a hung test would hold the runner for six hours.
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          persist-credentials: false
+      # bindgen needs libclang; it is preinstalled on GitHub's Windows runners
+      # but not on PATH. Windows only: clang-sys searches *only* LIBCLANG_PATH
+      # when it is set, even to nothing, and the Mac finds the Xcode one alone.
+      - name: Point bindgen at LLVM
+        if: runner.os == 'Windows'
+        shell: bash
+        run: echo 'LIBCLANG_PATH=C:\Program Files\LLVM\bin' >> "$GITHUB_ENV"
+      # Pinned by commit, so the toolchain is named here rather than by
+      # the branch the action is taken from.
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          toolchain: stable
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2.9.3
+        with:
+          workspaces: src-tauri
+          # Feature set is part of the key: two Windows entries sharing one
+          # cache would evict each other's artifacts on every run.
+          key: ${{ matrix.os }}-${{ matrix.features }}
+          # Save even when the job fails, and this is not a nicety — it is the
+          # thing that was making every run cost seventy minutes. The action
+          # saves on success by default, the Windows job had never once
+          # succeeded, so no cache was ever written and every run rebuilt the
+          # whole tree from nothing. A red run's compiled dependencies are still
+          # perfectly good; only our own crate needs redoing.
+          cache-on-failure: true
+          # Only main saves. Pull requests restore main's cache, and a burst of
+          # them can no longer evict it under the repository's cache limit.
+          save-if: ${{ github.ref == 'refs/heads/main' }}
+      - name: Format check
+        # Formatting is platform-independent; checking it once is enough.
+        # `--all` takes in the workspace crates in src-tauri/crates.
+        if: matrix.os == 'windows-latest' && matrix.features == ''
+        run: cargo fmt --manifest-path src-tauri/Cargo.toml --all --check
+      # --locked everywhere: a change to Cargo.toml that needs a new
+      # Cargo.lock fails here instead of moving versions under it.
+      - name: Clippy
+        # --all-targets so tests and benches are linted too, not just the lib.
+        run: cargo clippy --locked --manifest-path src-tauri/Cargo.toml --all-targets --features dev-tools ${{ matrix.features }} -- -D warnings
+      # The workspace crates are not part of the app's package, so the command
+      # above does not reach them. sl-develop holds the GPU's golden renders.
+      - name: Clippy (workspace crates)
+        if: matrix.features == ''
+        run: cargo clippy --locked --manifest-path src-tauri/Cargo.toml -p sl-develop -p sl-protocol -p sl-link --all-targets -- -D warnings
+      # Real sensor data for the decode tests. Fetched rather than committed —
+      # 150 MB of other people's photographs does not belong in the repo — and
+      # cached on the manifest's own hash, so it downloads once per change to
+      # the sample set rather than once per build. The app advertises
+      # 21 raw extensions and, before this, exactly two had ever been decoded
+      # from a real file.
+      - name: Cache raw fixtures
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: src-tauri/tests/fixtures/raws
+          key: raws-${{ hashFiles('src-tauri/tests/fixtures/raw-samples.tsv') }}
+      - name: Fetch raw fixtures
+        if: matrix.features == ''
+        shell: bash
+        run: ./scripts/fetch-raw-fixtures.sh
+      # ONNX Runtime is not in the repository either
+      # (src-tauri/vendor/onnxruntime/README.md). Without it the AI tests skip.
+      # Cached on the record of which build it is. The script checks a cached
+      # copy against that record and downloads only what is missing.
+      - name: Cache ONNX Runtime
+        if: matrix.features == '--features ai'
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: |
+            src-tauri/vendor/onnxruntime/*.dll
+            src-tauri/vendor/onnxruntime/*.txt
+          key: onnxruntime-${{ hashFiles('src-tauri/vendor/onnxruntime/VERSION') }}
+      - name: Fetch ONNX Runtime
+        if: matrix.features == '--features ai'
+        shell: bash
+        run: ./scripts/fetch-ort.sh
+
+      - name: Test
+        shell: bash
+        env:
+          # Only a build that has LibRaw can decode them.
+          SOURCELIGHT_TEST_RAW: ${{ matrix.features == '' && format('{0}/src-tauri/tests/fixtures/raws', github.workspace) || '' }}
+          # arw_pipeline wants a folder of Sony files specifically; the manifest
+          # carries an a6400 frame, so the same folder serves. Without this the
+          # whole ingest-and-EXIF path stays unexercised in CI.
+          SOURCELIGHT_TEST_ARW: ${{ matrix.features == '' && format('{0}/src-tauri/tests/fixtures/raws', github.workspace) || '' }}
+          # The job that fetched the fixtures declares it has them, so a raw test
+          # that skips here fails instead of reporting green — losing the
+          # fixtures, or a variable above, can no longer shrink coverage without
+          # anyone noticing. The other jobs have no raws and declare
+          # nothing; their skips are still counted below.
+          SOURCELIGHT_REQUIRE: ${{ matrix.features == '' && 'raw' || '' }}
+          SOURCELIGHT_SKIP_LOG: ${{ runner.temp }}/skipped-tests.tsv
+        run: cargo test --locked --manifest-path src-tauri/Cargo.toml ${{ matrix.features }}
+      - name: Test (workspace crates)
+        if: matrix.features == ''
+        shell: bash
+        env:
+          SOURCELIGHT_SKIP_LOG: ${{ runner.temp }}/skipped-tests.tsv
+        run: cargo test --locked --manifest-path src-tauri/Cargo.toml -p sl-develop -p sl-protocol -p sl-link
+
+      # Tests that need something this runner does not have — a hardware GPU
+      # (hosted Windows runners have none), downloaded models, a real
+      # catalogue — skip, and a skip reports green. Say how many in the run
+      # summary rather than letting the green total speak for them.
+      - name: Report skipped tests
+        if: always()
+        shell: bash
+        run: |
+          log="${{ runner.temp }}/skipped-tests.tsv"
+          if [ -s "$log" ]; then
+            total=$(wc -l < "$log" | tr -d ' ')
+            by_kind=$(cut -f1 "$log" | sort | uniq -c | awk '{printf "%s%d %s", sep, $1, $2; sep=", "}')
+            echo "::warning::$total tests skipped on ${{ matrix.os }} ${{ matrix.features }} ($by_kind) — they report green but did not run."
+          else
+            echo "::notice::No tests skipped on ${{ matrix.os }} ${{ matrix.features }}."
+          fi
+
+      # LibRaw is LGPL-2.1, usable from an application under other terms
+      # (MPL-2.0 here) only while it stays a separately replaceable shared
+      # library. Static linking would void that silently — nothing else in the
+      # build would complain — so assert the import is dynamic.
+      - name: LibRaw is dynamically linked
+        if: matrix.os == 'windows-latest' && matrix.features == ''
+        shell: pwsh
+        run: |
+          $dumpbin = Get-ChildItem "C:\Program Files*\Microsoft Visual Studio\*\*\VC\Tools\MSVC\*\bin\Hostx64\x64\dumpbin.exe" | Select-Object -First 1
+          $exe = Get-ChildItem src-tauri/target/debug/deps/sourcelight_lib-*.exe | Sort-Object LastWriteTime | Select-Object -Last 1
+          $imports = & $dumpbin.FullName /dependents $exe.FullName
+          if ($imports -match 'libraw\.dll') {
+            Write-Host "OK: libraw.dll is a dynamic import of $($exe.Name)"
+          } else {
+            Write-Error "libraw.dll is NOT dynamically imported - LGPL compliance is broken. Check build.rs emits 'dylib=' and links libraw.lib, not libraw_static.lib."
+            exit 1
+          }
+      - name: LibRaw is dynamically linked (macOS)
+        if: runner.os == 'macOS' && matrix.features == ''
+        shell: bash
+        run: |
+          exe=$(ls -t src-tauri/target/debug/deps/sourcelight_lib-* | grep -v '\.d$' | head -1)
+          if otool -L "$exe" | grep -q '@rpath/libraw\.dylib'; then
+            echo "OK: libraw.dylib is a dynamic import of $(basename "$exe")"
+          else
+            echo "::error::libraw.dylib is NOT dynamically imported - LGPL compliance is broken. Check build.rs links dylib=raw."
+            exit 1
+          fi
+
+      # Regenerate the frontend bindings and fail if that changed anything —
+      # this is what keeps src/bindings.ts honest about the Rust command
+      # signatures instead of drifting until something breaks at runtime.
+      - name: TypeScript bindings are current
+        if: matrix.os == 'windows-latest' && matrix.features == ''
+        shell: bash
+        run: |
+          cargo run --locked --manifest-path src-tauri/Cargo.toml --features dev-tools --bin export_bindings
+          git diff --exit-code -- src/bindings.ts \
+            || { echo "::error::src/bindings.ts is stale — run 'cargo run --features dev-tools --bin export_bindings' and commit the result"; exit 1; }
+
+  # Guards the licence policy in src-tauri/deny.toml: the application is
+  # MPL-2.0 and links statically, so a transitive GPL or LGPL crate entering
+  # the static link has to fail the build rather than pass unnoticed.
+  licences:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          persist-credentials: false
+      - uses: EmbarkStudios/cargo-deny-action@3c6349835b2b7b196a839186cb8b78e02f7b5f25 # v2.1.1
+        with:
+          manifest-path: src-tauri/Cargo.toml
+          command: check licenses bans sources advisories

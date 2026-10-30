@@ -1,0 +1,201 @@
+import type { Catalogue } from "..";
+
+export default {
+  "store.resolve.done": { other: "{groups}で{count}枚を除外しました。" },
+  "store.resolve.groups": { other: "{count}グループ" },
+  "store.resolve.skipped": { other: "判定済みの{count}件はそのままにしました。" },
+  "store.resolve.undo": "{key}で元に戻せます。",
+  "store.resolve.nothing": "変更するものはありません。",
+  "store.resolve.allJudged": "すべてのグループがすでに判定済みです。変更するものはありません。",
+  "store.colours.noneClose": "色が似ている写真はありません。または、この写真の色がまだ読み取られていません。",
+  "store.paste.copied": "{name}の場所とキーワードをコピーしました。写真メニューから貼り付けられます。",
+  "store.paste.place": { other: "{name}の場所を{count}枚に設定しました。" },
+  "store.paste.positionToo": { other: "位置のない{count}枚にもその位置を設定しました。" },
+  "store.paste.positionOnly": { other: "{count}枚に{name}の位置を設定しました。" },
+  "store.paste.keywords": { other: "{name}のキーワード{count}件を{photos}に付けました。" },
+  "store.track.title": { other: "{count}枚をGPXトラックから再配置しますか？" },
+  "store.track.message": { other: "古い時刻で配置されています。配置し直すと、新しい時刻にトラックがあった位置に移動します。カメラによる位置や手動で設定した位置は変わりません。" },
+  "store.track.confirm": "再配置",
+  "store.track.leave": "そのままにする",
+  "store.track.moved": { other: "{count}枚をトラックに沿って移動しました。" },
+  "store.track.outside": { other: "{count}枚はトラックの範囲外になったため、元の位置のままです。" },
+  "store.track.missing": { other: "{count}枚のトラックファイルが見つからないため、元の位置のままです。" },
+  "store.captureTime.reverted": { other: "{count}枚をファイルの時刻に戻しました。" },
+  "store.captureTime.nothingToRevert": "戻すものはありません。これらはファイルの時刻のままです。",
+  "store.captureTime.fromSidecars": { other: "{count}枚にサイドカーの撮影日時を使いました。" },
+  "store.captureTime.changed": { other: "{count}枚の撮影日時を変更しました。" },
+  "store.captureTime.undated": { other: "{count}枚は動かす時刻がないため、そのままにしました。" },
+  "store.sidecarTimes.titleOne": "{name}のサイドカーの撮影日時を使いますか？",
+  "store.sidecarTimes.titleMany": { other: "{count}個のサイドカーの撮影日時を使いますか？" },
+  "store.sidecarTimes.oneDiffers": "サイドカーでは{sidecar}、ここでは{here}です。",
+  "store.sidecarTimes.undated": "日時なし",
+  "store.sidecarTimes.manyDiffer": "サイドカーの時刻がここの時刻と異なります。",
+  "store.sidecarTimes.why": "別のアプリで設定されたもので、カメラの時計を直すためかもしれません。ファイルは変更されず、{dialog}の「{revert}」で元に戻せます。",
+  "store.sidecarTimes.useIts": "この時刻を使う",
+  "store.sidecarTimes.useTheirs": "これらの時刻を使う",
+  "store.sidecarTimes.keep": "今の時刻のままにする",
+  "store.folderKeywords.added": { other: "フォルダー名から{count}件のキーワードを{photos}に追加しました。キーワードの「フォルダー」にあります。" },
+  "store.folderKeywords.none": "追加するフォルダー名はありません。すべて日付やカメラのフォルダーか、追加済みです。",
+  "store.folderKeywords.removed": { other: "{count}枚からフォルダー名のキーワードを外しました。" },
+  "store.folderKeywords.noneToRemove": "外すフォルダー名のキーワードはありません。",
+  "store.keywords.confirmed": { other: "タガーのキーワード{count}件を確定しました。" },
+  "store.keywords.deleted": "「{name}」を削除しました。",
+  "store.keywords.deletedFrom": { other: "「{name}」を削除し、{count}枚から外しました。" },
+  "store.types.shapePortrait": "縦長",
+  "store.types.shapeLandscape": "横長",
+  "store.types.shapeSquare": "正方形",
+  "store.types.shapePanorama": "パノラマ",
+  "store.types.colourOrange": "オレンジ",
+  "store.types.colourTeal": "ティール",
+  "store.types.colourPink": "ピンク",
+  "store.types.colourBrown": "茶",
+  "store.types.colourWhite": "白",
+  "store.types.colourGrey": "グレー",
+  "store.types.colourBlack": "黒",
+  "store.types.faces0": "顔なし",
+  "store.types.faces1": "1人",
+  "store.types.faces2": "2人",
+  "store.types.faces3to5": "3〜5人",
+  "store.types.faces6": "6人以上",
+  "store.develop.openFailed": "{name} を開けませんでした：{error}",
+  "store.develop.thisPhoto": "この写真",
+  "store.selection.narrowed": { other: "選択していた {count} 枚が表示されなくなったため、選択を解除しました。" },
+  // Shared by more than one dialog
+  "store.dialog.notNow": "今はしない",
+
+  // Offer to set up on-device AI for new photos
+  "store.aiOffer.title": "新しい写真を検索できるようにしますか？",
+  "store.aiOffer.message": "SourceLightは、新しい写真のインデックス作成、タグ付け、人物の検出をこのコンピューター上で行い、内容を説明して写真を探せるようにします。約{size}のダウンロードが1回だけ必要です。この機能はアクティビティでオフにできます。",
+  "store.aiOffer.messageMetered": "SourceLightは、新しい写真のインデックス作成、タグ付け、人物の検出をこのコンピューター上で行い、内容を説明して写真を探せるようにします。約{size}のダウンロードが1回だけ必要です。従量制の接続を使用しているようです。この機能はアクティビティでオフにできます。",
+  "store.aiOffer.confirm": "ダウンロードして解析",
+  "store.aiOffer.settingUp": "オンデバイスAIを準備しています（{size}のダウンロード）。進行状況はアクティビティに表示されます。",
+
+  // Scanning the library
+  "store.scan.starting": "開始中",
+  "store.scan.added": { other: "新しい写真を{count}枚追加しました。" },
+  "store.scan.relinked": { other: "移動された写真が{count}枚見つかりました。評価、タグ、編集内容は保持されています。" },
+  "store.scan.missing": { other: "{count}枚の写真が見つかりません。ドライブが接続されていない可能性があります。評価、タグ、編集内容は保持されています。" },
+  "store.scan.failed": {
+    other: "{count}枚の写真を読み込めませんでした。{reason}",
+  },
+
+  // Saving a set of photos as a collection
+  "store.collection.saved": {
+    other: "{count}枚の写真を「{name}」として保存しました。",
+  },
+
+  // Highlights
+  "store.highlights.nothing": "選べる写真がありません。ここにある写真はすべて除外、ピンボケ、または目つぶりです。",
+  "store.highlights.notIndexed": "これらの写真はまだ検索用のインデックスが作成されていません。先にインデックスを作成してください（アクティビティ）。",
+  "store.highlights.collectionName": "ベスト選出 · {label}",
+  "store.highlights.made": "{total}枚からベスト{count}枚を「{name}」として保存しました。",
+
+  // Moving rejects to the Trash / Recycle Bin
+  "store.bin.title": {
+    other: "除外した{count}枚を{trash}に移動しますか？",
+  },
+  "store.bin.message": "ファイルはXMPサイドカーやペアのJPEGとともに{trash}へ移動され、そこから復元できます。カタログからも削除されますが、その前にカタログをバックアップします。除外していないコピーがある除外写真は残ります。",
+  "store.bin.confirm": "{trash}に移動",
+  "store.bin.moved": {
+    other: "除外した{count}枚を{trash}に移動しました — {freed}を解放しました。",
+  },
+  "store.bin.kept": "{count}枚は、除外されていないコピーがあるため残しました。",
+  "store.bin.skipped": "{count}枚はファイルが見つからないためスキップしました。",
+  "store.bin.nothing": "移動したものはありません。",
+  "store.delete.title": { other: "{count}枚の写真を削除しますか？" },
+  "store.delete.message": "ファイルはXMPサイドカーや対になるJPEGと一緒に{trash}に移動し、そこから元に戻せます。コピーも含めてカタログからも削除されます。先にカタログをバックアップします。",
+  "store.delete.copiesTitle": { other: "{count}個のコピーを削除しますか？" },
+  "store.delete.copiesMessage": "削除されるのはコピーとその編集だけです。元の写真とファイルは残ります。先にカタログをバックアップします。",
+  "store.delete.confirm": "削除",
+  "store.delete.moved": { other: "{count}枚を{trash}に移動しました（{freed}解放）。" },
+  "store.delete.deleted": { other: "{count}個のコピーを削除しました。" },
+
+  // Content search
+  "store.search.indexTitle": "内容検索用のインデックスを作成しますか？",
+  "store.search.indexMessage": { other: "{count}枚の写真はまだインデックスが作成されていないため、内容検索に表示されません。実行中も作業を続けられます。" },
+  "store.search.indexConfirm": "今すぐ作成",
+  "store.search.indexCancel": "このまま検索",
+
+  // Find similar
+  "store.similar.label": "{label}に類似",
+  "store.similar.none": "その写真に十分似ている写真はありません。",
+
+  // Duplicates, bursts and compare
+  "store.duplicates.noneLooser": "重複の可能性がある写真は見つかりませんでした。類似度をゆるくするか、先にライブラリのインデックスを作成してください。",
+  "store.duplicates.noneNotIndexed": "重複の可能性がある写真は見つかりませんでした。ライブラリのインデックスがまだ作成されていない可能性があります。",
+  "store.stacking.none": "連写が見つかりませんでした。ライブラリのインデックスがまだ作成されていない場合は、先に作成してください。",
+  "store.compare.selectTwo": "比較するには2枚以上の写真を選択してください。",
+
+  // Undo
+  "store.undo.nothing": "取り消す操作はありません。",
+  "store.undo.done": "取り消しました：{label}。",
+
+  // Library folders
+  "store.folder.addTitle": "ライブラリにフォルダーを追加",
+  "store.folder.removeTitle": "{name}をライブラリから削除しますか？",
+  "store.folder.removeMessage": {
+    other: "この{count}枚の写真は、評価、タグ、場所、顔、編集内容とともにカタログから削除されます。ディスク上のファイルには影響せず、その前にカタログのバックアップが作成されます。",
+  },
+  "store.folder.removeConfirm": "フォルダーを削除",
+  "store.folder.removed": {
+    other: "{name}を削除しました — {count}枚の写真を削除しました。",
+  },
+  "store.folder.locateTitle": "{name}の現在の場所はどこですか？",
+  "store.folder.forgetTitle": {
+    other: "フォルダー外の{count}枚の写真をカタログから削除しますか？",
+  },
+  "store.folder.forgetMessage": "これらはライブラリから外したフォルダーの写真です。削除すると、評価、タグ、編集内容とともにカタログから取り除かれます（先にバックアップします）。ファイルには影響しません。残したい場合は、そのフォルダーを再び追加してください。",
+  "store.folder.forgetConfirm": "削除する",
+
+  // Tagging
+  "store.tagging.preparing": "準備中",
+  "store.tagging.retagTitle": "すべての写真にタグを付け直しますか？",
+  "store.tagging.retagMessage": "自動タグはすべて置き換えられます。自分で追加したタグは保持されます。先にカタログをバックアップするので、必要なら復元できます。",
+  "store.tagging.retagConfirm": "すべてタグを付け直す",
+
+  // Develop
+  "store.develop.copySavedNamed": "コピーを保存しました：{name}。以降はコピーを編集します。",
+  "store.develop.copySaved": "コピーを保存しました。以降はコピーを編集します。",
+
+  // Label tables in types.ts
+  "store.types.aspectFree": "フリー",
+  "store.types.colourRed": "レッド",
+  "store.types.colourYellow": "イエロー",
+  "store.types.colourGreen": "グリーン",
+  "store.types.colourBlue": "ブルー",
+  "store.types.colourPurple": "パープル",
+  "store.types.focalUpTo24": "24 mm以下",
+  "store.types.focal25to50": "25〜50 mm",
+  "store.types.focal51to105": "51〜105 mm",
+  "store.types.focal106to200": "106〜200 mm",
+  "store.types.focalOver200": "200 mm超",
+  "store.types.isoUpTo400": "ISO 400以下",
+  "store.types.iso401to1600": "ISO 401〜1600",
+  "store.types.iso1601to6400": "ISO 1601〜6400",
+  "store.types.isoOver6400": "ISO 6400超",
+  "store.types.apertureWider28": "ƒ/2.8以下（開放側）",
+  "store.types.aperture29to56": "ƒ/2.9〜5.6",
+  "store.types.apertureNarrower56": "ƒ/5.6より絞った状態",
+  "store.types.sortNewest": "新しい順",
+  "store.types.sortOldest": "古い順",
+  "store.types.sortAdded": "追加が新しい順",
+  "store.types.sortRating": "評価の高い順",
+  "store.types.sortName": "ファイル名",
+  "store.types.sortSharpest": "鮮明順",
+  // Translated 2026-10-01 (machine; native review owed).
+  "store.search.stillIndexing": { other: "インデックス作成中です（残り{count}枚）。完了するにつれて結果が良くなります。" },
+  "store.copy.thePhoto": "写真",
+  "store.copy.done": "{name}をコピーしました。",
+  "store.copy.doneSized": "{name}をコピーしました（{width} × {height}）。",
+  "store.copy.refused": "クリップボードに拒否されました",
+  "store.copy.failed": "{name}をコピーできませんでした：{why}。",
+  "store.undo.beyond": "直前の変更（{label}）は元に戻せません。元に戻せるのは評価、フラグ、カラーラベル、ペーストした現像設定です。もう一度押すと、その前の変更を元に戻します。",
+  "store.folder.cardTitle": "このフォルダーはメモリーカード上にあります",
+  "store.folder.cardMessage": "カードから追加した写真はカードにしかありません。カードをフォーマットすると、評価や編集内容とともに消えてしまいます。読み込みなら、先にコンピューターにコピーします。",
+  "store.folder.cardImport": "カードから読み込む",
+  "store.folder.cardNotNow": "今はしない",
+  "store.folder.cardAnywayTitle": "カード自体をライブラリに追加しますか？",
+  "store.folder.cardAnywayMessage": "写真をこのカードに置いたままにする場合にのみ行ってください。SourceLightはライブラリのフォルダーをその場所で読み取り、コピーはしません。",
+  "store.folder.cardAnyway": "カードを追加",
+  "store.types.sortCustom": "カスタム順",
+} satisfies Catalogue;

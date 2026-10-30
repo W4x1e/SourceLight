@@ -1,0 +1,48 @@
+/**
+ * Words used all over the interface, translated once. An area uses one of these
+ * only when it means exactly this word in exactly this role — a button's
+ * "Delete" and a heading's "Delete" can need different words in another
+ * language, and then the area keeps its own key.
+ */
+export default {
+  "common.ok": "OK",
+  "common.cancel": "Cancel",
+  "common.close": "Close",
+  "common.save": "Save",
+  "common.delete": "Delete",
+  "common.remove": "Remove",
+  "common.rename": "Rename",
+  "common.edit": "Edit",
+  "common.done": "Done",
+  "common.apply": "Apply",
+  "common.reset": "Reset",
+  "common.retry": "Try again",
+  "common.back": "Back",
+  "common.next": "Next",
+  "common.previous": "Previous",
+  "common.continue": "Continue",
+  "common.clear": "Clear",
+  "common.undo": "Undo",
+  "common.redo": "Redo",
+  "common.on": "On",
+  "common.off": "Off",
+  "common.yes": "Yes",
+  "common.no": "No",
+  "common.all": "All",
+  "common.none": "None",
+  "common.loading": "Loading…",
+  "common.starting": "Starting…",
+  "common.checking": "Checking…",
+  "common.stop": "Stop",
+  "common.pause": "Pause",
+  "common.resume": "Resume",
+  "common.more": "More",
+  "common.learnMore": "Learn more",
+  "common.showInFileManager": "Show in {fileManager}",
+  "common.progress": "{current} / {total}",
+  "common.photos": { one: "{count} photo", other: "{count} photos" },
+  "common.selected": "{count} selected",
+  "common.unknown": "Unknown",
+  "common.untitled": "Untitled",
+  "common.error": "Something went wrong: {error}",
+} as const;
