@@ -14,25 +14,16 @@ use sourcelight_lib::full_preview;
 use sourcelight_lib::gpu::pipeline::Pipeline;
 use sourcelight_lib::raw::libraw::LibRawDecoder;
 use sourcelight_lib::raw::PREVIEW_EDGE;
-use std::path::PathBuf;
+use sourcelight_lib::test_support::{self, Needs};
 
 #[test]
 fn every_fixture_offers_more_than_the_cached_preview() {
-    let Ok(dir) = std::env::var("SOURCELIGHT_TEST_RAW") else {
-        eprintln!("skipped: set SOURCELIGHT_TEST_RAW to the raw fixtures");
+    // Empty, as CI's AI leg sets it, is a skip; a wrong path still panics.
+    let Some(dir) = test_support::raw_dir() else {
+        test_support::skip(Needs::Raw, "set SOURCELIGHT_TEST_RAW to the raw fixtures");
         return;
     };
-    let mut files: Vec<PathBuf> = std::fs::read_dir(dir)
-        .unwrap()
-        .flatten()
-        .map(|e| e.path())
-        .filter(|p| {
-            p.extension()
-                .and_then(|e| e.to_str())
-                .is_some_and(sourcelight_lib::raw::is_supported_extension)
-        })
-        .collect();
-    files.sort();
+    let files = test_support::files_in(&dir, sourcelight_lib::raw::is_supported_extension);
     assert!(!files.is_empty(), "no raw files in SOURCELIGHT_TEST_RAW");
 
     let mut smaller = Vec::new();
