@@ -106,7 +106,7 @@ sl-develop = { path = "crates/sl-develop", features = ["test-helpers"] }
 # crate, already in the tree through tauri-utils — so `tests/bundle_resources.rs`
 # merges `tauri.ai.conf.json` exactly the way a real build does. Also a normal
 # dependency: the editing server merges a model's changes the same way.
-json-patch = "3"
+json-patch = "4"
 
 [dependencies]
 anyhow = "1.0.104"
@@ -163,7 +163,7 @@ sl-develop = { path = "crates/sl-develop" }
 # localhost HTTP with axum, which is already in the tree. Apache-2.0 / MIT.
 rmcp = { version = "3.7", features = ["transport-streamable-http-server"] }
 axum = "0.8"
-json-patch = "3"
+json-patch = "4"
 # The QR code a phone scans to pair. SVG only, no image dependency.
 # MIT OR Apache-2.0.
 qrcode = { version = "0.14", default-features = false, features = ["svg"] }
