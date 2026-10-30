@@ -109,10 +109,11 @@ jobs:
         shell: bash
         run: echo 'LIBCLANG_PATH=C:\Program Files\LLVM\bin' >> "$GITHUB_ENV"
       # Pinned by commit, so the toolchain is named here rather than by
-      # the branch the action is taken from.
+      # the branch the action is taken from. A fixed version, so a new
+      # release's clippy lints don't fail CI until we move to it on purpose.
       - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
         with:
-          toolchain: stable
+          toolchain: "1.97.1"
           components: rustfmt, clippy
       - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2.9.3
         with:
