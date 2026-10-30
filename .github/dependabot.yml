@@ -7,11 +7,8 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
-  - package-ecosystem: cargo
-    directory: /mobile/src-tauri
-    schedule:
-      interval: weekly
-    open-pull-requests-limit: 5
+  # No entry for mobile/src-tauri: it depends on crates outside its folder
+  # (mobile/plugins, src-tauri/crates), which Dependabot can't resolve.
   - package-ecosystem: npm
     directory: /
     schedule:
