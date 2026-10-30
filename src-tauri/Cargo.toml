@@ -136,7 +136,7 @@ ort = { version = "=2.0.0-rc.10", optional = true, features = ["load-dynamic", "
 # Tokenizer for the built-in CLIP tagger (loads the model's tokenizer.json).
 # default-features off to avoid the C `onig` build and the http downloader —
 # `fancy-regex` (pure Rust) covers the CLIP pre-tokenizer. Only with `ai`.
-tokenizers = { version = "0.21", optional = true, default-features = false, features = ["fancy-regex"] }
+tokenizers = { version = "0.23", optional = true, default-features = false, features = ["fancy-regex"] }
 percent-encoding = "2.3.2"
 pollster = "1.0.1"
 quick-xml = "0.41.0"
