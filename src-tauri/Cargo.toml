@@ -151,7 +151,7 @@ serde = { version = "1.0.229", features = ["derive"] }
 serde_json = { version = "1.0.151", features = ["preserve_order"] }
 # SHA-256 verification of downloaded models and the llama.cpp runtime before they
 # are installed/executed. Already in the tree transitively; permissive (MIT/Apache).
-sha2 = "0.10"
+sha2 = "0.11"
 # The phone link's crates (docs/MOBILE.md). The messages always (no
 # networking in them, and the desktop's tests read the phone's GPX through
 # them); the link itself only with `phone-link`.
