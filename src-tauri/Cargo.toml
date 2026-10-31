@@ -169,7 +169,7 @@ json-patch = "4"
 qrcode = { version = "0.14", default-features = false, features = ["svg"] }
 # The OS random source: the key each run gives its llama-server, and
 # the phone link's pairing secrets. MIT/Apache-2.0.
-getrandom = "0.3"
+getrandom = "0.4"
 specta = { version = "=2.0.0-rc.25", features = ["derive"] }
 specta-typescript = "=0.0.12"
 tauri = { version = "2", features = [] }
