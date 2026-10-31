@@ -106,7 +106,7 @@ sl-develop = { path = "crates/sl-develop", features = ["test-helpers"] }
 # crate, already in the tree through tauri-utils — so `tests/bundle_resources.rs`
 # merges `tauri.ai.conf.json` exactly the way a real build does. Also a normal
 # dependency: the editing server merges a model's changes the same way.
-json-patch = "3"
+json-patch = "4"
 
 [dependencies]
 anyhow = "1.0.104"
@@ -119,9 +119,9 @@ chrono = "0.4.45"
 half = "2.7"
 image = "0.25.6"
 # Text-watermark rendering: a glyph rasteriser (ab_glyph) and the drawing helpers
-# (imageproc), both permissive. imageproc 0.25 tracks image 0.25.
+# (imageproc), both permissive. imageproc 0.27 tracks image 0.25.
 ab_glyph = "0.2"
-imageproc = { version = "0.25", default-features = false }
+imageproc = { version = "0.27", default-features = false, features = ["text"] }
 kamadak-exif = "0.6.1"
 # ONNX Runtime bindings for AI auto-masking; only compiled with `--features ai`.
 # `load-dynamic`: load onnxruntime.dll/.dylib at runtime (shipped beside the app,
@@ -136,7 +136,7 @@ ort = { version = "=2.0.0-rc.10", optional = true, features = ["load-dynamic", "
 # Tokenizer for the built-in CLIP tagger (loads the model's tokenizer.json).
 # default-features off to avoid the C `onig` build and the http downloader —
 # `fancy-regex` (pure Rust) covers the CLIP pre-tokenizer. Only with `ai`.
-tokenizers = { version = "0.21", optional = true, default-features = false, features = ["fancy-regex"] }
+tokenizers = { version = "0.23", optional = true, default-features = false, features = ["fancy-regex"] }
 percent-encoding = "2.3.2"
 pollster = "1.0.1"
 quick-xml = "0.41.0"
@@ -151,7 +151,7 @@ serde = { version = "1.0.229", features = ["derive"] }
 serde_json = { version = "1.0.151", features = ["preserve_order"] }
 # SHA-256 verification of downloaded models and the llama.cpp runtime before they
 # are installed/executed. Already in the tree transitively; permissive (MIT/Apache).
-sha2 = "0.10"
+sha2 = "0.11"
 # The phone link's crates (docs/MOBILE.md). The messages always (no
 # networking in them, and the desktop's tests read the phone's GPX through
 # them); the link itself only with `phone-link`.
@@ -163,7 +163,7 @@ sl-develop = { path = "crates/sl-develop" }
 # localhost HTTP with axum, which is already in the tree. Apache-2.0 / MIT.
 rmcp = { version = "3.7", features = ["transport-streamable-http-server"] }
 axum = "0.8"
-json-patch = "3"
+json-patch = "4"
 # The QR code a phone scans to pair. SVG only, no image dependency.
 # MIT OR Apache-2.0.
 qrcode = { version = "0.14", default-features = false, features = ["svg"] }
