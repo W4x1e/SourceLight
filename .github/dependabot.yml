@@ -1,5 +1,6 @@
-# Security updates arrive as soon as an advisory is published; these are the
-# routine version updates, kept to a weekly batch per ecosystem.
+# Security updates arrive as soon as an advisory is published. Routine version
+# updates come weekly, with minor and patch bumps batched into one PR per
+# ecosystem; major bumps still get a PR each.
 version: 2
 updates:
   - package-ecosystem: cargo
@@ -7,6 +8,12 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
+    groups:
+      cargo:
+        update-types: [minor, patch]
+        # ort is a release candidate tied to the vendored ONNX Runtime DLL, so
+        # it moves on its own.
+        exclude-patterns: ["ort", "ort-*"]
   # No entry for mobile/src-tauri: it depends on crates outside its folder
   # (mobile/plugins, src-tauri/crates), which Dependabot can't resolve.
   - package-ecosystem: npm
@@ -14,6 +21,9 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
+    groups:
+      npm:
+        update-types: [minor, patch]
     ignore:
       # TypeScript 6 under another name, kept for its compiler API (used by
       # src/i18n/literals.ts and three tests), which TypeScript 7 doesn't ship.
@@ -23,3 +33,6 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    groups:
+      actions:
+        update-types: [minor, patch]
