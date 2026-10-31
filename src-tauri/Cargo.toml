@@ -132,7 +132,7 @@ kamadak-exif = "0.6.1"
 # an NVIDIA GPU + CUDA toolkit), which is wrong to ship in a consumer Windows
 # app. DirectML gives portable GPU acceleration on any DX12 GPU from the ~16 MB
 # onnxruntime.dll alone, with automatic CPU fallback.
-ort = { version = "=2.0.0-rc.10", optional = true, features = ["load-dynamic", "directml", "coreml"] }
+ort = { version = "=2.0.0-rc.15", optional = true, features = ["load-dynamic", "directml", "coreml"] }
 # Tokenizer for the built-in CLIP tagger (loads the model's tokenizer.json).
 # default-features off to avoid the C `onig` build and the http downloader —
 # `fancy-regex` (pure Rust) covers the CLIP pre-tokenizer. Only with `ai`.
