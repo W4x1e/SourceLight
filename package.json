@@ -25,7 +25,7 @@
     "i18n:missing": "vite-node scripts/i18n-missing.ts"
   },
   "dependencies": {
-    "@tanstack/react-virtual": "^3.13.0",
+    "@tanstack/react-virtual": "^3.14.23",
     "@tauri-apps/api": "~2.12.0",
     "@tauri-apps/plugin-dialog": "^2.2.0",
     "react": "^19.0.0",
