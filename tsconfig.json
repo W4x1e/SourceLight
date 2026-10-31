@@ -12,6 +12,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    // TypeScript 6+ no longer picks up every @types package by itself.
+    "types": ["node"],
 
     "strict": true,
     "noUnusedLocals": true,
